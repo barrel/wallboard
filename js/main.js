@@ -1,3 +1,22 @@
+function update_weather(){
+	$.ajax({
+	  url: siteUrl+"apis/weather.php",
+	  type: "GET",
+	}).done(function(data) {
+		console.log(data);
+		weather = JSON.parse(data);
+		$('.now-icon').html(weather.now_icon);
+		$('.now-temp').html(weather.now_temperature+'<sup>&deg;</sup>');
+		$('.now-low').html(weather.now_low+'<sup>&deg;</sup>');
+		$('.now-high').html(weather.now_high+'<sup>&deg;</sup>');
+		
+		$('.next-hour').html(weather.next_hour_icon+weather.next_hour_temperature+'<sup>&deg;</sup>');
+		$('.tomorrow').html(weather.tomorrow_icon+weather.tomorrow_temperature+'<sup>&deg;</sup>');
+		$('.two-days').html(weather.next_icon+weather.next_temperature+'<sup>&deg;</sup>');
+		$('.updated-datetime').html('Last updated:'+weather.date);
+	});	
+}
+
 function sortSelect(selElem) {
 	if (selElem.children('optgroup').length){
 		selElem.children('optgroup').each(function(){
@@ -39,14 +58,38 @@ function sortSelect(selElem) {
 }
 
 $(document).ready(function(){
+	
 	// wallboard functions
+	  
+	if ($('.photos-slider').length){
+		var images = document.getElementById('slideshow').getElementsByTagName('img'),
+			numberOfImages = images.length,
+			i = 1;
+		function kenBurns() {
+			if (i==numberOfImages){ 
+				i = 0;
+			}
+			images[i].className = "fx";
+			if (i===0){ 
+				images[numberOfImages-2].className = "";
+			}
+			if (i===1){ 
+				images[numberOfImages-1].className = "";
+			}
+			if (i>1){ 
+				images[i-2].className = "";
+			}
+			i++;
+		}
+		document.getElementById('slideshow').getElementsByTagName('img')[0].className = "fx";
+		window.setInterval(kenBurns, 5000);
+	}
 	
-	
-	
-	
-	
-	
-	
+	if ($('.wallboard').length){
+		// load weather array
+		update_weather();
+		window.setInterval(update_weather, 5000);
+	}
 	
 	
 	// backdoor functions

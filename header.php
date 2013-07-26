@@ -14,6 +14,7 @@ require_once('con.php');
 	<head>
 		<base href="<?php if ($production){ echo '/'; } else { echo 'http://10.0.1.226/wallboard/'; } ?>">
 		<meta charset="utf-8">
+		<meta http-equiv="refresh" content="1500">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<title>Wallboard: <?= $pagename; ?></title>
 		<meta name="viewport" content="width=device-width">
