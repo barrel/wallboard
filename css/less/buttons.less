@@ -1,0 +1,167 @@
+// Buttons
+// --------------------------------------------------
+@choozerBtnBg: #347ce3;
+@choozerBtnGreenBg: #abc85b;
+@choozerBtnGreyBorder: #D8D8D8;
+@baseBorderRadius:      3px;
+@borderRadiusLarge:     5px;
+@borderRadiusSmall:     3px;
+@paddingLarge:          11px 19px; // 44px
+@paddingSmall:          2px 10px;  // 26px
+@paddingMini:           0 6px;   // 22px
+@fontSizeLarge:         @baseFontSize * 1.25; // ~18px
+@fontSizeSmall:         @baseFontSize * 0.85; // ~12px
+@fontSizeMini:          @baseFontSize * 0.75; // ~11px
+
+// Base styles
+// --------------------------------------------------
+
+// Core
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 0; // For input.btn
+  font-size: @baseFontSize;
+  line-height: @baseLineHeight;
+  text-align: center;
+  vertical-align: middle;
+	border: 1px solid @choozerBtnBg;
+  cursor: pointer;
+  color: @white;
+  background-color: @choozerBtnBg;
+  .border-radius(@baseBorderRadius);
+	.transition(all 150ms);
+
+  // Hover/focus state
+  &:hover,
+  &:focus {
+    color: @white;
+    text-decoration: none;
+	border: 1px solid #22539c;
+	.box-shadow(0 2px 3px rgba(0,0,0,.15));
+  }
+
+	&:active{
+		border: 1px solid @choozerBtnBg;
+		.box-shadow(none);
+	}
+
+  // Focus state for keyboard and accessibility
+  &:focus {
+  }
+
+  // Active state
+  &.active,
+  &:active {
+    background-image: none;
+    outline: 0;
+    //.box-shadow(~"inset 0 2px 4px rgba(0,0,0,.15), 0 1px 2px rgba(0,0,0,.05)");
+  }
+
+  // Disabled state
+  &.disabled,
+  &[disabled] {
+    cursor: default;
+    background-image: none;
+    .opacity(65);
+    .box-shadow(none);
+  }
+
+	// Green Button
+
+	&.green{
+		background: @choozerBtnGreenBg;
+		border-color: @choozerBtnGreenBg;
+		&:hover,
+		&:focus{
+			border-color: #7F9F29;
+			.box-shadow(0 2px 3px rgba(0,0,0,.15));
+		}
+		&:active{
+			border-color: @choozerBtnGreenBg;
+			.box-shadow(none);
+		}
+	}
+	
+	&.grey{
+		#gradient.vertical(#FAFAFA, #EFEFEF);
+		border-color: @choozerBtnGreyBorder;
+		color:#747F7F;
+		&:hover,
+		&:focus{
+			background: #F6F6F6;
+			border: 1px solid #C9CFD2;
+			.box-shadow(0px 1px 2px 0px rgba(0,0,0,0.15));
+		}
+		&:active{
+			#gradient.vertical(#EFEFEF, #F6F6F6);
+			border: 1px solid #E5E5E5;
+			.box-shadow(none);
+		}
+	}
+	
+	&.referralbtn {
+		.border-radius(3px);
+		background: #F1F5F5;
+		border: 1px solid #E3E5E5;
+		color: #5A6565;
+		line-height:16px;
+		&:hover {
+			background: #F1F5F5;
+			border: 1px solid #C7D0D0;
+			.box-shadow( 0px 1px 2px 0px rgba(0,0,0,0.10));
+		}
+		&:active {
+			background: #F1F5F5;
+			border: 1px solid #E3E5E5;
+			.box-shadow(none);
+		}
+	}
+	
+	&.teal {
+		background: #49AFD3;
+		border:1px solid #49AFD3;
+		&:hover {
+			background: #49AFD3;
+			border: 1px solid #367F99;
+			.box-shadow(0px 2px 2px 0px rgba(0,0,0,0.25));
+		}
+		&:active {
+			background: #49AFD3;
+			border:1px solid #49AFD3;
+			.box-shadow(none);
+		}
+		
+	}
+
+}
+
+// Button with add icon
+
+.btn-add{
+	padding-left: 9px;
+	&:before{
+		content: '+';
+		display: inline-block;
+		margin-right: 5px;
+		font-weight: 900;
+	}
+}
+
+
+
+
+
+// Button Sizes
+// --------------------------------------------------
+
+// Large
+.btn-large {
+  	padding: @paddingLarge;
+  	width: 130px;
+	font-size: 16px;
+}
+.btn-large [class^="icon-"],
+.btn-large [class*=" icon-"] {
+  margin-top: 4px;
+}
