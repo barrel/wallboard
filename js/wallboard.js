@@ -1243,6 +1243,17 @@ Copyright (c) 2011 by Harvest
 }
 
 $(document).ready(function(){
+	// wallboard functions
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	// backdoor functions
 	if ($(".chzn-edit-tags").length){
 		$(".chzn-edit-tags").each(function(){
 			var id= $(this).attr('id');
@@ -1316,5 +1327,4 @@ $(document).ready(function(){
 			$this_item.parent('li').remove();
 		});	
 	});
-	
 });
