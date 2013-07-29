@@ -250,7 +250,7 @@ a:focus {
   overflow: hidden;
   display: block;
   width: 100%;
-  height: 800px;
+  height: 600px;
 }
 .wallboard-top:before,
 .wallboard-top:after {
@@ -268,7 +268,7 @@ a:focus {
   position: relative;
   width: 100%;
   overflow: hidden;
-  height: 800px;
+  height: 600px;
 }
 .photos-slider:before,
 .photos-slider:after {
@@ -296,7 +296,7 @@ a:focus {
 }
 .photos-slider img {
   min-width: 110%;
-  min-height: 860px;
+  min-height: 660px;
   position: absolute;
   top: 50%;
   margin: -430px 0 0 0;
@@ -451,7 +451,7 @@ a:focus {
   color: white;
   font-weight: 700;
   line-height: 100%;
-  font-size: 52px;
+  font-size: 45px;
   margin: 10px 0 0 0;
 }
 .time-weather .col.col-weather h3 .weather-icon {
@@ -490,7 +490,7 @@ a:focus {
   margin-top: -20px;
 }
 .time-weather .col.col-weather .current-weather .wet-sec.low {
-  margin-left: 40px;
+  margin-left: 20px;
 }
 .time-weather .col.col-weather .current-weather .updated-datetime {
   position: absolute;
@@ -538,10 +538,10 @@ a:focus {
   border-right: 2px solid black;
   margin: 0;
   display: inline-block;
-  padding: 60px 0px;
+  padding: 40px 0px;
   text-align: center;
   vertical-align: top;
-  height: 250px;
+  height: 210px;
   overflow: hidden;
 }
 .wallboard-middle .col :last-child {

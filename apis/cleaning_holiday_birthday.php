@@ -8,7 +8,7 @@ echo '<section class="wallboard-middle">';
 		if ($cleaning_day_id==0 || $cleaning_day_id==6){
 			$cleaning_day_id = 1;
 		}
-		$day_query = "SELECT * FROM cleaning_meta LEFT JOIN users ON cleaning_meta.user_id = users.id WHERE cleaning_day_id = $cleaning_day_id ORDER BY users.name ASC";
+		$day_query = "SELECT * FROM cleaning_meta LEFT JOIN users ON cleaning_meta.user_id = users.id WHERE cleaning_day_id = $cleaning_day_id ORDER BY users.name ASC LIMIT 4";
 		$day_response = mysqli_query($con, $day_query);
 		$user_array = array();
 		if (!is_bool($day_response)){

@@ -102,52 +102,59 @@ $meetings = array(
 					if (!$has_td){
 						if (!isset($rowspan[$room][($hour-1)])){
 							echo '<td></td>';
+							$rowspan[$room][$hour] = false;
 						} else if (!$rowspan[$room][($hour-1)]){
 							echo '<td>'.$rowspan[$room][$hour -1].'</td>';
+							$rowspan[$room][$hour] = false;
 						}
 					}
 				}
 				
 				echo '</tr>';
 				
-				echo '<tr'.$class_2.'>
-						<td>&nbsp;</td>';
+				if ($hour!==18){
+					echo '<tr'.$class_2.'>
+							<td>&nbsp;</td>';
 				
-				foreach ($meetings as $room => $roommeetings){
-					$has_td = false;
-					if (!$rowspan[$room][$hour]){
-						foreach ($roommeetings as $meeting){
-							if ($meeting['start']==$hour.'30'){
-								$difference = intval($meeting['end'])-intval($meeting['start']);
-								if ($difference==30 || $difference==70){
-									$rowspan[$room][$hour] = false;
-									echo '<td class="thirty"><span class="event-border">&nbsp;</span>'.$meeting['name'].'<span class="e-time">'.$meeting['date'].'</span></td>';
-									$has_td = true;
-									break;
-								} else if ($difference%100 == 0){
-									$rowspan[$room][$hour] = true;
-									echo '<td class="event" rowspan="'.(($difference/100)*2).'"><span class="event-border">&nbsp;</span>'.$meeting['name'].'<span class="e-time">'.$meeting['date'].'</span></td>';
-									$has_td = true;
-									break;
-								} else if ($difference%100 != 0) {
-									$rowspan[$room][$hour] = true;
-									echo '<td class="event" rowspan="'.((floor($difference/100)*2)+1).'"><span class="event-border">&nbsp;</span>'.$meeting['name'].'<span class="e-time">'.$meeting['date'].'</span></td>';
-									$has_td = true;
-									break;
+					foreach ($meetings as $room => $roommeetings){
+						$has_td = false;
+						if (!$rowspan[$room][$hour]){
+							foreach ($roommeetings as $meeting){
+								if ($meeting['start']==$hour.'30'){
+									$difference = intval($meeting['end'])-intval($meeting['start']);
+									if ($difference==30 || $difference==70){
+										$rowspan[$room][$hour] = false;
+										echo '<td class="thirty"><span class="event-border">&nbsp;</span>'.$meeting['name'].'<span class="e-time">'.$meeting['date'].'</span></td>';
+										$has_td = true;
+										break;
+									} else if ($difference%100 == 0){
+										$rowspan[$room][$hour] = true;
+										echo '<td class="event" rowspan="'.(($difference/100)*2).'"><span class="event-border">&nbsp;</span>'.$meeting['name'].'<span class="e-time">'.$meeting['date'].'</span></td>';
+										$has_td = true;
+										break;
+									} else if ($difference%100 != 0) {
+										$rowspan[$room][$hour] = true;
+										echo '<td class="event" rowspan="'.((floor($difference/100)*2)+1).'"><span class="event-border">&nbsp;</span>'.$meeting['name'].'<span class="e-time">'.$meeting['date'].'</span></td>';
+										$has_td = true;
+										break;
+									} else {
+										$rowspan[$room][$hour] = false;
+									}
 								} else {
 									$rowspan[$room][$hour] = false;
 								}
-							} else {
+							} 
+							if (!$has_td){
+								echo '<td></td>';
 								$rowspan[$room][$hour] = false;
 							}
-						}
-						if (!$has_td){
-							echo '<td></td>';
+						} else {
+							$rowspan[$room][$hour] = false;
 						}
 					}
-				}
 				
-				echo '</tr>';
+					echo '</tr>';
+				}
 			}
 			?>
 		</tbody>
