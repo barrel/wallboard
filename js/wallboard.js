@@ -1,5 +1,5 @@
 /*
-wallboard - v - 2013-07-26
+wallboard - v - 2013-07-29
 An app to make a dashboard for the wallboard.
 Lovingly coded by Jess Frazelle - BarrelNY  - http://barrelny.com 
 */
@@ -1995,12 +1995,25 @@ Copyright (c) 2011 by Harvest
 				.appendTo("body");
 		}
 	};
-})(jQuery);function update_weather(){
+})(jQuery);google.load("feeds", "1");
+
+function update_time() {
+    var now = new Date();
+	var hours = now.getHours();
+	var meridiem = 'a';
+	if (hours>12){
+		hours = hours - 12;
+		meridiem = 'p';
+	}
+	var minutes = now.getMinutes();
+    $('.time').html(hours+':'+minutes+' <span class="meridiem">'+meridiem+'</span>');
+}
+
+function update_weather(){
 	$.ajax({
 	  url: siteUrl+"apis/weather.php",
 	  type: "GET",
 	}).done(function(data) {
-		console.log(data);
 		weather = JSON.parse(data);
 		$('.now-icon').html(weather.now_icon);
 		$('.now-temp').html(weather.now_temperature+'<sup>&deg;</sup>');
@@ -2012,6 +2025,34 @@ Copyright (c) 2011 by Harvest
 		$('.two-days').html(weather.next_icon+weather.next_temperature+'<sup>&deg;</sup>');
 		$('.updated-datetime').html('Last updated:'+weather.date);
 	});	
+}
+
+function update_ticker(newsfeed){
+	$('.news-slider').empty();
+	var feed = new google.feeds.Feed(newsfeed);
+	feed.load(function(result) {
+		if (!result.error) {
+			for (var i = 0; i < result.feed.entries.length; i++) {
+				var entry = result.feed.entries[i];
+				console.log(entry);
+				var news_date = new Date(entry.publishedDate);
+				var hours = news_date.getHours();
+				var meridiem = 'am';
+				if (hours>12){
+					hours = hours - 12;
+					meridiem = 'pm';
+				}
+				var minutes = news_date.getMinutes();
+				$('.news-slider').append('<li><p>'+entry.title +'<span class="news-time">'+hours+':'+minutes+' '+meridiem+'</span></p></li>');
+			}
+			$('.news-slider').slider({
+				ticker: true,
+				speed: 100000
+			});
+		}
+	});
+	 
+	
 }
 
 function sortSelect(selElem) {
@@ -2083,9 +2124,11 @@ $(document).ready(function(){
 	}
 	
 	if ($('.wallboard').length){
-		// load weather array
 		update_weather();
+		update_ticker(newsfeed);
 		window.setInterval(update_weather, 5000);
+		window.setInterval(update_time, 5000);
+		window.setInterval(update_ticker, 500000);
 	}
 	
 	

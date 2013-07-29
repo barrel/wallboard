@@ -516,6 +516,355 @@ a:focus {
 .time-weather .col.col-weather .upcoming-weather .col-3:last-child {
   float: right;
 }
+.wallboard-middle {
+  *zoom: 1;
+  width: 100%;
+  display: block;
+  margin: 0;
+  padding: 0;
+  background: #1A1A1A;
+}
+.wallboard-middle:before,
+.wallboard-middle:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.wallboard-middle:after {
+  clear: both;
+}
+.wallboard-middle .col {
+  width: 33%;
+  border-right: 2px solid black;
+  margin: 0;
+  display: inline-block;
+  padding: 60px 0px;
+  text-align: center;
+  vertical-align: top;
+  height: 250px;
+  overflow: hidden;
+}
+.wallboard-middle .col :last-child {
+  border: none;
+}
+.wallboard-middle .col h5 {
+  color: #6B6B6B;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  font-size: 14px;
+  margin: 0 0 30px 0;
+  padding: 0;
+}
+.wallboard-middle .col p {
+  color: white;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 150%;
+  margin: 0;
+  padding: 0;
+}
+.wallboard-middle .col p.subtitle {
+  margin-top: 10px;
+  color: #999999;
+  font-size: 16px;
+}
+.wallboard-middle .col.cleaning-crew ul {
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+  display: inline-block;
+}
+.wallboard-middle .col.cleaning-crew ul li {
+  color: white;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 30px;
+  margin: 0px 0 15px;
+  padding: 0;
+  text-align: left;
+}
+.wallboard-middle .col.cleaning-crew ul li:last-child {
+  margin: 0;
+}
+.wallboard-middle .col.cleaning-crew ul li img {
+  float: left;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  height: 30px;
+  display: block;
+  margin: 0 10px 0px 0px;
+}
+.wallboard-middle .col.next-birthdays ul {
+  list-style: none;
+  padding: 0 50px;
+  margin: 0;
+  text-align: center;
+  font-size: 0px;
+}
+.wallboard-middle .col.next-birthdays ul li {
+  display: inline-block;
+  margin: 0;
+  vertical-align: top;
+  padding: 0;
+}
+.wallboard-middle .col.next-birthdays ul li.small-birthday {
+  width: 25%;
+}
+.wallboard-middle .col.next-birthdays ul li.small-birthday img {
+  width: 60px;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
+  filter: alpha(opacity=100);
+  opacity: 0.3;
+  display: block;
+  margin: 0 auto;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+}
+.wallboard-middle .col.next-birthdays ul li.large-birthday {
+  width: 42%;
+  margin: 0 4%;
+}
+.wallboard-middle .col.next-birthdays ul li.large-birthday img {
+  width: 100px;
+  display: block;
+  margin: 20px auto 0;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+}
+.wallboard-upcoming {
+  *zoom: 1;
+  width: 100%;
+  display: block;
+  position: relative;
+  margin: 0;
+  padding: 60px 0 30px 0;
+  background: #1A1A1A;
+  text-align: center;
+  border-top: 2px solid black;
+}
+.wallboard-upcoming:before,
+.wallboard-upcoming:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.wallboard-upcoming:after {
+  clear: both;
+}
+.wallboard-upcoming h3 {
+  display: block;
+  position: relative;
+  margin: 0px 0 0 -117px;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 15px 30px 12px;
+  line-height: 100%;
+  text-transform: uppercase;
+  color: white;
+  text-align: center;
+  background: #973E90;
+  position: absolute;
+  top: -21px;
+  width: 114px;
+  left: 50%;
+}
+.wallboard-upcoming h2 {
+  font-weight: 200;
+  font-size: 39px;
+  margin: 0 0 0 0;
+}
+.wallboard-calendar table {
+  width: 100%;
+  overflow: hidden;
+}
+.wallboard-calendar table td,
+.wallboard-calendar table th {
+  padding: 10px;
+}
+.wallboard-calendar table td:first-child,
+.wallboard-calendar table th:first-child {
+  width: 50px;
+  text-align: center;
+}
+.wallboard-calendar table th {
+  font-weight: 700;
+  font-size: 15px;
+  color: #6B6B6B;
+  text-transform: uppercase;
+  line-height: 20px;
+  padding: 30px 0px;
+}
+.wallboard-calendar table td {
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  min-height: 20px;
+  padding: 10px;
+  border: 1px solid black;
+}
+.wallboard-calendar table td:first-child {
+  border-left: 0px;
+  color: white;
+  font-size: 15px;
+}
+.wallboard-calendar table td:first-child .meridiem {
+  color: #808080;
+}
+.wallboard-calendar table tbody tr {
+  background: #141214;
+  position: relative;
+}
+.wallboard-calendar table tbody tr td {
+  vertical-align: top;
+  position: relative;
+  background: #141214;
+  overflow: hidden;
+}
+.wallboard-calendar table tbody tr td.event {
+  background: #975E92 !important;
+  color: white;
+}
+.wallboard-calendar table tbody tr td .e-time {
+  float: right;
+  color: rgba(255, 255, 255, 0.7);
+}
+.wallboard-calendar table tbody tr td .event-border {
+  width: 5px;
+  height: 100%;
+  display: block;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  background: #75186F;
+}
+.wallboard-calendar table tbody tr:nth-child(odd) {
+  background: #1A171A;
+}
+.wallboard-calendar table tbody tr:nth-child(odd) td {
+  background: #1A171A;
+}
+.wallboard-calendar table tbody tr.active-1 {
+  background: #973E90;
+}
+.wallboard-calendar table tbody tr.active-1 td {
+  background: #973E90;
+  padding-bottom: 30px;
+}
+.wallboard-calendar table tbody tr.active-2 {
+  background: #752E71;
+}
+.wallboard-calendar table tbody tr.active-2 td {
+  background: #752E71;
+  padding-bottom: 30px;
+}
+.wallboard-calendar table tbody tr.active-3 {
+  background: #521F50;
+}
+.wallboard-calendar table tbody tr.active-3 td {
+  background: #521F50;
+  padding-bottom: 20px;
+}
+.wallboard-calendar table tbody tr.active-4 {
+  background: #3E183B;
+}
+.wallboard-calendar table tbody tr.active-4 td {
+  background: #3E183B;
+  padding-bottom: 20px;
+}
+.wallboard-calendar table tbody tr.active-5 {
+  background: #261B26;
+}
+.wallboard-calendar table tbody tr.active-5 td {
+  background: #261B26;
+}
+.wallboard-calendar table tbody tr.past td.event {
+  color: #6C6B6C;
+  background: #282728 !important;
+}
+.wallboard-calendar table tbody tr.past td .e-time {
+  color: #4A494A;
+}
+.wallboard-calendar table tbody tr.past td.thirty {
+  color: #6C6B6C;
+}
+.wallboard-calendar table tbody tr.past td .event-border {
+  background: #475459;
+}
+.wallboard-calendar table tbody tr.past td:first-child {
+  color: #F4F3EC;
+}
+.wallboard-calendar table tbody tr.past td:first-child .meridiem {
+  color: #808080;
+}
+.wallboard-ticker {
+  *zoom: 1;
+  display: block;
+  position: relative;
+  margin: 0;
+  padding: 30px;
+  background: #1C1C1C;
+  text-align: center;
+  -webkit-font-smoothing: auto;
+}
+.wallboard-ticker:before,
+.wallboard-ticker:after {
+  display: table;
+  content: "";
+  line-height: 0;
+}
+.wallboard-ticker:after {
+  clear: both;
+}
+.wallboard-ticker .bx-wrapper {
+  position: relative;
+  margin: 0 auto 0px;
+  padding: 0;
+  *zoom: 1;
+  width: 100% !important;
+}
+.wallboard-ticker .bx-window {
+  width: 100% !important;
+}
+.wallboard-ticker ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: block;
+}
+.wallboard-ticker ul li {
+  display: inline-block;
+  padding: 0 10px;
+  margin: 0;
+}
+.wallboard-ticker ul li p {
+  margin: 0;
+  padding: 0;
+  font-size: 18px;
+  font-weight: 400;
+  color: white;
+}
+.wallboard-ticker ul li p .news-time {
+  font-size: 15px;
+  color: #838383;
+  margin-left: 10px;
+  text-transform: uppercase;
+}
 .preferences {
   *zoom: 1;
   padding-bottom: 20px;
