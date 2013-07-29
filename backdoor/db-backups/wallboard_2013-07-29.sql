@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.6.10)
 # Database: wallboard
-# Generation Time: 2013-07-26 18:27:45 +0000
+# Generation Time: 2013-07-29 21:56:21 +0000
 # ************************************************************
 
 
@@ -114,7 +114,7 @@ VALUES
 	(1,'ticker_rss_url','http://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml','http://example.com/feed','News RSS Feed'),
 	(2,'calendar_feed_url','http://www.google.com/calendar/feeds/calendar%40barrelny.com/public/basic','http://calendar.com/feed','Main Calendar Feed'),
 	(3,'holidays_feed_url','http://www.google.com/calendar/feeds/barrelny.com_bkmdjn1jrs5ffrf0nul4o7levk%40group.calendar.google.com/public/basic','http://holidays.com/feed','Holidays Calendar Feed'),
-	(4,'events_feed_url','','http://events.com/feed','Events Calendar Feed');
+	(4,'events_feed_url','http://www.google.com/calendar/feeds/barrelny.com_9lfb4ben8gbuu5feudvjfepro0%40group.calendar.google.com/public/full','http://events.com/feed','Events Calendar Feed');
 
 /*!40000 ALTER TABLE `options` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -140,8 +140,6 @@ VALUES
 	(11,'1374859296_c74d-1374859296.jpg'),
 	(12,'1374859406_2665-1374859406.jpg'),
 	(13,'1374859429_d2dd-1374859429.jpg'),
-	(14,'1374859833_ac62-1374859833.jpg'),
-	(15,'1374859840_8613-1374859840.jpg'),
 	(17,'1374860769_2a38-1374860769.jpg'),
 	(19,'1374861061_f4b9-1374861061.jpg'),
 	(20,'1374861136_3769-1374861136.jpg'),
@@ -164,41 +162,42 @@ CREATE TABLE `users` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `name` varchar(128) DEFAULT NULL,
   `department` varchar(128) DEFAULT NULL,
+  `image_url` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 
-INSERT INTO `users` (`id`, `name`, `department`)
+INSERT INTO `users` (`id`, `name`, `department`, `image_url`)
 VALUES
-	(1,'Andrea Horne','design'),
-	(2,'Angel Ng','design'),
-	(3,'Aretha Choi','production'),
-	(4,'Boram Kim','operations'),
-	(5,'Marianne Do','development'),
-	(6,'Wesley Tuner-Harris','development'),
-	(7,'Diane Wang','production'),
-	(8,'Molly Sugar','design'),
-	(9,'Betty Chan','production'),
-	(10,'Jessie Frazelle','development'),
-	(11,'Sylvia Gacek','web ops'),
-	(12,'Isha Kasliwal','development'),
-	(13,'Jan Cantor','design'),
-	(14,'Patrick Kunka','development'),
-	(15,'Sei-Wook Kim','development'),
-	(16,'Peter Kang','design'),
-	(17,'Kevin Kneifel','development'),
-	(18,'Kevin Green','development'),
-	(20,'Angela Hum','wep ops'),
-	(21,'Jane Song','design'),
-	(22,'Cindy Leong','design'),
-	(23,'Linda Kong','operations'),
-	(24,'Yvonne Weng','design'),
-	(25,'Zack Lerner','web ops'),
-	(26,'Scott Polhemus','development'),
-	(27,'Lee Khleang','production'),
-	(28,'Matthew Ortega','design');
+	(1,'Andrea Horne','design','team_andrea.jpg'),
+	(2,'Angel Ng','design','team_angel.jpg'),
+	(3,'Aretha Choi','production','team_aretha.jpg'),
+	(4,'Boram Kim','operations','team_boram.jpg'),
+	(5,'Marianne Do','development','team_marianne.jpg'),
+	(6,'Wesley Tuner-Harris','development','team_wesley.jpg'),
+	(7,'Diane Wang','production','team_diane.jpg'),
+	(8,'Molly Sugar','design','team_molly.jpg'),
+	(9,'Betty Chan','production','team_betty.jpg'),
+	(10,'Jessie Frazelle','development','team_jessica.jpg'),
+	(11,'Sylvia Gacek','web ops','team_sylvia.jpg'),
+	(12,'Isha Kasliwal','development',NULL),
+	(13,'Jan Cantor','design','team_jan.jpg'),
+	(14,'Patrick Kunka','development','team_patrick.jpg'),
+	(15,'Sei-Wook Kim','development','team_seiwook.jpg'),
+	(16,'Peter Kang','design','team_peter.jpg'),
+	(17,'Kevin Kneifel','development','team_kevink.jpg'),
+	(18,'Kevin Green','development','team_keving.jpg'),
+	(20,'Angela Hum','wep ops','team_angela.jpg'),
+	(21,'Jane Song','design','team_jane.jpg'),
+	(22,'Cindy Leong','design',NULL),
+	(23,'Linda Kong','operations',NULL),
+	(24,'Yvonne Weng','design','team_yvonne.jpg'),
+	(25,'Zack Lerner','web ops','team_zack.jpg'),
+	(26,'Scott Polhemus','development','team_scott.jpg'),
+	(27,'Lee Khleang','production','team_lee.jpg'),
+	(28,'Matthew Ortega','design','team_matthew.jpg');
 
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
