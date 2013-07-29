@@ -8,7 +8,7 @@ function update_time() {
 		hours = hours - 12;
 		meridiem = 'p';
 	}
-	var minutes = now.getMinutes();
+	var minutes = ("0" + now.getMinutes()).slice(-2);
     $('.time').html(hours+':'+minutes+' <span class="meridiem">'+meridiem+'</span>');
 }
 
@@ -45,7 +45,7 @@ function update_ticker(newsfeed){
 					hours = hours - 12;
 					meridiem = 'pm';
 				}
-				var minutes = news_date.getMinutes();
+				var minutes = ("0" + news_date.getMinutes()).slice(-2);
 				$('.news-slider').append('<li><p>'+entry.title +'<span class="news-time">'+hours+':'+minutes+' '+meridiem+'</span></p></li>');
 			}
 			$('.news-slider').slider({

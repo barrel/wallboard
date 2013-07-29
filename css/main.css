@@ -848,7 +848,6 @@ a:focus {
   display: block;
 }
 .wallboard-ticker ul li {
-  display: inline-block;
   padding: 0 10px;
   margin: 0;
 }
