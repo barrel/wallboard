@@ -650,7 +650,7 @@ a:focus {
   display: block;
   position: relative;
   margin: 0;
-  padding: 60px 0 30px 0;
+  padding: 50px 0 30px 0;
   background: #1A1A1A;
   text-align: center;
   border-top: 2px solid black;
@@ -667,7 +667,7 @@ a:focus {
 .wallboard-upcoming h3 {
   display: block;
   position: relative;
-  margin: 0px 0 0 -117px;
+  margin: 0px 0 0 -87px;
   font-weight: 700;
   font-size: 15px;
   padding: 15px 30px 12px;
@@ -675,7 +675,7 @@ a:focus {
   text-transform: uppercase;
   color: white;
   text-align: center;
-  background: #973E90;
+  background: #922D8D;
   position: absolute;
   top: -21px;
   width: 114px;
@@ -759,10 +759,10 @@ a:focus {
   background: #1A171A;
 }
 .wallboard-calendar table tbody tr.active-1 {
-  background: #973E90;
+  background: #922D8D;
 }
 .wallboard-calendar table tbody tr.active-1 td {
-  background: #973E90;
+  background: #922D8D;
   padding-bottom: 30px;
 }
 .wallboard-calendar table tbody tr.active-2 {
@@ -816,7 +816,7 @@ a:focus {
   display: block;
   position: relative;
   margin: 0;
-  padding: 30px;
+  padding: 25px 30px;
   background: #1C1C1C;
   text-align: center;
   -webkit-font-smoothing: auto;

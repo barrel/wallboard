@@ -131,7 +131,7 @@ $(document).ready(function(){
 		update_ticker(newsfeed);
 		window.setInterval(update_weather, 5000);
 		window.setInterval(update_time, 5000);
-		window.setInterval(update_ticker, 500000);
+		//window.setInterval(update_ticker, 500000);
 	}
 	
 	
