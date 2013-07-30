@@ -105,11 +105,18 @@ echo '<section class="wallboard-middle">';
 			<h5>Next Birthday</h5>';
 	$i=0;
 	$nowtime = time();
+	$todayisbirthday = false;
+	$extraclass="";
 	foreach($birthdays as $birthday){
 		if (date("md", $birthday['time']) >= date("md", $nowtime)){
 			$index = $i;
+			if (date("md", $birthday['time']) == date("md", $nowtime)){
+				$todayisbirthday = true;
+				$extraclass = " today";
+			}
 			$first = false;
 			if(!$first) break;
+			
 		}
 		$i++;
 	}
@@ -123,10 +130,11 @@ echo '<section class="wallboard-middle">';
 	echo '<ul>
 			<li class="past small-birthday"><img src="uploads/people/team_'.strtolower(strtr($birthdays[$past]['name'], $replace)).'.jpg" alt="'.strtolower(strtr($birthdays[$past]['name'], $replace)).'" /></li>
 			<li class="large-birthday">
-				<img src="uploads/people/team_'.strtolower(strtr($birthdays[$index]['name'], $replace)).'.jpg" alt="'.strtolower(strtr($birthdays[$index]['name'], $replace)).'" />
+				<img class="person-image'.$extraclass.'" src="uploads/people/team_'.strtolower(strtr($birthdays[$index]['name'], $replace)).'.jpg" alt="'.strtolower(strtr($birthdays[$index]['name'], $replace)).'" />
 				<p>'.$birthdays[$index]['name'].'</p>
-				<p class="subtitle">'.date("F jS", strtotime($birthdays[$index]['date'])).'</p>
-			</li>
+				<p class="subtitle">'.date("F jS", strtotime($birthdays[$index]['date'])).'</p>';
+				if ($todayisbirthday){ echo '<img id="birthday-icon" src="img/icons_birthday-hat.svg" alt=""/>'; }
+	echo '</li>
 			<li class="future small-birthday"><img src="uploads/people/team_'.strtolower(strtr($birthdays[$future]['name'], $replace)).'.jpg" alt="'.strtolower(strtr($birthdays[$future]['name'], $replace)).'" /></li>';
 	echo '</div>'; // end birthday module
 	

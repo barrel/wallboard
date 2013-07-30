@@ -322,3 +322,28 @@
 	          transition-property: opacity, transform;
 	          transition-duration: @opacitytime, @transformtime;
 }
+
+
+.wiggle {
+	-webkit-animation: birthdayHat 2s 5s 1 ease;
+	-moz-animation: birthdayHat 2s 5s 1 ease;
+	-o-animation: birthdayHat 2s 5s 1 ease;
+}
+@-webkit-keyframes birthdayHat {
+	0%   {-webkit-transform: rotate(24deg);}
+	25%  {-webkit-transform: rotate(16deg);}
+	50%  {-webkit-transform: rotate(22deg);}
+	100% {-webkit-transform: rotate(18deg);}
+}
+@-moz-keyframes birthdayHat {
+	0%   {-moz-transform: rotate(2deg);}
+	25%  {-moz-transform: rotate(-2deg);}
+	50%  {-moz-transform: rotate(1deg);}
+	100% {-moz-transform: rotate(-1deg);}
+}
+@-o-keyframes birthdayHat {
+	0%   {-o-transform: rotate(2deg);}
+	25%  {-o-transform: rotate(-2deg);}
+	50%  {-o-transform: rotate(1deg);}
+	100% {-o-transform: rotate(-1deg);}
+}

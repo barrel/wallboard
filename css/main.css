@@ -17,6 +17,53 @@
   -o-box-sizing: border-box;
   box-sizing: border-box;
 }
+.wiggle {
+  -webkit-animation: birthdayHat 2s 5s 1 ease;
+  -moz-animation: birthdayHat 2s 5s 1 ease;
+  -o-animation: birthdayHat 2s 5s 1 ease;
+}
+@-webkit-keyframes birthdayHat {
+  0% {
+    -webkit-transform: rotate(24deg);
+  }
+  25% {
+    -webkit-transform: rotate(16deg);
+  }
+  50% {
+    -webkit-transform: rotate(22deg);
+  }
+  100% {
+    -webkit-transform: rotate(18deg);
+  }
+}
+@-moz-keyframes birthdayHat {
+  0% {
+    -moz-transform: rotate(2deg);
+  }
+  25% {
+    -moz-transform: rotate(-2deg);
+  }
+  50% {
+    -moz-transform: rotate(1deg);
+  }
+  100% {
+    -moz-transform: rotate(-1deg);
+  }
+}
+@-o-keyframes birthdayHat {
+  0% {
+    -o-transform: rotate(2deg);
+  }
+  25% {
+    -o-transform: rotate(-2deg);
+  }
+  50% {
+    -o-transform: rotate(1deg);
+  }
+  100% {
+    -o-transform: rotate(-1deg);
+  }
+}
 * {
   -webkit-font-smoothing: antialiased;
 }
@@ -615,6 +662,7 @@ a:focus {
   font-size: 0px;
 }
 .wallboard-middle .col.next-birthdays ul li {
+  position: relative;
   display: inline-block;
   margin: 0;
   vertical-align: top;
@@ -641,7 +689,7 @@ a:focus {
   width: 42%;
   margin: 0 4%;
 }
-.wallboard-middle .col.next-birthdays ul li.large-birthday img {
+.wallboard-middle .col.next-birthdays ul li.large-birthday img.person-image {
   width: 100px;
   display: block;
   margin: 0px auto 10px auto;
@@ -651,6 +699,25 @@ a:focus {
   -webkit-background-clip: padding-box;
   -moz-background-clip: padding;
   background-clip: padding-box;
+}
+.wallboard-middle .col.next-birthdays ul li.large-birthday img.person-image.today {
+  border: 4px solid #922D8D;
+}
+.wallboard-middle .col.next-birthdays ul li #birthday-icon {
+  position: absolute;
+  top: -20px;
+  z-index: 3;
+  right: 30px;
+  width: 40px;
+  margin: 0;
+  -webkit-transform: rotate(20deg);
+  -moz-transform: rotate(20deg);
+  -ms-transform: rotate(20deg);
+  -o-transform: rotate(20deg);
+  transform: rotate(20deg);
+  -webkit-animation: birthdayHat 2s 5s 1 ease;
+  -moz-animation: birthdayHat 2s 5s 1 ease;
+  -o-animation: birthdayHat 2s 5s 1 ease;
 }
 .wallboard-upcoming {
   *zoom: 1;

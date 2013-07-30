@@ -379,6 +379,7 @@ a:focus {
 				text-align:center;
 				font-size:0px;
 				li {
+					position:relative;
 					display:inline-block;
 					margin:0;
 					vertical-align:top;
@@ -396,12 +397,25 @@ a:focus {
 					&.large-birthday {
 						width:42%;
 						margin:0 4%;
-						img {
+						img.person-image {
 							width:100px;
 							display:block;
 							margin:0px auto 10px auto;
 							.border-radius(100%);
+							&.today {
+								border:4px solid #922D8D;
+							}
 						}
+					}
+					#birthday-icon {
+						position:absolute;
+						top:-20px;
+						z-index:3;
+						right:30px;
+						width:40px;
+						margin:0;
+						.rotate(20deg);
+						.wiggle;
 					}
 				}
 			}
