@@ -15,6 +15,7 @@ function get_meetings($conference_room, $con, $iftomorrow){
 			}
 		}
 	}
+	//var_dump($feed_url);
 	$xml_source = file_get_contents($feed_url);
 	$xml = simplexml_load_string($xml_source);
 	$i=0;
@@ -91,11 +92,11 @@ $meetings = array(
 								echo '<td class="thirty"><span class="event-border">&nbsp;</span>'.$meeting['name'].'<span class="e-time">'.$meeting['date'].'</span></td>';
 								$has_td = true;
 							} else if ($difference%100 == 0){
-								$rowspan[$room][$hour] = (($difference/100)*2);
+								$rowspan[$room][$hour] = (($difference/100)*2)-1;
 								echo '<td class="event" rowspan="'.(($difference/100)*2).'"><span class="event-border">&nbsp;</span>'.$meeting['name'].'<span class="e-time">'.$meeting['date'].'</span></td>';
 								$has_td = true;
 							} else if ($difference%100 != 0) {
-								$rowspan[$room][$hour] = ((floor($difference/100)*2)+1);
+								$rowspan[$room][$hour] = ((floor($difference/100)*2));
 								echo '<td class="event" rowspan="'.((floor($difference/100)*2)+1).'"><span class="event-border">&nbsp;</span>'.$meeting['name'].'<span class="e-time">'.$meeting['date'].'</span></td>';
 								$has_td = true;
 							} else {
@@ -116,6 +117,7 @@ $meetings = array(
 							echo '<td></td>';
 							$rowspan[$room][$hour] = 0;
 						} else {
+							echo '<td></td>';
 							$rowspan[$room][($hour-1)] = $rowspan[$room][($hour-1)] -1;
 						}
 					}
@@ -130,7 +132,7 @@ $meetings = array(
 						$has_td = false;
 						if ($rowspan[$room][$hour]==0){
 							if (isset($rowspan[$room][($hour-1)]) && $rowspan[$room][($hour-1)]>0){
-								
+								$rowspan[$room][($hour-1)] = $rowspan[$room][($hour-1)] -1;
 							} else {
 								foreach ($roommeetings as $meeting){
 									if ($meeting['start']==$hour.'30'){
@@ -141,12 +143,12 @@ $meetings = array(
 											$has_td = true;
 											break;
 										} else if ($difference%100 == 0){
-											$rowspan[$room][$hour] = (($difference/100)*2);
+											$rowspan[$room][$hour] = (($difference/100)*2)-1;
 											echo '<td class="event" rowspan="'.(($difference/100)*2).'"><span class="event-border">&nbsp;</span>'.$meeting['name'].'<span class="e-time">'.$meeting['date'].'</span></td>';
 											$has_td = true;
 											break;
 										} else if ($difference%100 != 0) {
-											$rowspan[$room][$hour] = ((floor($difference/100)*2)+1);
+											$rowspan[$room][$hour] = ((floor($difference/100)*2));
 											echo '<td class="event" rowspan="'.((floor($difference/100)*2)+1).'"><span class="event-border">&nbsp;</span>'.$meeting['name'].'<span class="e-time">'.$meeting['date'].'</span></td>';
 											$has_td = true;
 											break;
@@ -159,7 +161,7 @@ $meetings = array(
 								} 
 							}
 							if (!$has_td){
-								echo '<td></td>';
+								//echo '<td></td>';
 								$rowspan[$room][$hour] = 0;
 							}
 						} else {
