@@ -85,7 +85,7 @@ $meetings = array(
 				foreach ($meetings as $room => $roommeetings){
 					$has_td = false;
 					foreach ($roommeetings as $meeting){
-						if ($meeting['start']==$hour.'00'){
+						if ($meeting['start']==$hour.'00' && (!isset($rowspan[$room][$hour-1]) || $rowspan[$room][$hour-1] <= 0)){
 							$difference = intval($meeting['end'])-intval($meeting['start']);
 							if ($difference==30 || $difference==70){
 								$rowspan[$room][$hour] = 0;
@@ -111,14 +111,14 @@ $meetings = array(
 					}
 					if (!$has_td){
 						if (!isset($rowspan[$room][($hour-1)])){
-							echo '<td></td>';
+							echo '<td class="extra"></td>';
 							$rowspan[$room][$hour] = 0;
-						} else if ($rowspan[$room][($hour-1)]==0){
-							echo '<td></td>';
+						} else if ($rowspan[$room][($hour-1)]<=0){
+							echo '<td class="extra"></td>';
 							$rowspan[$room][$hour] = 0;
 						} else {
-							echo '<td></td>';
-							$rowspan[$room][($hour-1)] = $rowspan[$room][($hour-1)] -1;
+							//echo '<td>'.$rowspan[$room][$hour-1].'</td>';
+							$rowspan[$room][$hour] = $rowspan[$room][($hour-1)] -1;
 						}
 					}
 				}
@@ -132,7 +132,7 @@ $meetings = array(
 						$has_td = false;
 						if ($rowspan[$room][$hour]==0){
 							if (isset($rowspan[$room][($hour-1)]) && $rowspan[$room][($hour-1)]>0){
-								$rowspan[$room][($hour-1)] = $rowspan[$room][($hour-1)] -1;
+								$rowspan[$room][$hour] = $rowspan[$room][($hour-1)] -1;
 							} else {
 								foreach ($roommeetings as $meeting){
 									if ($meeting['start']==$hour.'30'){
@@ -161,12 +161,12 @@ $meetings = array(
 								} 
 							}
 							if (!$has_td){
-								//echo '<td></td>';
+								echo '<td class="extra"></td>';
 								$rowspan[$room][$hour] = 0;
 							}
 						} else {
 							if (isset($rowspan[$room][($hour-1)])){
-								$rowspan[$room][($hour-1)] = $rowspan[$room][($hour-1)] -1;
+								$rowspan[$room][$hour] = $rowspan[$room][($hour-1)] -1;
 							}
 						}
 					}

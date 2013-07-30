@@ -734,6 +734,9 @@ a:focus {
   background: #141214;
   overflow: hidden;
 }
+.wallboard-calendar table tbody tr td.extra {
+  padding: 0 !important;
+}
 .wallboard-calendar table tbody tr td.event {
   background: #975E92 !important;
   color: white;
