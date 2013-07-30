@@ -554,7 +554,7 @@ a:focus {
   text-align: center;
   text-transform: uppercase;
   font-size: 14px;
-  margin: 0 0 30px 0;
+  margin: 0 0 25px 0;
   padding: 0;
 }
 .wallboard-middle .col p {
@@ -566,7 +566,7 @@ a:focus {
   padding: 0;
 }
 .wallboard-middle .col p.subtitle {
-  margin-top: 10px;
+  margin-top: 00px;
   color: #999999;
   font-size: 16px;
 }
@@ -599,6 +599,13 @@ a:focus {
   height: 30px;
   display: block;
   margin: 0 10px 0px 0px;
+}
+.wallboard-middle .col.next-holiday img {
+  margin: 0 auto 10px auto;
+  display: block;
+}
+.wallboard-middle .col.next-holiday #holiday-icon path {
+  fill: white;
 }
 .wallboard-middle .col.next-birthdays ul {
   list-style: none;
@@ -637,7 +644,7 @@ a:focus {
 .wallboard-middle .col.next-birthdays ul li.large-birthday img {
   width: 100px;
   display: block;
-  margin: 0px auto 0;
+  margin: 0px auto 10px auto;
   -webkit-border-radius: 100%;
   -moz-border-radius: 100%;
   border-radius: 100%;

@@ -57,8 +57,10 @@ echo '<section class="wallboard-middle">';
 		return $holiday_array;
 	}
 	$holiday = next_holiday($con);
+	$name_replace = array("'"=> "", " "=> "", "day"=> "", "break"=> "");
 	echo '<div class="col next-holiday">
 			<h5>Next Holiday</h5>
+			<img id="holiday-icon" class="svg" src="img/icons_'.strtr(strtolower($holiday['name']),$name_replace).'.svg" alt="'.strtr(strtolower($holiday['name']),$name_replace).'"/>
 			<p>'.$holiday['name'].'</p>
 			<p class="subtitle">'.date("F jS, Y", strtotime($holiday['date'])).'</p>';
 	echo '</div>'; // end next holiday module
