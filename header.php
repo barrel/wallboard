@@ -12,7 +12,7 @@ require_once('con.php');
 <!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
 	<head>
-		<base href="<?php if ($production){ echo '/'; } else { echo 'http://10.0.1.226/wallboard/'; } ?>">
+		<base href="<?php if ($production){ echo 'http://wallboard2013.staging.barrelclient.com/new/'; } else { echo 'http://10.0.1.226/wallboard/'; } ?>">
 		<meta charset="utf-8">
 		<meta http-equiv="refresh" content="1500">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">

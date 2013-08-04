@@ -1,5 +1,5 @@
 /*
-wallboard - v - 2013-07-30
+wallboard - v - 2013-08-04
 An app to make a dashboard for the wallboard.
 Lovingly coded by Jess Frazelle - BarrelNY  - http://barrelny.com 
 */
@@ -2034,7 +2034,6 @@ function update_ticker(newsfeed){
 		if (!result.error) {
 			for (var i = 0; i < result.feed.entries.length; i++) {
 				var entry = result.feed.entries[i];
-				console.log(entry);
 				var news_date = new Date(entry.publishedDate);
 				var hours = news_date.getHours();
 				var meridiem = 'am';
