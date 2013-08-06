@@ -70,12 +70,13 @@ echo '<section class="wallboard-middle">';
 	function next_birthdays($con){
 		$replace_array = array("When: "=> "", "Event Status: confirmed"=>'', "<br />"=>'', 'Who: calendar@barrelny.com'=>'');
 		$query = "SELECT content FROM options WHERE name = 'calendar_feed_url'";
+		$birthday_replace = array('&#39; Birthday'=>'', '&#39;s Birthday'=>'');
 		$response = mysqli_query($con, $query);
 		$birthday_array = array();
 		if (!is_bool($response)){
 			if (mysqli_num_rows($response) > 0) {
 				while ($feed = mysqli_fetch_array($response)) {
-					$feed_url = $feed['content'].'?orderby=starttime&sortorder=ascending&singleevents=false&q=Birthday&recurrence-expansion-start='.date("Y-m-d\TH:i:sP");
+					$feed_url = $feed['content'].'?orderby=starttime&sortorder=ascending&singleevents=true&q=Birthday&max-results=100';
 				}
 			}
 		}
@@ -85,7 +86,7 @@ echo '<section class="wallboard-middle">';
 		foreach($xml->{'entry'} as $entry){
 			if (strpos(strtolower($entry->title), 'birthday')!==FALSE){
 				$thistime = date("md", strtotime(strtr(strip_tags($entry->summary), $replace_array)));
-				$birthday_array[$thistime]['name']= str_replace('&#39;s Birthday', '', $entry->title);
+				$birthday_array[$thistime]['name']= strtr($entry->title, $birthday_replace);
 				$birthday_array[$thistime]['time']= strtotime(strtr(strip_tags($entry->summary), $replace_array));
 				$birthday_array[$thistime]['date']= strtr(strip_tags($entry->summary), $replace_array);
 			}
