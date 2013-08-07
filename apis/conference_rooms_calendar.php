@@ -32,7 +32,7 @@ function get_meetings($conference_room, $con, $iftomorrow){
 	
 	return $meeting_array;
 }
-if (date("G")>=19){
+if (date("G")>=18){
 	$tomorrow = true;
 	$timenow = date("G", mktime(0,0,0,date("n", strtotime('tomorrow')), date("j", strtotime('tomorrow')), date("Y")));
 } else {
@@ -164,10 +164,8 @@ $meetings = array(
 								echo '<td class="extra"></td>';
 								$rowspan[$room][$hour] = 0;
 							}
-						} else {
-							if (isset($rowspan[$room][($hour-1)])){
-								$rowspan[$room][$hour] = $rowspan[$room][($hour-1)] -1;
-							}
+						} else {								
+							$rowspan[$room][$hour] = $rowspan[$room][($hour)] -1;
 						}
 					}
 				
