@@ -745,7 +745,7 @@ a:focus {
   position: absolute;
   top: -7px;
   z-index: 3;
-  right: 65px;
+  right: 30px;
   width: 40px;
   margin: 0;
   -webkit-animation: btnWiggle 7s infinite;
