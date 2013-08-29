@@ -1,37 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- Generator: Adobe Illustrator 17.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="50.587px" height="58.856px" viewBox="0 0 50.587 58.856" enable-background="new 0 0 50.587 58.856" xml:space="preserve">
-<symbol  id="metroArrow" viewBox="-4.602 -7.707 9.204 15.415">
-	<path fill="#CCCCCC" d="M1.282,2.135c0.294,0,0.589,0,0.812,0h2.065c0.447,0,0.577,0.28,0.291,0.623L0.521,7.451
-		c-0.287,0.342-0.756,0.342-1.043,0L-4.45,2.758c-0.286-0.343-0.156-0.623,0.291-0.623h2.065c0.223,0,0.518,0,0.812,0v-5.844h2.564
-		V2.135z"/>
-	<path fill="#CCCCCC" d="M-1.282-5.369v-1.525c0-0.447,0.365-0.812,0.813-0.812H0.47c0.446,0,0.813,0.365,0.813,0.812v1.525H-1.282z
-		"/>
-</symbol>
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="52.533px" height="63.12px" viewBox="-8.369 2.643 52.533 63.12" enable-background="new -8.369 2.643 52.533 63.12"
+	 xml:space="preserve">
 <g id="background">
 </g>
 <g id="artwork">
-	<polygon fill="#983A92" points="0,58.856 25.293,15.047 50.587,58.856 	"/>
-	<polygon opacity="0.5" fill="#7E378F" points="25.293,15.047 50.587,58.856 25.293,58.856 	"/>
-	<rect x="0" y="50.69" fill="#662D91" width="50.587" height="8.167"/>
-	<path opacity="0.5" fill="#EB8F8E" d="M10.93,43.876c0,2.86-2.32,5.18-5.18,5.18c-0.03,0-0.06,0-0.09-0.01l4.53-7.83
-		C10.66,41.986,10.93,42.896,10.93,43.876z"/>
-	<path opacity="0.5" fill="#EB8F8E" d="M38.7,50.686H28.33c0-2.86,2.32-5.18,5.18-5.18C36.38,45.506,38.7,47.826,38.7,50.686z"/>
-	<path opacity="0.5" fill="#EB8F8E" d="M37.94,36.943c-0.51,0.17-1.06,0.26-1.63,0.26c-2.86,0-5.18-2.32-5.18-5.18
-		c0-1.54,0.67-2.92,1.74-3.86L37.94,36.943z"/>
-	<path opacity="0.5" fill="#EB8F8E" d="M30.24,23.626c-2.76-0.12-4.95-2.39-4.95-5.18c0-0.86,0.21-1.67,0.59-2.38L30.24,23.626z"/>
-	<circle opacity="0.5" fill="#EB8F8E" cx="22.14" cy="38.661" r="5.185"/>
-	<polygon fill="#9FD0CB" points="25.293,14.736 25.293,5.833 38.199,10.211 	"/>
-	<rect x="24.794" y="2.451" fill="#29ABE2" width="1" height="13.437"/>
-	<circle fill="#EB8F8E" cx="25.293" cy="2.667" r="1.667"/>
+	<polygon fill="#983A92" points="-8.368,48.461 30.383,15.944 39.168,65.762 	"/>
+	<polygon opacity="0.5" fill="#7E378F" enable-background="new    " points="30.383,15.944 39.168,65.762 15.399,57.111 	"/>
+	
+		<rect x="-8.497" y="49.192" transform="matrix(-0.9397 -0.342 0.342 -0.9397 14.3579 109.082)" fill="#662D91" width="50.587" height="8.167"/>
+	<path opacity="0.5" fill="#EB8F8E" enable-background="new    " d="M7.026,38.122c-0.978,2.688-3.952,4.074-6.639,3.096
+		c-0.028-0.01-0.056-0.021-0.081-0.04L7.24,35.37C7.419,36.254,7.361,37.201,7.026,38.122z"/>
+	<path opacity="0.5" fill="#EB8F8E" enable-background="new    " d="M30.792,54.019l-9.745-3.547
+		c0.978-2.688,3.952-4.074,6.639-3.096C30.384,48.358,31.77,51.332,30.792,54.019z"/>
+	<path opacity="0.5" fill="#EB8F8E" enable-background="new    " d="M34.778,40.845c-0.537-0.015-1.085-0.118-1.621-0.313
+		c-2.688-0.978-4.074-3.952-3.096-6.639c0.527-1.447,1.628-2.515,2.955-3.032L34.778,40.845z"/>
+	<path opacity="0.5" fill="#EB8F8E" enable-background="new    " d="M32.097,25.698c-2.553-1.057-3.834-3.939-2.88-6.561
+		c0.294-0.808,0.769-1.497,1.368-2.035L32.097,25.698z"/>
+	<circle opacity="0.5" fill="#EB8F8E" enable-background="new    " cx="19.343" cy="37.056" r="5.185"/>
+	<polygon fill="#9FD0CB" points="30.489,15.652 33.534,7.286 44.164,15.814 	"/>
+	
+		<rect x="31.894" y="3.703" transform="matrix(-0.9397 -0.342 0.342 -0.9397 59.2699 31.2941)" fill="#29ABE2" width="1" height="13.437"/>
+	<circle fill="#EB8F8E" cx="34.617" cy="4.311" r="1.667"/>
 </g>
 <g id="cal-col" display="none">
 </g>
 <g id="_x33_-col" display="none">
 </g>
 <g id="comments" display="none">
-	<rect x="-27.373" y="-55.144" display="inline" opacity="0.5" fill="#FF00FF" width="86" height="60"/>
+	
+		<rect x="-27.373" y="-55.144" display="inline" opacity="0.5" fill="#FF00FF" enable-background="new    " width="86" height="60"/>
 </g>
 </svg>

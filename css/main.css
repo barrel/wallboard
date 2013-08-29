@@ -17,51 +17,89 @@
   -o-box-sizing: border-box;
   box-sizing: border-box;
 }
+.wobble 0% {
+  -webkit-transform: rotate(0deg);
+}
+.wobble 5% {
+  -webkit-transform: rotate(-2deg);
+}
+.wobble 10% {
+  -webkit-transform: rotate(2deg);
+}
+.wobble 15% {
+  -webkit-transform: rotate(-2deg);
+}
+.wobble 20% {
+  -webkit-transform: rotate(0deg);
+}
+.wobble 100% {
+  -webkit-transform: rotate(0deg);
+}
 .wiggle {
-  -webkit-animation: birthdayHat 2s 5s 1 ease;
-  -moz-animation: birthdayHat 2s 5s 1 ease;
-  -o-animation: birthdayHat 2s 5s 1 ease;
+  -webkit-animation: btnWiggle 7s infinite;
+  -moz-animation: btnWiggle 7s infinite;
+  -o-animation: btnWiggle 7s infinite;
+  animation: btnWiggle 7s infinite;
 }
-@-webkit-keyframes birthdayHat {
+/* animation */
+@-webkit-keyframes btnWiggle {
   0% {
-    -webkit-transform: rotate(24deg);
+    -webkit-transform: rotate(0deg);
   }
-  25% {
-    -webkit-transform: rotate(16deg);
+  5% {
+    -webkit-transform: rotate(-2deg);
   }
-  50% {
-    -webkit-transform: rotate(22deg);
+  10% {
+    -webkit-transform: rotate(2deg);
+  }
+  15% {
+    -webkit-transform: rotate(-2deg);
+  }
+  20% {
+    -webkit-transform: rotate(0deg);
   }
   100% {
-    -webkit-transform: rotate(18deg);
+    -webkit-transform: rotate(0deg);
   }
 }
-@-moz-keyframes birthdayHat {
+@-o-keyframes btnWiggle {
   0% {
-    -moz-transform: rotate(2deg);
+    -webkit-transform: rotate(0deg);
   }
-  25% {
-    -moz-transform: rotate(-2deg);
+  5% {
+    -webkit-transform: rotate(-2deg);
   }
-  50% {
-    -moz-transform: rotate(1deg);
+  10% {
+    -webkit-transform: rotate(2deg);
+  }
+  15% {
+    -webkit-transform: rotate(-2deg);
+  }
+  20% {
+    -webkit-transform: rotate(0deg);
   }
   100% {
-    -moz-transform: rotate(-1deg);
+    -webkit-transform: rotate(0deg);
   }
 }
-@-o-keyframes birthdayHat {
+@keyframes btnWiggle {
   0% {
-    -o-transform: rotate(2deg);
+    -webkit-transform: rotate(0deg);
   }
-  25% {
-    -o-transform: rotate(-2deg);
+  5% {
+    -webkit-transform: rotate(-2deg);
   }
-  50% {
-    -o-transform: rotate(1deg);
+  10% {
+    -webkit-transform: rotate(2deg);
+  }
+  15% {
+    -webkit-transform: rotate(-2deg);
+  }
+  20% {
+    -webkit-transform: rotate(0deg);
   }
   100% {
-    -o-transform: rotate(-1deg);
+    -webkit-transform: rotate(0deg);
   }
 }
 * {
@@ -705,19 +743,15 @@ a:focus {
 }
 .wallboard-middle .col.next-birthdays ul li #birthday-icon {
   position: absolute;
-  top: -20px;
+  top: -7px;
   z-index: 3;
-  right: 30px;
+  right: 65px;
   width: 40px;
   margin: 0;
-  -webkit-transform: rotate(20deg);
-  -moz-transform: rotate(20deg);
-  -ms-transform: rotate(20deg);
-  -o-transform: rotate(20deg);
-  transform: rotate(20deg);
-  -webkit-animation: birthdayHat 2s 5s 1 ease;
-  -moz-animation: birthdayHat 2s 5s 1 ease;
-  -o-animation: birthdayHat 2s 5s 1 ease;
+  -webkit-animation: btnWiggle 7s infinite;
+  -moz-animation: btnWiggle 7s infinite;
+  -o-animation: btnWiggle 7s infinite;
+  animation: btnWiggle 7s infinite;
 }
 .wallboard-upcoming {
   *zoom: 1;
