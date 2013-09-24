@@ -297,6 +297,9 @@ address {
   font-style: normal;
   line-height: 20px;
 }
+html {
+  height: 100%;
+}
 body {
   margin: 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -309,6 +312,8 @@ body.wallboard {
   font-family: 'Benton', "Helvetica Neue", Helvetica, Arial, sans-serif;
   background: black;
   color: white;
+  overflow: hidden;
+  height: 100%;
 }
 .container {
   position: relative;
