@@ -4,12 +4,17 @@ var request = require('request');
 var FeedParser = require('feedparser');
 
 var API = function() {
-  this.connection = mysql.createConnection({
-    host: '127.0.0.1',
-    user: 'root',
-    password: 'root',
-    database: 'wallboard'
-  });
+  var config;
+
+  try {
+    config = require('../config.json');
+  } catch(err) {
+    console.log('File "config.json" not found. Using "config.default.json"...');
+    config = require('../config.default.json');
+  }
+
+
+  this.connection = mysql.createConnection(config['db']);
 
   this.connection.connect();
 };
@@ -158,4 +163,4 @@ API.prototype.getUpcomingEvent = function(next) {
   });
 };
 
-module.exports.API = API;
+module.exports = API;

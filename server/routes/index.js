@@ -1,42 +1,42 @@
 var async = require('async');
 
-var DB = require('../apis').API;
+var API = require('../api');
 
 module.exports.home = function(req, res, next) {
-  var wallboardDB = new DB();
+  var wallboardAPI = new API();
   var locals = {};
 
   async.parallel([
     function(callback) {
-      wallboardDB.getPhotos(function(err, photos) {
+      wallboardAPI.getPhotos(function(err, photos) {
         if (err) return callback(err);
         locals.photos = photos;
         callback();
       });
     },
     function(callback) {
-      wallboardDB.getCleaningCrew(function(err, cleaningCrew) {
+      wallboardAPI.getCleaningCrew(function(err, cleaningCrew) {
         if (err) return callback(err);
         locals.cleaningCrew = cleaningCrew;
         callback();
       });
     },
     function(callback) {
-      wallboardDB.getNextHoliday(function(err, nextHoliday) {
+      wallboardAPI.getNextHoliday(function(err, nextHoliday) {
         if (err) return callback(err);
         locals.nextHoliday = nextHoliday;
         callback();
       });
     },
     function(callback) {
-      wallboardDB.getBirthdays(function(err, birthdays) {
+      wallboardAPI.getBirthdays(function(err, birthdays) {
         if (err) return callback(err);
         locals.birthdays = birthdays;
         callback();
       });
     },
     function(callback) {
-      wallboardDB.getUpcomingEvent(function(err, upcoming) {
+      wallboardAPI.getUpcomingEvent(function(err, upcoming) {
         if (err) return callback(err);
         locals.upcoming = upcoming;
         callback();
@@ -55,6 +55,6 @@ module.exports.home = function(req, res, next) {
       upcoming: locals.upcoming
     });
 
-    wallboardDB.connection.end();
+    wallboardAPI.connection.end();
   });
 };
