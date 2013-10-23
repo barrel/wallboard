@@ -1,5 +1,6 @@
 var express = require('express');
 var http = require('http');
+var proxy = require('simple-http-proxy');
 var path = require('path');
 var hbs = require('express3-handlebars');
 
@@ -27,8 +28,18 @@ if (app.get('env') == 'development') {
   app.use(express.errorHandler());
 }
 
+// Set default route
 app.get('/', routes.home);
+app.get('/apis/weather', routes.weather);
 
+app.use(express.static(path.join(__dirname, 'css')));
+app.use(express.static(path.join(__dirname, 'img')));
+app.use(express.static(path.join(__dirname, 'js')));
+
+app.use('/uploads', proxy("http://wallboard2013.staging.barrelclient.com/new/uploads"));
+
+
+// Start server
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Wallboard server listening on port %d in %s mode', app.get('port'), app.get('env'));
 });
