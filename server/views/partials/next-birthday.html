@@ -1,0 +1,19 @@
+<div class="col next-birthdays">
+  <h5>Next Birthday</h5>
+  <ul>
+    <li class="past small-birthday">
+      <img src="uploads/people/team_{{lowercase birthdays.past.name}}.jpg" alt="{{birthdays.past.name}}" />
+    </li>
+    <li class="large-birthday">
+      <img class="person-image{{birthdays.next.class}}" src="uploads/people/team_{{lowercase birthdays.next.name}}.jpg" alt="{{birthdays.next.name}}" />
+      <p>{{birthdays.next.name}}</p>
+      <p class="subtitle">{{birthdays.next.date}}</p>
+      {{#if birthdays.next.isToday}}
+        <img id="birthday-icon" src="img/icons_birthday-hat.svg" alt=""/>
+      {{/if}}
+    </li>
+    <li class="future small-birthday">
+      <img src="uploads/people/team_{{lowercase birthdays.future.name}}.jpg" alt="{{birthdays.future.name}}" />
+    </li>
+  </ul>
+</div>
