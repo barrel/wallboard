@@ -12,8 +12,8 @@ This project uses [Grunt](http://gruntjs.com) to automate build tasks.
 - Install grunt-cli: `npm install -g grunt-cli`
 - Navigate to the project root directory
 - Install app dependencies: `npm install`
-- Run `grunt` to compile, or `grunt dev` to start a live development environment.
-- `cd server` and then `node server` to start the node app.
+- Run `grunt` to compile static assets, or `grunt dev` to start a live development environment.
+- Run `node server` to start the node app server.
 
 ### Things You Should Note
 - The backend lives in the [backdoor/](https://github.com/barrel/wallboard/blob/master/backdoor/) directory.
