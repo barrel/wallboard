@@ -81,7 +81,7 @@ module.exports = function(grunt) {
         'uglify:dist'
     ]);
      
-    grunt.registerTask('server', [
+    grunt.registerTask('dev', [
         'less:dist',
         'cssmin',
         'concat:dist',
