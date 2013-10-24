@@ -7,10 +7,10 @@ var async = require('async');
 var API = function() {
   // Load config from config.json or config.default.json
   try {
-    var config = require('../config.json');
+    var config = require('../../config.json');
   } catch(err) {
     console.log('File "config.json" not found. Using "config.default.json"...');
-    var config = require('../config.default.json');
+    var config = require('../../config.default.json');
   }
 
   this.connection = mysql.createConnection(config['db']);

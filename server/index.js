@@ -32,9 +32,9 @@ if (app.get('env') == 'development') {
 app.get('/', routes.home);
 app.get('/apis/weather', routes.weather);
 
-app.use(express.static(path.join(__dirname, 'css')));
-app.use(express.static(path.join(__dirname, 'img')));
-app.use(express.static(path.join(__dirname, 'js')));
+app.use('/css', express.static(path.join(__dirname, '../css')));
+app.use('/img', express.static(path.join(__dirname, '../img')));
+app.use('/js', express.static(path.join(__dirname, '../js')));
 
 app.use('/uploads', proxy("http://wallboard2013.staging.barrelclient.com/new/uploads"));
 
