@@ -59,7 +59,7 @@ module.exports.weather = function(req, res, next) {
   wallboardAPI.getWeather(function(err, weather) {
     if (err) return next(err);
     
-    res.send(weather);
+    res.json(weather);
 
     wallboardAPI.connection.end();
   });
