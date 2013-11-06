@@ -89,13 +89,7 @@
             		if (!$moved){
 						$error .= 'Copy unsuccessfull!';
 						$errors=1;
-            		} else {
-                        // save image name to database 
-						    include('../con.php');
-						    $query = "INSERT INTO photos (image_url) VALUES ('$this_filename')";
-                            mysqli_query($con, $query);
-                            $new_id = mysqli_insert_id($con);
-                            mysqli_close($con);
+            		} else { 
             		}
 				}
         	}
@@ -112,3 +106,4 @@
         'photo_id' => $new_id,
 		'error' => $error,
 	));	
+

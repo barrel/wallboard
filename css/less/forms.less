@@ -57,6 +57,9 @@ input[type="color"],
   color: @gray;
   .border-radius(@inputBorderRadius);
   vertical-align: middle;
+  table & {
+      margin:0;
+  }
 }
 
 // Reset appearance properties for textual inputs and textarea
@@ -90,8 +93,7 @@ input[type="color"],
   background-color: @inputBackground;
   border: 1px solid @inputBorder;
   .box-shadow(inset 0 1px 1px rgba(0,0,0,.075));
-  @transition:"border linear .2s, box-shadow linear .2s";
-  .transition(@transition);
+  .transition(all 300ms ease-in);
 
   // Focus state
   &:focus {
@@ -107,6 +109,11 @@ input[type="color"],
 	@successBorder:           darken(spin(@successBackground, -10), 5%);
 	border-color: darken(@successBorder, 10%);
 	@shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 6px lighten(@successBorder, 20%);
+	.box-shadow(@shadow);
+  }
+  &.error {
+    border-color: darken(@red, 10%);
+    @shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 6px lighten(@red, 20%);
 	.box-shadow(@shadow);
   }
 }

@@ -1,0 +1,43 @@
+table {
+    position:relative;
+    width:100%;
+    margin:20px 0 0 0;
+    thead {
+        th {
+            background:#efefef;
+            font-weight:bold;
+            padding:10px 0; 
+        }
+    }
+    tbody {
+        tr { 
+        }
+        td {
+            padding:5px 0;
+            img {
+                width:50px;
+                height:auto;
+            }
+            &:first-child {
+                width:100px;
+            }
+            .btn {
+                line-height:100%;
+                img {
+                    width:auto;
+                }
+            }    
+        }
+    }
+    a, a:hover, a:focus {
+        cursor:pointer;
+        font-weight:bold;
+        border-bottom:none;
+        text-decoration:none;
+    }
+    .delete {
+        font-size:20px;
+        font-weight:bold;
+        color:@red;
+    }
+}
