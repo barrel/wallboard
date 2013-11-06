@@ -1,5 +1,5 @@
 /*
-wallboard - v - 2013-11-05
+wallboard - v - 2013-11-06
 An app to make a dashboard for the wallboard.
 Lovingly coded by Jess Frazelle - BarrelNY  - http://barrelny.com 
 */

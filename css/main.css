@@ -1307,41 +1307,41 @@ input[type="checkbox"]:focus {
   width: 800px;
   font-weight: 300;
 }
-table {
+.backdoor table {
   position: relative;
   width: 100%;
   margin: 20px 0 0 0;
 }
-table thead th {
+.backdoor table thead th {
   background: #efefef;
   font-weight: bold;
   padding: 10px 0;
 }
-table tbody td {
+.backdoor table tbody td {
   padding: 5px 0;
 }
-table tbody td img {
+.backdoor table tbody td img {
   width: 50px;
   height: auto;
 }
-table tbody td:first-child {
+.backdoor table tbody td:first-child {
   width: 100px;
 }
-table tbody td .btn {
+.backdoor table tbody td .btn {
   line-height: 100%;
 }
-table tbody td .btn img {
+.backdoor table tbody td .btn img {
   width: auto;
 }
-table a,
-table a:hover,
-table a:focus {
+.backdoor table a,
+.backdoor table a:hover,
+.backdoor table a:focus {
   cursor: pointer;
   font-weight: bold;
   border-bottom: none;
   text-decoration: none;
 }
-table .delete {
+.backdoor table .delete {
   font-size: 20px;
   font-weight: bold;
   color: #e74c3c;
