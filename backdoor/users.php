@@ -36,7 +36,7 @@ echo '<section class="users preferences">
 
 foreach($users as $user){ ?>
     <tr>
-    <td><? if(isset($user['image_url'])&&$user['image_url']!=''){ ?><img src="uploads/people/<?= $user['image_url']; ?>" alt=""/><? } ?></td>
+    <td><img src="<?= (isset($user['image_url'])&&$user['image_url']!='') ? 'uploads/people/'.$user['image_url'] : 'img/default_person.png'; ?>" alt=""/></td>
         <td><?= $user['name']; ?></td>
         <td><?= $user['department']; ?></td>
         <td>

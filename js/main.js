@@ -171,7 +171,7 @@ var backdoor = {
                     if(data.img!=''){
                         $('.form_edit').after('<tr><td><img src="uploads/people/'+data.img+'" alt=""></td><td>'+name_input.val()+'</td><td>'+dept_input.val()+'</td><td><a class="edit pull-left" data-id="'+data.user_id+'" data-url="'+data.img+'">edit</a><a class="delete pull-right" data-id="'+data.user_id+'" data-url="'+data.img+'">&times;</a></td></tr>');
                     } else {
-                        $('.form_edit').after('<tr><td></td><td>'+name_input.val()+'</td><td>'+dept_input.val()+'</td><td><a class="edit pull-left" data-id="'+data.user_id+'" data-url="'+data.img+'">edit</a><a class="delete pull-right" data-id="'+data.user_id+'" data-url="'+data.img+'">&times;</a></td></tr>');
+                        $('.form_edit').after('<tr><td><img src="img/default_person.png" alt=""/></td><td>'+name_input.val()+'</td><td>'+dept_input.val()+'</td><td><a class="edit pull-left" data-id="'+data.user_id+'" data-url="'+data.img+'">edit</a><a class="delete pull-right" data-id="'+data.user_id+'" data-url="'+data.img+'">&times;</a></td></tr>');
                     }
                     $this_item.parents('tr').remove();
                     $('.editing').remove();
