@@ -15,4 +15,5 @@ This project uses [Grunt](http://gruntjs.com) to automate build tasks.
 - The backend lives in the [backdoor/](https://github.com/barrel/wallboard/blob/master/backdoor/) directory.
 - Database backups are in the [backdoor/db-backups/](https://github.com/barrel/wallboard/blob/master/backdoor/db-backups/) directory.
 - Change the database connection file to your configurations here: [con.php](https://github.com/barrel/wallboard/blob/master/con.php).
-- Uploads go into the ```uploads``` directory (off root) which is not tracked on git.
+- Photo Slider uploads go into the ```uploads/``` directory (off root) which is not tracked on git.
+- User photo uploads go into the ```uploads/people/``` directory.
