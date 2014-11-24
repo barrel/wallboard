@@ -1,5 +1,5 @@
 /*
-wallboard - v - 2013-11-06
+wallboard - v - 2014-11-24
 An app to make a dashboard for the wallboard.
 Lovingly coded by Jess Frazelle - BarrelNY  - http://barrelny.com 
 */
@@ -2197,8 +2197,8 @@ var wallboard = {
         this.update_ticker(newsfeed);
         this.photo_slider();
         this.svgs();
-        window.setInterval(wallboard.update_weather, 5000);
-        window.setInterval(wallboard.update_time, 5000);
+        this.weather = window.setInterval(wallboard.update_weather, 60000); // update every 60 sec
+        this.time = window.setInterval(wallboard.update_time, 30000); // update every 30 sec
     },
     update_ticker: function(newsfeed){
         $('.news-slider').empty();

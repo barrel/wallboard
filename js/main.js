@@ -199,8 +199,8 @@ var wallboard = {
         this.update_ticker(newsfeed);
         this.photo_slider();
         this.svgs();
-        window.setInterval(wallboard.update_weather, 5000);
-        window.setInterval(wallboard.update_time, 5000);
+        this.weather = window.setInterval(wallboard.update_weather, 60000); // update every 60 sec
+        this.time = window.setInterval(wallboard.update_time, 30000); // update every 30 sec
     },
     update_ticker: function(newsfeed){
         $('.news-slider').empty();

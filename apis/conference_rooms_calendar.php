@@ -6,33 +6,42 @@ function get_meetings($conference_room, $con, $iftomorrow){
 	$meeting_array = array();
 	if (!is_bool($response)){
 		if (mysqli_num_rows($response) > 0) {
+			$queryOpts = array(
+				'orderBy'=>'startTime',
+				'singleEvents'=>'true',
+			);
 			while ($feed = mysqli_fetch_array($response)) {
+				$calendarId = explode('/', str_replace('http://www.google.com/calendar/feeds/', '', $feed['content']));
 				if ($iftomorrow){
-					$feed_url = str_replace('basic', 'full', $feed['content']).'?orderby=starttime&sortorder=ascending&singleevents=true&start-min='.date("Y-m-d\TH:i:sP", mktime(10,0,0,date("n", strtotime('tomorrow')), date("j", strtotime('tomorrow')), date("Y"))).'&start-max='.date("Y-m-d\TH:i:sP", mktime(18,0,0,date("n", strtotime('tomorrow')), date("j", strtotime('tomorrow')), date("Y"))).'&q='.$conference_room;
+					$tomorrow = strtotime('tomorrow');
+					$tomorrow_n = date("n", $tomorrow);
+					$tomorrow_j = date("j", $tomorrow);
+					$tomorrow_y = date("Y", $tomorrow);
+					$queryOpts['timeMin'] = date("Y-m-d\TH:i:sP", mktime(10,0,0,$tomorrow_n,$tomorrow_j,$tomorrow_y));
+					$queryOpts['timeMax'] = date("Y-m-d\TH:i:sP", mktime(18,0,0,$tomorrow_n,$tomorrow_j,$tomorrow_y));
+					$queryOpts['q'] = $conference_room;
 				} else {
-					$feed_url = str_replace('basic', 'full', $feed['content']).'?orderby=starttime&sortorder=ascending&singleevents=true&start-min='.date("Y-m-d\TH:i:sP", mktime(10,0,0,date("n"), date("j"), date("Y"))).'&start-max='.date("Y-m-d\TH:i:sP", mktime(18,0,0,date("n"), date("j"), date("Y"))).'&q='.$conference_room;
+					$queryOpts['timeMin'] = date("Y-m-d\TH:i:sP", mktime(10,0,0,date("n"), date("j"), date("Y")));
+					$queryOpts['timeMax'] = date("Y-m-d\TH:i:sP", mktime(18,0,0,date("n"), date("j"), date("Y")));
+					$queryOpts['q'] = $conference_room;
 				}
 			}
 		}
 	}
-	//var_dump($feed_url);
-	$xml_source = file_get_contents($feed_url);
-	$xml = simplexml_load_string($xml_source);
+	$list = get_events_list(urldecode($calendarId[0]), $queryOpts);
+
 	$i=0;
-	foreach($xml->{'entry'} as $entry){
+	foreach($list as $entry){
 		$meeting_array[$i]['name']= strtr($entry->title, $name_replace);
-		$namespaces = $entry->getNameSpaces(true);
-		$events = $entry->children($namespaces['gd']);
-		$event = $events->when->attributes();
-		$meeting_array[$i]['start'] = date("Gi", strtotime($event->startTime));
-		$meeting_array[$i]['end'] = date("Gi", strtotime($event->endTime));
-		$meeting_array[$i]['date'] = date("g:i", strtotime($event->startTime))."-".date("g:ia", strtotime($event->endTime));
+		$meeting_array[$i]['start'] = date("Gi", strtotime($entry->start->dateTime));
+		$meeting_array[$i]['end'] = date("Gi", strtotime($entry->end->dateTime));
+		$meeting_array[$i]['date'] = date("g:i", strtotime($entry->start->dateTime))."-".date("g:ia", strtotime($entry->end->dateTime));
 		$i++;
 	}
 	
 	return $meeting_array;
 }
-if (date("G")>=18){
+if (date("G")>=18){ // assuming GMT - 4
 	$tomorrow = true;
 	$timenow = date("G", mktime(0,0,0,date("n", strtotime('tomorrow')), date("j", strtotime('tomorrow')), date("Y")));
 } else {

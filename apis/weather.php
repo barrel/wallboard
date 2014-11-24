@@ -13,6 +13,7 @@ function weather(){
 		'thunderstorm'=> '6',
 		'snow'=> 'W',
 		'mist'=> 'Q',
+		'fog'=> 'M',
 		'heavy_intensity_rain'=>'8',
 		'light_rain'=>'R',
 		'light_intensity_drizzle'=>'R',
@@ -30,7 +31,25 @@ function weather(){
 	);
 	
 	$weather = array();
-	$weatherxml = file_get_contents('http://api.openweathermap.org/data/2.5/weather?id=5128581&mode=xml&units=imperial&APPID=4039c138d3a75fe829894408af96b78b');
+	$weather_api = array(
+		'url' => 'http://api.openweathermap.org/data/2.5/%s?',
+		'query' => array(
+			'mode' => 'xml',
+			'units' => 'imperial',
+			'APPID' => '4039c138d3a75fe829894408af96b78b'
+		), // base query data
+		'query1' => array(
+			'id' => '5128581',
+		), // query data
+		'query2' => array(
+			'q' => 'manhattan,ny',
+			'cnt' => '3'
+		), // query data
+	);
+	$query_str1 = http_build_query( $weather_api['query'] + $weather_api['query1'] );
+	$query_str2 = http_build_query( $weather_api['query'] + $weather_api['query2'] );
+	$weatherxml = file_get_contents(sprintf($weather_api['url'], 'weather').$query_str1);
+
 	$weatherDataLater = new SimpleXMLElement($weatherxml);
 	$forecast = $weatherDataLater->temperature->attributes();
 	$status = $weatherDataLater->weather->attributes();
@@ -40,7 +59,7 @@ function weather(){
 	$weather['now_temperature']=(int)$forecast->value;
 	$weather['now_icon']='<span class="weather-icon">' . $icons[strtolower(strtr($status->value, $weather_replace))]."</span>";
 	
-	$weatherxml = file_get_contents('http://api.openweathermap.org/data/2.5/forecast?id=5128581&mode=xml&units=imperial&APPID=4039c138d3a75fe829894408af96b78b');
+	$weatherxml = file_get_contents(sprintf($weather_api['url'], 'forecast').$query_str1);
 	$weatherDataLater = new SimpleXMLElement($weatherxml);
 	$forecast = $weatherDataLater->forecast;
 
@@ -53,7 +72,7 @@ function weather(){
 		if(!$first) break;
 	}
 	
-	$weatherxml = file_get_contents('http://api.openweathermap.org/data/2.5/forecast/daily?q=manhattan,ny&mode=xml&units=imperial&cnt=3&APPID=4039c138d3a75fe829894408af96b78b');
+	$weatherxml = file_get_contents(sprintf($weather_api['url'], 'forecast/daily').$query_str2);
 	$weatherDataLater = new SimpleXMLElement($weatherxml);
 
 	$forecast = $weatherDataLater->forecast;

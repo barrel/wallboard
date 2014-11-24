@@ -3,6 +3,7 @@ $page='wallboard';
 $pagename="Home";
 include('header.php'); 
 
+include('apis/google_calendar.php');
 include('apis/time_weather.php'); 	
 include('apis/cleaning_holiday_birthday.php');
 include('apis/upcoming.php'); 	
