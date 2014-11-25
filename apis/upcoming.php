@@ -15,9 +15,10 @@ echo '<section class="wallboard-upcoming">
 				}
 			}
 		}
-		
+
 		$list = get_events_list($calendarId, array(
 			'orderBy'	   =>'startTime',
+			'maxResults'   =>2,
 			'timeMin'      => date("Y-m-d\TH:i:sP", time()),
 			'singleEvents' =>true
 		));

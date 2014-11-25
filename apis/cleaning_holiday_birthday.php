@@ -49,7 +49,7 @@ echo '<section class="wallboard-middle">';
 		$list = get_events_list($calendarId, array(
 			'orderBy'      =>'startTime',
 			'timeMin'      => date("Y-m-d\TH:i:sP", time()),
-			'maxResults'   =>5,
+			'maxResults'   =>3,
 			'singleEvents' =>true
 		));
 		foreach($list as $entry){
@@ -90,7 +90,7 @@ echo '<section class="wallboard-middle">';
 			'orderBy'      =>'startTime',
 			'timeMin'      => date("Y-m-d\TH:i:sP", time()),
 			'singleEvents' =>true,
-			'maxResults'   =>5,
+			'maxResults'   =>3,
 			'q'            =>'Birthday'
 		));
 		foreach($list as $entry){

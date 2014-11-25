@@ -8,6 +8,7 @@ function get_meetings($conference_room, $con, $iftomorrow){
 		if (mysqli_num_rows($response) > 0) {
 			$queryOpts = array(
 				'orderBy'      =>'startTime',
+				'maxResults'   =>25,
 				'singleEvents' =>true,
 			);
 			while ($feed = mysqli_fetch_array($response)) {
