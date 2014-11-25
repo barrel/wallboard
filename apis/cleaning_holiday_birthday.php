@@ -8,7 +8,7 @@ echo '<section class="wallboard-middle">';
 		if ($cleaning_day_id==0 || $cleaning_day_id==6){
 			$cleaning_day_id = 1;
 		}
-		$day_query = "SELECT * FROM cleaning_meta LEFT JOIN users ON cleaning_meta.user_id = users.id WHERE cleaning_day_id = $cleaning_day_id ORDER BY users.name ASC LIMIT 4";
+		$day_query = "SELECT * FROM cleaning_meta LEFT JOIN users ON cleaning_meta.user_id = users.id WHERE cleaning_day_id = $cleaning_day_id ORDER BY users.name ASC";
 		$day_response = mysqli_query($con, $day_query);
 		$user_array = array();
 		if (!is_bool($day_response)){
@@ -27,7 +27,7 @@ echo '<section class="wallboard-middle">';
 			<ul>';
 	foreach($cleaning_crew as $crewmember){
 		$path = "uploads/people/".$crewmember['image_url'];
-		if ( !file_exists(__DIR__."/../$path")) {
+		if ( empty($crewmember['image_url']) || !file_exists(__DIR__."/../$path")) {
 			$path = "img/default_person.png";
 		}
 		echo '<li><img src="./'.$path.'" alt=""/>'.$crewmember['name'].'</li>';
