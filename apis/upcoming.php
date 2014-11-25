@@ -17,13 +17,14 @@ echo '<section class="wallboard-upcoming">
 		}
 
 		$list = get_events_list($calendarId, array(
-			'orderBy'	   =>'startTime',
-			'maxResults'   =>2,
-			'timeMin'      => date("Y-m-d\TH:i:sP", time()),
+			'orderBy'      =>'startTime',
+			'timeMin'      =>date("Y-m-d\TH:i:sP", strtotime('last month')),
+			'maxResults'   =>5,
 			'singleEvents' =>true
 		));
 
 		foreach($list as $entry){
+			if ( strtotime($entry->start->dateTime) < time()) continue;
 			$event_array['name']= $entry->summary;
 			$event_array['date']= date("M. j", strtotime($entry->start->dateTime));
 			$first = false;

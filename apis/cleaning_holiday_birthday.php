@@ -38,7 +38,7 @@ echo '<section class="wallboard-middle">';
 		
 	// next holiday module
 	function next_holiday($con){
-		$replace_array = array("When: "=> "", "Event Status: confirmed"=>'', "<br />"=>'', 'Who: Barrel Holidays'=>'');
+		$replace_array = array(" (Holiday)"=> "",);
 		$query = "SELECT content FROM options WHERE name = 'holidays_feed_url'";
 		$response = mysqli_query($con, $query);
 		$holiday_array = array();
@@ -54,10 +54,11 @@ echo '<section class="wallboard-middle">';
 			'orderBy'      =>'startTime',
 			'timeMin'      => date("Y-m-d\TH:i:sP", time()),
 			'maxResults'   =>3,
+			'q'            => 'holiday',
 			'singleEvents' =>true
 		));
 		foreach($list as $entry){
-			$holiday_array['name']= $entry->summary;
+			$holiday_array['name']= strtr($entry->summary, $replace_array);
 			$holiday_array['date']= date('F jS, Y', strtotime($entry->start->date));
 			$first = false;
 			if(!$first) break;

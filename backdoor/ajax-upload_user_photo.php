@@ -83,6 +83,7 @@
             		//the new name will be containing the full path where will be stored (images folder)
 					$this_filename=time().'_'.$image_name;
             		$newname="../uploads/".$this_filename;
+					if ( file_exists($newname)) unlink($newname);
            		 	$copied = copy($_FILES[$fileElementName]['tmp_name'], $newname);
 					$moved = move_uploaded_file($_FILES[$fileElementName]['tmp_name'], $newname);
             		//we verify if the image has been uploaded, and print error instead

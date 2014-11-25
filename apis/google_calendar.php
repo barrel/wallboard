@@ -28,7 +28,7 @@ class Barrel_Wallboard_Api {
 		$client->setApplicationName($this->applicationName);
 		$client->setDeveloperKey($this->developerKey);
 		$client->setClientId('430426449978-j23jkmcs396p6ecckg01hocgdn415j42.apps.googleusercontent.com');
-		#$client->setClientSecret('{clientsecret}');
+		$client->setClientSecret('notasecret');
 		$this->calendarService = new Google_Service_Calendar($client);
 
 		if (isset($_SESSION['service_token'])) {
@@ -37,8 +37,11 @@ class Barrel_Wallboard_Api {
 		$key = file_get_contents(__DIR__ . $this->keyFile);
 		$cred = new Google_Auth_AssertionCredentials(
 			$this->serviceAccount,
-			$this->permissions[0],
-			$key
+			$this->permissions,
+			$key,
+			'notasecret',
+			'http://oauth.net/grant_type/jwt/1.0/bearer',
+			'calendar@barrelny.com'
 		);
 		$client->setAssertionCredentials($cred);
 		if ($client->getAuth()->isAccessTokenExpired()) {
