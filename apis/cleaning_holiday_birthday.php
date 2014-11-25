@@ -20,6 +20,7 @@ echo '<section class="wallboard-middle">';
 		}
 		return $user_array;
 	}
+
 	$cleaning_crew = get_cleaning_crew($con);
 	echo '<div class="col cleaning-crew">
 			<h5>Cleaning Crew</h5>
@@ -40,26 +41,27 @@ echo '<section class="wallboard-middle">';
 		if (!is_bool($response)){
 			if (mysqli_num_rows($response) > 0) {
 				while ($feed = mysqli_fetch_array($response)) {
-					$calendarId = explode('/', str_replace('http://www.google.com/calendar/feeds/', '', $feed['content']));
-					$feed_url = $feed['content'].'?orderby=starttime&sortorder=ascending&futureevents=true&singleevents=true';
+					$calendarId = $feed['content'];
 				}
 			}
 		}
 		
 		$list = get_events_list($calendarId, array(
-			'orderBy'	  =>'startTime',
-			'futureEvents' =>'true',
-			'singleEvents' =>'true'
+			'orderBy'      =>'startTime',
+			'timeMin'      => date("Y-m-d\TH:i:sP", time()),
+			'maxResults'   =>5,
+			'singleEvents' =>true
 		));
 		foreach($list as $entry){
-			$holiday_array['name']= $entry->title;
-			$holiday_array['date']= strtr(strip_tags($entry->summary), $replace_array);
+			$holiday_array['name']= $entry->summary;
+			$holiday_array['date']= date('F jS, Y', strtotime($entry->start->date));
 			$first = false;
 			if(!$first) break;
 		}
 		
 		return $holiday_array;
 	}
+
 	$holiday = next_holiday($con);
 	$name_replace = array("'"=> "", " "=> "", "day"=> "", "break"=> "");
 	if (!empty($holiday)) {
@@ -73,7 +75,6 @@ echo '<section class="wallboard-middle">';
 	
 	// next birthday module
 	function next_birthdays($con){
-		$replace_array = array("When: "=> "", "Event Status: confirmed"=>'', "<br />"=>'', 'Who: calendar@barrelny.com'=>'');
 		$query = "SELECT content FROM options WHERE name = 'calendar_feed_url'";
 		$birthday_replace = array('&#39; Birthday'=>'', '&#39;s Birthday'=>'');
 		$response = mysqli_query($con, $query);
@@ -81,28 +82,31 @@ echo '<section class="wallboard-middle">';
 		if (!is_bool($response)){
 			if (mysqli_num_rows($response) > 0) {
 				while ($feed = mysqli_fetch_array($response)) {
-					$calendarId = explode('/', str_replace('http://www.google.com/calendar/feeds/', '', $feed['content']));
-					$feed_url = $feed['content'].'?orderby=starttime&sortorder=ascending&singleevents=true&q=Birthday&max-results=100';
+					$calendarId = $feed['content'];
 				}
 			}
 		}
-		
-		$list = get_events_list(urldecode($calendarId[0]), array(
-			'orderBy'	  =>'starttime',
-			'futureEvents' =>'true',
-			'singleEvents' =>'true',
-			'maxResults'   =>'100'
+		$list = get_events_list($calendarId, array(
+			'orderBy'      =>'startTime',
+			'timeMin'      => date("Y-m-d\TH:i:sP", time()),
+			'singleEvents' =>true,
+			'maxResults'   =>5,
+			'q'            =>'Birthday'
 		));
-
 		foreach($list as $entry){
-			if (strpos(strtolower($entry->title), 'birthday')!==FALSE){
-				$thistime = date("md", strtotime(strtr(strip_tags($entry->summary), $replace_array)));
-				$birthday_array[$thistime]['name']= strtr($entry->title, $birthday_replace);
-				$birthday_array[$thistime]['time']= strtotime(strtr(strip_tags($entry->summary), $replace_array));
-				$birthday_array[$thistime]['date']= strtr(strip_tags($entry->summary), $replace_array);
+			if (strpos(strtolower($entry->summary), 'birthday')!==FALSE){
+				$name = substr($entry->summary, 0, strpos($entry->summary, "'"));
+				$time = strtotime($entry->start->date);
+				$birthday_array[] = array(
+					'name' => $name,
+					'time' => $time,
+					'date' => date('F jS, Y', $time),
+				);
 			}
 		}
-		ksort($birthday_array);
+		usort($birthday_array, function($a, $b){
+			return $a['time'] > $b['time'];
+		});
 		$birthdays = array();
 		$i=0;
 		foreach($birthday_array as $birthday){
@@ -120,7 +124,7 @@ echo '<section class="wallboard-middle">';
 	$todayisbirthday = false;
 	$extraclass="";
 	foreach($birthdays as $birthday){
-		if (date("md", $birthday['time']) >= date("md", $nowtime)){
+		if ($birthday['time'] >= $nowtime){
 			$index = $i;
 			if (date("md", $birthday['time']) == date("md", $nowtime)){
 				$todayisbirthday = true;
@@ -132,7 +136,7 @@ echo '<section class="wallboard-middle">';
 		}
 		$i++;
 	}
-	if ( !empty($index)) {
+	if ( isset($index)) {
 		$past=$index-1;
 		$future = $index+1;
 		if ($index==0){
@@ -141,14 +145,14 @@ echo '<section class="wallboard-middle">';
 			$future = 0;
 		}
 		echo '<ul>
-				<li class="past small-birthday"><img src="uploads/people/team_'.strtolower(strtr($birthdays[$past]['name'], $replace)).'.jpg" alt="'.strtolower(strtr($birthdays[$past]['name'], $replace)).'" /></li>
+				<li class="past small-birthday"><img src="uploads/people/team_'.strtolower($birthdays[$past]['name']).'.jpg" alt="'.strtolower($birthdays[$past]['name']).'" /></li>
 				<li class="large-birthday">
-					<img class="person-image'.$extraclass.'" src="uploads/people/team_'.strtolower(strtr($birthdays[$index]['name'], $replace)).'.jpg" alt="'.strtolower(strtr($birthdays[$index]['name'], $replace)).'" />
+					<img class="person-image'.$extraclass.'" src="uploads/people/team_'.strtolower($birthdays[$index]['name']).'.jpg" alt="'.strtolower($birthdays[$index]['name']).'" />
 					<p>'.$birthdays[$index]['name'].'</p>
 					<p class="subtitle">'.date("F jS", strtotime($birthdays[$index]['date'])).'</p>';
 					if ($todayisbirthday){ echo '<img id="birthday-icon" src="img/icons_birthday-hat.svg" alt=""/>'; }
 		echo '</li>
-				<li class="future small-birthday"><img src="uploads/people/team_'.strtolower(strtr($birthdays[$future]['name'], $replace)).'.jpg" alt="'.strtolower(strtr($birthdays[$future]['name'], $replace)).'" /></li></ul>';
+				<li class="future small-birthday"><img src="uploads/people/team_'.strtolower($birthdays[$future]['name']).'.jpg" alt="'.strtolower($birthdays[$future]['name']).'" /></li></ul>';
 	}
 	echo '</div>'; // end birthday module
 	

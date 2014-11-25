@@ -7,11 +7,11 @@ function get_meetings($conference_room, $con, $iftomorrow){
 	if (!is_bool($response)){
 		if (mysqli_num_rows($response) > 0) {
 			$queryOpts = array(
-				'orderBy'=>'startTime',
-				'singleEvents'=>'true',
+				'orderBy'      =>'startTime',
+				'singleEvents' =>true,
 			);
 			while ($feed = mysqli_fetch_array($response)) {
-				$calendarId = explode('/', str_replace('http://www.google.com/calendar/feeds/', '', $feed['content']));
+				$calendarId = $feed['content'];
 				if ($iftomorrow){
 					$tomorrow = strtotime('tomorrow');
 					$tomorrow_n = date("n", $tomorrow);
@@ -28,11 +28,11 @@ function get_meetings($conference_room, $con, $iftomorrow){
 			}
 		}
 	}
-	$list = get_events_list(urldecode($calendarId[0]), $queryOpts);
+	$list = get_events_list($calendarId, $queryOpts);
 
 	$i=0;
 	foreach($list as $entry){
-		$meeting_array[$i]['name']= strtr($entry->title, $name_replace);
+		$meeting_array[$i]['name']= strtr($entry->summary, $name_replace);
 		$meeting_array[$i]['start'] = date("Gi", strtotime($entry->start->dateTime));
 		$meeting_array[$i]['end'] = date("Gi", strtotime($entry->end->dateTime));
 		$meeting_array[$i]['date'] = date("g:i", strtotime($entry->start->dateTime))."-".date("g:ia", strtotime($entry->end->dateTime));
