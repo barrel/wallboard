@@ -26,7 +26,11 @@ echo '<section class="wallboard-middle">';
 			<h5>Cleaning Crew</h5>
 			<ul>';
 	foreach($cleaning_crew as $crewmember){
-		echo '<li><img src="uploads/people/'.$crewmember['image_url'].'" alt=""/>'.$crewmember['name'].'</li>';
+		$path = "uploads/people/".$crewmember['image_url'];
+		if ( !file_exists(__DIR__."/../$path")) {
+			$path = "img/default_person.png";
+		}
+		echo '<li><img src="./'.$path.'" alt=""/>'.$crewmember['name'].'</li>';
 	}
 	echo '</ul>
 		</div>'; // end cleaning crew module
@@ -88,13 +92,14 @@ echo '<section class="wallboard-middle">';
 		}
 		$list = get_events_list($calendarId, array(
 			'orderBy'      =>'startTime',
-			'timeMin'      => date("Y-m-d\TH:i:sP", time()),
+			'timeMin'      => date("Y-m-d\TH:i:sP", strtotime('last month')),
 			'singleEvents' =>true,
-			'maxResults'   =>3,
+			'maxResults'   =>10,
 			'q'            =>'Birthday'
 		));
 		foreach($list as $entry){
 			if (strpos(strtolower($entry->summary), 'birthday')!==FALSE){
+				if ( empty($entry->start->date)) continue;
 				$name = substr($entry->summary, 0, strpos($entry->summary, "'"));
 				$time = strtotime($entry->start->date);
 				$birthday_array[] = array(
@@ -136,7 +141,7 @@ echo '<section class="wallboard-middle">';
 		}
 		$i++;
 	}
-	if ( isset($index)) {
+	if ( isset($index) ) {
 		$past=$index-1;
 		$future = $index+1;
 		if ($index==0){
@@ -144,15 +149,24 @@ echo '<section class="wallboard-middle">';
 		} else if ($index==count($birthdays)-1){
 			$future = 0;
 		}
+		for($j=0;$j<3;$j++) {
+			$name_index = $j===0 ? $past : ($j===1 ? $index : $future);
+			$path = "uploads/people/team_".strtolower($birthdays[$name_index]['name']).'.jpg';
+			if ( !file_exists(__DIR__."/../$path")) {
+				$path = "img/default_person.png";
+			}
+			$birthdays[$name_index]['path'] = $path;
+		}
 		echo '<ul>
-				<li class="past small-birthday"><img src="uploads/people/team_'.strtolower($birthdays[$past]['name']).'.jpg" alt="'.strtolower($birthdays[$past]['name']).'" /></li>
+				<li class="past small-birthday"><img src="./'.$birthdays[$past]['path'].'" alt="'.strtolower($birthdays[$past]['name']).'" /></li>
 				<li class="large-birthday">
-					<img class="person-image'.$extraclass.'" src="uploads/people/team_'.strtolower($birthdays[$index]['name']).'.jpg" alt="'.strtolower($birthdays[$index]['name']).'" />
+					<img class="person-image'.$extraclass.'" src="./'.$birthdays[$index]['path'].'" alt="'.strtolower($birthdays[$index]['name']).'" />
 					<p>'.$birthdays[$index]['name'].'</p>
 					<p class="subtitle">'.date("F jS", strtotime($birthdays[$index]['date'])).'</p>';
-					if ($todayisbirthday){ echo '<img id="birthday-icon" src="img/icons_birthday-hat.svg" alt=""/>'; }
+					if ($todayisbirthday) 
+						echo '<img id="birthday-icon" src="img/icons_birthday-hat.svg" alt=""/>';
 		echo '</li>
-				<li class="future small-birthday"><img src="uploads/people/team_'.strtolower($birthdays[$future]['name']).'.jpg" alt="'.strtolower($birthdays[$future]['name']).'" /></li></ul>';
+				<li class="future small-birthday"><img src="./'.$birthdays[$future]['path'].'" alt="'.strtolower($birthdays[$future]['name']).'" /></li></ul>';
 	}
 	echo '</div>'; // end birthday module
 	
