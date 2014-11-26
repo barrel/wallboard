@@ -24,6 +24,7 @@ function weather(){
 		'heavy_intensity_rain'=>'8',
 		'light_snow'=>'U',
 		'light_rain'=>'R',
+		'light_rain_and_snow'=>'V',
 		'light_intensity_drizzle'=>'R',
 		'drizzle'=>'R',
 		'heavy_intensity_drizzle'=>'R',
@@ -62,7 +63,7 @@ function weather(){
 		$icon_index = strtolower(strtr($status->value, $weather_replace));
 
 		if ( empty($icons[$icon_index])) {
-			mail('wes.turner@barrelny.com', 'Missing wallboard icon', 'The Barrel Wallboard is missing an icon for '.$icon_index);
+			error_log("Missing Icon: $icon_index");
 			$icon_index = 'unknown';
 		}
 
@@ -82,7 +83,7 @@ function weather(){
 			$icon_index = strtolower(strtr($symbol->name, $weather_replace));
 
 			if ( empty($icons[$icon_index])) {
-				mail('wes.turner@barrelny.com', 'Missing wallboard icon', 'The Barrel Wallboard is missing an icon for '.$icon_index);
+				error_log("Missing Icon: $icon_index");
 				$icon_index = 'unknown';
 			}
 			$temperature = $time->temperature->attributes();
@@ -105,7 +106,7 @@ function weather(){
 			$icon_index = strtolower(strtr($symbol->name, $weather_replace));
 
 			if ( empty($icons[$icon_index])) {
-				mail('wes.turner@barrelny.com', 'Missing wallboard icon', 'The Barrel Wallboard is missing an icon for '.$icon_index);
+				error_log("Missing Icon: $icon_index");
 				$icon_index = 'unknown';
 			}
 			if ($i==1){
