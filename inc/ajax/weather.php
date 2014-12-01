@@ -1,5 +1,4 @@
 <?php 
-date_default_timezone_set('America/New_York');
 
 /**
  * Get the weather info
@@ -124,5 +123,5 @@ function weather(){
 	return $weather;
 }
 
-echo json_encode(weather());
+echo json_encode( weather() );
 ?>

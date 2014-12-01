@@ -2,5 +2,6 @@ uploads/
 node_modules/
 .DS_Store
 *.swp
-apis/priv/
+inc/priv/
+inc/vendor/
 con.php

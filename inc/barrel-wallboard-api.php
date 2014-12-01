@@ -3,6 +3,8 @@
 class Barrel_Wallboard_Api {
 	public $calendarService;
 
+	public $mustache;
+
 	public $applicationName = "Wallboard 2013";
 
 	public $developerKey = "AIzaSyCtNqYKdfy4WsCk9Ex3KTHC4s9knJHKlQc";
@@ -16,14 +18,22 @@ class Barrel_Wallboard_Api {
 	);
 
 	/**
-	 * Constructor function: init google services for calendar api
-	 * Set session service token
+	 * Constructor function and autoloader
 	 * @param void
 	 * @return void
 	 */
 	public function __construct(){
-		require_once 'google-api-php-client/autoload.php'; // or wherever autoload.php is located
+		include(__DIR__.'/vendor/autoload.php');
+		$this->_load_google_api();
+		$this->_load_mustache();
+	}
 
+	/**
+	 * Load google services for calendar api; set session service token
+	 * @param void
+	 * @return void
+	 */
+	private function _load_google_api(){
 		$client = new Google_Client();
 		$client->setApplicationName($this->applicationName);
 		$client->setDeveloperKey($this->developerKey);
@@ -51,6 +61,36 @@ class Barrel_Wallboard_Api {
 	}
 
 	/**
+	 * Load mustache template renderer
+	 * @param void
+	 * @return void
+	 */
+	private function _load_mustache(){
+		$this->mustache = new Mustache_Engine(array(
+			'helpers' => array(
+				'home_url' => "/",
+				'current_year' => date('Y')
+			)
+		));
+	}
+
+	/**
+	 * Load template and contexts
+	 * @param array $components list of template/context handles
+	 * @return void
+	 */
+	public static function load_components($components = array()){
+		global $Wallboard_Api;
+		$path = __DIR__."/../templates";
+		foreach($components as $key => $value) {
+			include_once("$path/$value.php");
+			$template = file_get_contents("$path/$value.mustache");
+			$context = implode('_', array_map('ucfirst', explode('-', $value)));
+			echo $Wallboard_Api->mustache->render($template, new $context());
+		}
+	}
+
+	/**
 	 * Get the events list for a specified calendar
 	 * @param $calendarId string formatted like an email address
 	 * @param $queryOpts array of key/value pairs specific to api request
@@ -66,6 +106,7 @@ class Barrel_Wallboard_Api {
 		}
 		return !empty($list) ? $list->items : $list;
 	}
+
 }
 
 $GLOBALS['Wallboard_Api'] = new Barrel_Wallboard_Api();

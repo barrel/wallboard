@@ -1,8 +1,17 @@
-<?php
-// start upcoming
-echo '<section class="wallboard-upcoming">
-		<h3>Upcoming</h3>';
-	// next event module
+<?php 
+/**
+ * Context: Upcoming Event
+ */
+class Upcoming_Event{
+	
+	public function __construct(){
+		global $con;
+
+		date_default_timezone_set('America/New_York');
+
+		$this->event = $this->next_event($con);
+	}
+
 	function next_event($con){
 		$list = array();
 		$query = "SELECT content FROM options WHERE name = 'events_feed_url'";
@@ -33,9 +42,5 @@ echo '<section class="wallboard-upcoming">
 		
 		return $event_array;
 	}
-	$event= next_event($con);
-	//var_dump($event);
-	if (!empty($event)) echo '<h2>'.$event['name'].' – '.$event['date'].'</h2>'; // end next holiday module
-	
-echo '</section>'; // end middle wallboard
+}
 ?>

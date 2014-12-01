@@ -2237,7 +2237,7 @@ var wallboard = {
     },
     update_weather: function(){
         $.ajax({
-            url: siteUrl+"apis/weather.php",
+            url: siteUrl+"inc/ajax/weather.php",
         type: "GET",
         }).done(function(data) {
             weather = JSON.parse(data);

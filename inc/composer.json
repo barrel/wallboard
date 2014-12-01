@@ -1,0 +1,14 @@
+{
+    "name": "barrel/wallboard",
+    "description": "Barrel Wallboard",
+    "require": {
+        "google/apiclient": "~1.1",
+        "bobthecow/mustache-bundle": "~1.2"
+    },
+    "authors": [
+        {
+            "name": "Wesley Turner-Harris",
+            "email": "wturnerharris@gmail.com"
+        }
+    ]
+}

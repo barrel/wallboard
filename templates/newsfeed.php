@@ -1,5 +1,14 @@
-<?php
-	function newsfeed_url($con){
+<?php 
+/**
+ * Context: Newsfeed
+ */
+class Newsfeed {
+	public function __construct(){
+		
+	}
+
+	function newsfeed_url(){
+		global $con;
 		$query = "SELECT content FROM options WHERE name = 'ticker_rss_url'";
 		$response = mysqli_query($con, $query);
 		$event_array = array();
@@ -12,9 +21,6 @@
 		}
 		return $feed_url;
 	}
+
+}
 ?>
-<section class="wallboard-ticker">
-	<ul class="news-slider">
-	</ul>
-</section>
-<script>var newsfeed = "<?= newsfeed_url($con); ?>"</script>
