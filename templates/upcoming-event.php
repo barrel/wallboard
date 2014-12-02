@@ -5,14 +5,12 @@
 class Upcoming_Event{
 	
 	public function __construct(){
-		global $con;
-
 		date_default_timezone_set('America/New_York');
-
-		$this->event = $this->next_event($con);
 	}
 
-	function next_event($con){
+	function event(){
+		global $con;
+
 		$list = array();
 		$query = "SELECT content FROM options WHERE name = 'events_feed_url'";
 		$response = mysqli_query($con, $query);

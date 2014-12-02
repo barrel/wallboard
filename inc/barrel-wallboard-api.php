@@ -66,6 +66,7 @@ class Barrel_Wallboard_Api {
 	 * @return void
 	 */
 	private function _load_mustache(){
+		date_default_timezone_set('America/New_York');
 		$this->mustache = new Mustache_Engine(array(
 			'helpers' => array(
 				'home_url' => "/",
