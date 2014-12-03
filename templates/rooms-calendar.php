@@ -57,15 +57,20 @@ class Rooms_Calendar{
 						$difference = intval($meeting['end'])-intval($meeting['start']);
 						if ($difference==30 || $difference==70){
 							$rowspan[$room][$hour] = 0;
-							$hours[$hour]['meetings_html'][] = '<td class="thirty"><span class="event-border">&nbsp;</span>'.$meeting['name'].'<span class="e-time">'.$meeting['date'].'</span></td>';
+							$hours[$hour]['meetings_html'][] = '<td class="thirty"><span class="event-border">&nbsp;</span>'.
+								$meeting['name'].'<span class="e-time">'.$meeting['date'].'</span></td>';
 							$has_td = true;
 						} else if ($difference%100 == 0){
 							$rowspan[$room][$hour] = (($difference/100)*2)-1;
-							$hours[$hour]['meetings_html'][] = '<td class="event" rowspan="'.(($difference/100)*2).'"><span class="event-border">&nbsp;</span>'.$meeting['name'].'<span class="e-time">'.$meeting['date'].'</span></td>';
+							$hours[$hour]['meetings_html'][] = '<td class="event" rowspan="'.(($difference/100)*2).'">'.
+								'<span class="event-border">&nbsp;</span>'.$meeting['name'].
+								'<span class="e-time">'.$meeting['date'].'</span></td>';
 							$has_td = true;
 						} else if ($difference%100 != 0) {
 							$rowspan[$room][$hour] = ((floor($difference/100)*2));
-							$hours[$hour]['meetings_html'][] = '<td class="event" rowspan="'.((floor($difference/100)*2)+1).'"><span class="event-border">&nbsp;</span>'.$meeting['name'].'<span class="e-time">'.$meeting['date'].'</span></td>';
+							$hours[$hour]['meetings_html'][] = '<td class="event" rowspan="'.
+								((floor($difference/100)*2)+1).'"><span class="event-border">&nbsp;</span>'.
+								$meeting['name'].'<span class="e-time">'.$meeting['date'].'</span></td>';
 							$has_td = true;
 						} else {
 							$rowspan[$room][$hour] = 0;
@@ -106,17 +111,22 @@ class Rooms_Calendar{
 									$difference = intval($meeting['end'])-intval($meeting['start']);
 									if ($difference==30 || $difference==70){
 										$rowspan[$room][$hour] = 0;
-										$hours[$hour]['meetings_html'][] = '<td class="thirty"><span class="event-border">&nbsp;</span>'.$meeting['name'].'<span class="e-time">'.$meeting['date'].'</span></td>';
+										$hours[$hour]['meetings_html'][] = '<td class="thirty"><span class="event-border">&nbsp;</span>'.
+											$meeting['name'].'<span class="e-time">'.$meeting['date'].'</span></td>';
 										$has_td = true;
 										break;
 									} else if ($difference%100 == 0){
 										$rowspan[$room][$hour] = (($difference/100)*2)-1;
-										$hours[$hour]['meetings_html'][] = '<td class="event" rowspan="'.(($difference/100)*2).'"><span class="event-border">&nbsp;</span>'.$meeting['name'].'<span class="e-time">'.$meeting['date'].'</span></td>';
+										$hours[$hour]['meetings_html'][] = '<td class="event" rowspan="'.
+											(($difference/100)*2).'"><span class="event-border">&nbsp;</span>'.
+											$meeting['name'].'<span class="e-time">'.$meeting['date'].'</span></td>';
 										$has_td = true;
 										break;
 									} else if ($difference%100 != 0) {
 										$rowspan[$room][$hour] = ((floor($difference/100)*2));
-										$hours[$hour]['meetings_html'][] = '<td class="event" rowspan="'.((floor($difference/100)*2)+1).'"><span class="event-border">&nbsp;</span>'.$meeting['name'].'<span class="e-time">'.$meeting['date'].'</span></td>';
+										$hours[$hour]['meetings_html'][] = '<td class="event" rowspan="'.
+											((floor($difference/100)*2)+1).'"><span class="event-border">&nbsp;</span>'.
+											$meeting['name'].'<span class="e-time">'.$meeting['date'].'</span></td>';
 										$has_td = true;
 										break;
 									} else {
@@ -135,12 +145,11 @@ class Rooms_Calendar{
 						$rowspan[$room][$hour] = $rowspan[$room][($hour)] -1;
 					}
 				}
-			
+
 				$hours[$hour]['meetings_html'][] = '</tr>';
 			}
 			
 		}
-	#	printf("<pre>%s</pre>", print_r($hours, true)); exit;
 		return array_values($hours);
 	}
 
