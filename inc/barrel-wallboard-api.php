@@ -24,6 +24,8 @@ class Barrel_Wallboard_Api {
 	 */
 	public function __construct(){
 		include(__DIR__.'/vendor/autoload.php');
+		include(__DIR__.'/phpfastcache/phpfastcache.php');
+	    phpFastCache::setup("storage","auto");
 		$this->_load_google_api();
 		$this->_load_mustache();
 	}
@@ -77,17 +79,28 @@ class Barrel_Wallboard_Api {
 
 	/**
 	 * Load template and contexts
-	 * @param array $components list of template/context handles
+	 * @param array $components associative array of template/context handles and times
 	 * @return void
 	 */
 	public static function load_components($components = array()){
 		global $Wallboard_Api;
 		$path = __DIR__."/../templates";
-		foreach($components as $key => $value) {
-			include_once("$path/$value.php");
-			$template = file_get_contents("$path/$value.mustache");
-			$context = implode('_', array_map('ucfirst', explode('-', $value)));
-			echo $Wallboard_Api->mustache->render($template, new $context());
+		foreach($components as $name => $time) {
+			include_once("$path/$name.php");
+			$template = file_get_contents("$path/$name.mustache");
+			$context = implode('_', array_map('ucfirst', explode('-', $name)));
+			
+			$cached = null;
+			$cache = phpFastCache();
+			$cached = $cache->get($name);
+
+			if ( $cached === null ) {
+				$cached = $Wallboard_Api->mustache->render($template, new $context());
+				$cache->set($name, $cached, $time);
+			} else {
+				echo "\n<!-- $name Cache Hit -->\n";
+			}
+			echo $cached;
 		}
 	}
 

@@ -2,7 +2,11 @@
 $page       = 'wallboard';
 $pagename   = "Home";
 $components = array(
-	'time-weather', 'cleaning-holiday-birthday', 'upcoming-event', 'rooms-calendar', 'newsfeed'
+	'time-weather' => 60*30, 
+	'cleaning-holiday-birthday' => 60*60*24, 
+	'upcoming-event' => 60*60*12, 
+	'rooms-calendar' => 60*15, 
+	'newsfeed' => 60*60*24
 );
 include('inc/barrel-wallboard-api.php');
 include('header.php'); 
