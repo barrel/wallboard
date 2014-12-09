@@ -368,12 +368,11 @@ a:focus {
 			}
 		}
 		&.next-holiday {
-			img {
-				margin:0 auto 10px auto;
+			svg.icon {
+				height: 80px;
+				width: 80px;
+				margin: 0 auto 10px auto;
 				display:block;
-			}
-			#holiday-icon path {
-			    fill: white;
 			}
 		}
 		&.next-birthdays {
@@ -413,12 +412,15 @@ a:focus {
 						}
 					}
 					#birthday-icon {
-						position:absolute;
-						top:-7px;
-						z-index:3;
-						right:30px;
-						width:40px;
-						margin:0;
+						position: absolute;
+						top: -50%;
+						z-index: 3;
+						left: 50%;
+						width: 80px;
+						margin: 0;
+						height: 80px;
+						margin-top: 40px;
+						margin-left: -30px;
 						.wiggle;
 					}
 				}

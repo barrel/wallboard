@@ -690,12 +690,11 @@ a:focus {
   display: block;
   margin: 0 10px 0px 0px;
 }
-.wallboard-middle .col.next-holiday img {
+.wallboard-middle .col.next-holiday svg.icon {
+  height: 80px;
+  width: 80px;
   margin: 0 auto 10px auto;
   display: block;
-}
-.wallboard-middle .col.next-holiday #holiday-icon path {
-  fill: white;
 }
 .wallboard-middle .col.next-birthdays ul {
   list-style: none;
@@ -748,11 +747,14 @@ a:focus {
 }
 .wallboard-middle .col.next-birthdays ul li #birthday-icon {
   position: absolute;
-  top: -7px;
+  top: -50%;
   z-index: 3;
-  right: 30px;
-  width: 40px;
+  left: 50%;
+  width: 80px;
   margin: 0;
+  height: 80px;
+  margin-top: 40px;
+  margin-left: -30px;
   -webkit-animation: btnWiggle 7s infinite;
   -moz-animation: btnWiggle 7s infinite;
   -o-animation: btnWiggle 7s infinite;
