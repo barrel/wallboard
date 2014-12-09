@@ -198,7 +198,6 @@ var wallboard = {
         this.update_weather();
         this.update_ticker(newsfeed);
         this.photo_slider();
-        this.svgs();
         this.weather = window.setInterval(wallboard.update_weather, 60000); // update every 60 sec
         this.time = window.setInterval(wallboard.update_time, 30000); // update every 30 sec
     },
@@ -212,14 +211,15 @@ var wallboard = {
                     var news_date = new Date(entry.publishedDate);
                     var hours = news_date.getHours();
                     var meridiem = 'am';
-                    if (hours>12){
+                    if (entry.title.length < 1) continue;
+					if (hours>12){
                         hours = hours - 12;
                         meridiem = 'pm';
                     }
                     var minutes = ("0" + news_date.getMinutes()).slice(-2);
                     $('.news-slider').append('<li><p>'+entry.title +'<span class="news-time">'+hours+':'+minutes+' '+meridiem+'</span></p></li>');
                 }
-                $('.news-slider').slider({
+                $('.news-slider').marquee({
                     ticker: true,
                     speed: 100000
                 });
@@ -277,31 +277,6 @@ var wallboard = {
         }
         wallboard.i++;
     },
-    svgs: function(){
-        $('img.svg').each(function(){
-            var $img = $(this);
-            var imgID = $img.attr('id');
-            var imgClass = $img.attr('class');
-            var imgURL = $img.attr('src');
-
-            $.get(imgURL, function(data) {
-                // Get the SVG tag, ignore the rest
-                var $svg = $(data).find('svg');
-                // Add replaced image's ID to the new SVG
-                if (typeof imgID !== 'undefined') {
-                    $svg = $svg.attr('id', imgID);
-                }
-                // Add replaced image's classes to the new SVG
-                if (typeof imgClass !== 'undefined') {
-                    $svg = $svg.attr('class', imgClass+' replaced-svg');
-                }
-                // Remove any invalid XML tags as per http://validator.w3.org
-                $svg = $svg.removeAttr('xmlns:a');
-                // Replace image with new SVG
-                $img.replaceWith($svg);
-            });
-        });
-    }
 };
 
 $(document).ready(function(){	

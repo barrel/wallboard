@@ -949,25 +949,18 @@ a:focus {
 .wallboard-ticker:after {
   clear: both;
 }
-.wallboard-ticker .bx-wrapper {
-  position: relative;
-  margin: 0 auto 0px;
-  padding: 0;
-  *zoom: 1;
-  width: 100% !important;
-}
-.wallboard-ticker .bx-window {
-  width: 100% !important;
-}
 .wallboard-ticker ul {
   list-style: none;
   padding: 0;
   margin: 0;
   width: 100%;
   display: block;
+  white-space: nowrap;
 }
 .wallboard-ticker ul li {
-  padding: 0 10px;
+  display: inline-block;
+  padding: 0 30px;
+  list-style: none;
   margin: 0;
 }
 .wallboard-ticker ul li p {
@@ -982,6 +975,9 @@ a:focus {
   color: #838383;
   margin-left: 10px;
   text-transform: uppercase;
+}
+.hidden {
+  display: none;
 }
 .preferences {
   *zoom: 1;

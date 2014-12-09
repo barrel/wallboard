@@ -48,7 +48,7 @@ module.exports = function(grunt) {
                 banner: '<%= banner %>'
             },
             dist: {
-                src: ['js/lib/chosen.js', 'js/lib/slider.js', 'js/lib/fileupload.js', 'js/main.js'],
+                src: ['js/lib/chosen.js', 'js/lib/marquee.js', 'js/lib/fileupload.js', 'js/main.js'],
                 dest: 'js/<%= pkg.name %>.js'
             }
         },

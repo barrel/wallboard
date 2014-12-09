@@ -15,6 +15,5 @@ include('header.php');
 
 Barrel_Wallboard_Api::load_components($components);
 
-include('img/icons.svg'); 		
 include('footer.php'); 		
 ?>
