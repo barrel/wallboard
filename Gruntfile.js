@@ -4,6 +4,20 @@ module.exports = function(grunt) {
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
         banner: '/*\n<%= pkg.name %> - v<%= pkg.version %> - ' + '<%= grunt.template.today("yyyy-mm-dd") %>\n<%= pkg.description %>\nLovingly coded by <%= pkg.author.name %>  - <%= pkg.author.url %> \n*/\n',
+		svgstore: {
+			options: {
+				prefix : 'icon-',
+				svg: {
+					viewBox : '0 0 100 100',
+					xmlns: 'http://www.w3.org/2000/svg'
+				}
+			},
+			dist: {
+				files: {
+					'img/icons.svg': ['img/svg/*.svg'],
+				}
+			}
+		},
         less: {
             dist: {
                 options: {
@@ -75,7 +89,8 @@ module.exports = function(grunt) {
     });
      
     grunt.registerTask('build', [
-        'less:dist',
+		'svgstore',
+		'less:dist',
         'cssmin',
         'concat:dist',
         'uglify:dist'
