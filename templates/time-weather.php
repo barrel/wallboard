@@ -14,7 +14,7 @@ class Time_Weather {
 	}
 
 	public static function photos(){
-		global $con;
+		$con = Barrel_Wallboard_Api::get_db_con();
 
 		$options_query = "SELECT * FROM photos";
 		$response = mysqli_query($con, $options_query);

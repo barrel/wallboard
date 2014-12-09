@@ -1,18 +1,10 @@
-<?php 
-$actual_link = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
-if (strpos($actual_link,'dev') !== false || "localhost" === $_SERVER['HTTP_HOST'] ){
-	$production = false;
-} else {
-	$production = true;
-}
-require_once('con.php');
-?><!DOCTYPE html>
+<!DOCTYPE html>
 <!--[if lt IE 7]><html class="no-js lt-ie9 lt-ie8 lt-ie7"><![endif]-->
 <!--[if IE 7]><html class="no-js lt-ie9 lt-ie8"><![endif]-->
 <!--[if IE 8]><html class="no-js lt-ie9"><![endif]-->
 <!--[if gt IE 8]><!--><html class="no-js"><!--<![endif]-->
 	<head>
-		<base href="<?php if ($production){ echo '/'; } else { echo '/wallboard/'; } ?>">
+		<base href="<?php if (Barrel_Wallboard_Api::is_production()){ echo '/'; } else { echo '/wallboard/'; } ?>">
 		<meta charset="utf-8">
 		<meta http-equiv="refresh" content="1500">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">

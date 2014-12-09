@@ -2,24 +2,19 @@
 $page       = 'wallboard';
 $pagename   = "Home";
 $components = array(
-	'time-weather' => 60*30, 
-	'cleaning-holiday-birthday' => 60*60*24, 
-	'upcoming-event' => 60*60*12, 
-	'rooms-calendar' => 60*15, 
-	'newsfeed' => 60*60*24
+	'time-weather'              => 60*30,    # 30 min
+	'cleaning-holiday-birthday' => 60*60*24, # 24 hrs
+	'upcoming-event'            => 60*60*12, # 12 hrs
+	'rooms-calendar'            => 60*15,    # 15 min
+	'newsfeed'                  => 60*60*24  # 24 hrs
 );
+
 include('inc/barrel-wallboard-api.php');
+
 include('header.php'); 
 
 Barrel_Wallboard_Api::load_components($components);
 
-/*
-include('apis/time_weather.php'); 	
-include('apis/cleaning_holiday_birthday.php');
-include('apis/upcoming.php'); 	
-include('apis/conference_rooms_calendar.php');
-include('apis/newsfeed.php');
-*/
-
+include('img/icons.svg'); 		
 include('footer.php'); 		
 ?>

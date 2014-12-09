@@ -154,7 +154,7 @@ class Rooms_Calendar{
 	}
 
 	function get_meetings($conference_room, $is_tomorrow){
-		global $con;
+		$con = Barrel_Wallboard_Api::get_db_con();
 
 		$name_replace = array("(Atrium) "=> "", "(Cellar) "=>'', '(Garage) '=>'');
 		$query = "SELECT content FROM options WHERE name = 'calendar_feed_url'";

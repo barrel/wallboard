@@ -9,7 +9,7 @@ class Upcoming_Event{
 	}
 
 	function event(){
-		global $con;
+		$con = Barrel_Wallboard_Api::get_db_con();
 
 		$list = array();
 		$query = "SELECT content FROM options WHERE name = 'events_feed_url'";

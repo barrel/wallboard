@@ -8,7 +8,8 @@ class Newsfeed {
 	}
 
 	function newsfeed_url(){
-		global $con;
+		$con = Barrel_Wallboard_Api::get_db_con();
+
 		$query = "SELECT content FROM options WHERE name = 'ticker_rss_url'";
 		$response = mysqli_query($con, $query);
 		$event_array = array();

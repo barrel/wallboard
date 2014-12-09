@@ -9,7 +9,7 @@ class Cleaning_Holiday_Birthday {
 	}
 	
 	function cleaning_crew(){
-		global $con;
+		$con = Barrel_Wallboard_Api::get_db_con();
 
 		$cleaning_day_id = date("w");
 		if ($cleaning_day_id==0 || $cleaning_day_id==6){
@@ -35,7 +35,7 @@ class Cleaning_Holiday_Birthday {
 	}
 
 	function next_holiday(){
-		global $con;
+		$con = Barrel_Wallboard_Api::get_db_con();
 
 		$replace_array = array(" (Holiday)"=> "","(Holiday)"=> "",);
 		$name_replace = array("'"=> "", " "=> "", "day"=> "", "break"=> "");
@@ -61,7 +61,7 @@ class Cleaning_Holiday_Birthday {
 		foreach($list as $entry){
 			$holiday_array['name'] = strtr($entry->summary, $replace_array);
 			$holiday_array['date'] = date('F jS, Y', strtotime($entry->start->date));
-			$holiday_array['name_sanitized'] = strtr($holiday_array['name'], $name_replace);
+			$holiday_array['name_sanitized'] = strtolower(strtr($holiday_array['name'], $name_replace));
 			$first = false;
 			if(!$first) break;
 		}
@@ -70,7 +70,7 @@ class Cleaning_Holiday_Birthday {
 	}
 
 	function birthdays(){
-		global $con;
+		$con = Barrel_Wallboard_Api::get_db_con();
 
 		$query = "SELECT content FROM options WHERE name = 'calendar_feed_url'";
 		$birthday_replace = array('&#39; Birthday'=>'', '&#39;s Birthday'=>'');
@@ -116,11 +116,11 @@ class Cleaning_Holiday_Birthday {
 		$i=0;
 		$nowtime = time();
 		$extraclass="";
-		foreach($birthdays as $birthday){
+		foreach($birthdays as $idx => $birthday){
 			if ($birthday['time'] >= $nowtime){
 				$index = $i;
 				if (date("md", $birthday['time']) == date("md", $nowtime)){
-					$birthday['todayisbirthday'] = true;
+					$birthdays[$idx]['todayisbirthday'] = true;
 				}
 				$first = false;
 				if(!$first) break;

@@ -17,18 +17,42 @@ class Barrel_Wallboard_Api {
 		'https://www.googleapis.com/auth/calendar'
 	);
 
+	public static $_instance;
+
 	/**
 	 * Constructor function and autoloader
 	 * @param void
 	 * @return void
 	 */
 	public function __construct(){
-		include(__DIR__.'/vendor/autoload.php');
-		include(__DIR__.'/phpfastcache/phpfastcache.php');
+		require_once(__DIR__.'/vendor/autoload.php');
+		require_once(__DIR__.'/phpfastcache/phpfastcache.php');
 	    phpFastCache::setup("storage","auto");
 		$this->_load_google_api();
 		$this->_load_mustache();
+		$this->_load_db_con();
+
+		$this->actual_link = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+		$this->is_production = (
+			(strpos($this->actual_link, 'dev') !== false || "localhost" === $_SERVER['HTTP_HOST']) 
+			? false : true 
+		);
 	}
+
+	public static function is_production(){
+		return self::getInstance()->is_production;
+	}
+
+	public static function get_db_con(){
+		return self::getInstance()->con;
+	}
+
+    public static function getInstance() {
+		if ( !(self::$_instance instanceof self) ) {
+			self::$_instance = new self();
+		}
+		return self::$_instance;
+    }
 
 	/**
 	 * Load google services for calendar api; set session service token
@@ -78,6 +102,22 @@ class Barrel_Wallboard_Api {
 	}
 
 	/**
+	 * Load database connection
+	 * @param void
+	 * @return void
+	 */
+	private function _load_db_con(){
+		require_once(__DIR__.'/priv/con.php');
+		$this->con = mysqli_connect(DB_HOST, DB_USER, DB_PASS, DB_NAME);
+
+		/** check connection */
+		if (mysqli_connect_errno()) {
+		    printf("Connect failed: %s\n", mysqli_connect_error());
+		    exit();
+		} 
+	}
+
+	/**
 	 * Load template and contexts
 	 * @param array $components associative array of template/context handles and times
 	 * @return void
@@ -94,7 +134,7 @@ class Barrel_Wallboard_Api {
 			$cache = phpFastCache();
 			$cached = $cache->get($name);
 
-			if ( $cached === null ) {
+			if ( $cached === null || !self::getInstance()->is_production ) {
 				$cached = $Wallboard_Api->mustache->render($template, new $context());
 				$cache->set($name, $cached, $time);
 			} else {

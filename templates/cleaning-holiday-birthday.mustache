@@ -11,7 +11,9 @@
 	{{#next_holiday}}
 	<div class="col next-holiday">
 		<h5>Next Holiday</h5>
-		<img id="holiday-icon" class="svg" src="img/icons_{{name_sanitized}}.svg" alt="{{name_sanitized}}"/>
+		<svg class="icon">
+		  <use xlink:href="#icon-{{name_sanitized}}" />
+		</svg>
 		<p>{{name}}</p>
 		<p class="subtitle">{{date}}</p>
 	</div>
@@ -28,7 +30,9 @@
 				<img class="person-image{{#todayisbirthday}} today{{/todayisbirthday}}" src="./{{path}}" alt="{{name}}" />
 				<p>{{name}}</p>
 				<p class="subtitle">{{date}}</p>
-				{{#todayisbirthday}}<img id="birthday-icon" src="img/icons_birthday-hat.svg" alt=""/>{{/todayisbirthday}}
+				{{#todayisbirthday}}<svg id="birthday-icon" class="icon">
+					<use xlink:href="#icon-birthdayhat" />
+				</svg>{{/todayisbirthday}}
 			</li>
 			{{/current}}
 			{{#future}}
