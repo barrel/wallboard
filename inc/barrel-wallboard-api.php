@@ -25,6 +25,10 @@ class Barrel_Wallboard_Api {
 	 * @return void
 	 */
 	public function __construct(){
+		if ( !file_exists(__DIR__.'/vendor/autoload.php') ) {
+			echo "Composer must be installed. Contact a system administrator.";
+			exit;
+		}
 		require_once(__DIR__.'/vendor/autoload.php');
 		require_once(__DIR__.'/phpfastcache/phpfastcache.php');
 	    phpFastCache::setup("storage","auto");
