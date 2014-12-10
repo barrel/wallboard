@@ -8,5 +8,5 @@ $options_query = "DELETE FROM photos WHERE id='$id'";
 mysqli_query($con, $options_query);
 mysqli_close($con);
 
-unlink('../uploads/'.$image_url);
+@unlink('../uploads/'.$image_url);
 ?>
