@@ -7,6 +7,7 @@ function getExtension($str) {
     return $ext;
 }
 
+include('../inc/barrel-wallboard-api.php');
 $con = Barrel_Wallboard_Api::get_db_con();
 
 if ($_REQUEST['type']=='insert'){
@@ -19,7 +20,7 @@ if ($_REQUEST['type']=='insert'){
         $extension = strtolower($extension);
         $new_image_url = 'team_'.strtolower($name_array[0]).'.'.$extension;
         copy('../uploads/'.$img_url, '../uploads/people/'.$new_image_url);
-        unlink('../uploads/'.$img_url);
+        @unlink('../uploads/'.$img_url);
     } else {
         $new_image_url = $img_url;
     }
@@ -30,14 +31,12 @@ if ($_REQUEST['type']=='insert'){
         'img' => $new_image_url
     ));
 } else if ($_REQUEST['type']=='remove') {
-    include('../con.php');
     $user_id = intval($_REQUEST['id']);
     $user_query = "DELETE FROM users WHERE id=$user_id";
     if(isset($_REQUEST['image_url'])){
-        unlink('../uploads/people/'.$_REQUEST['image_url']);
+        @unlink('../uploads/people/'.$_REQUEST['image_url']);
     }
 }  else if ($_REQUEST['type']=='update') {
-    include('../con.php');
     $user_id = intval($_REQUEST['id']);
     $name = $_REQUEST['name'];
     $department = $_REQUEST['department'];
@@ -48,7 +47,7 @@ if ($_REQUEST['type']=='insert'){
         $extension = strtolower($extension);
         $new_image_url = 'team_'.strtolower($name_array[0]).'.'.$extension;
         copy('../uploads/'.$img_url, '../uploads/people/'.$new_image_url);
-        unlink('../uploads/'.$img_url);
+        @unlink('../uploads/'.$img_url);
     } else {
         $new_image_url = $img_url;
     }
