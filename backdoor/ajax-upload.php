@@ -90,14 +90,14 @@
 						$error .= 'Copy unsuccessfull!';
 						$errors=1;
             		} else {
+					    include('../inc/barrel-wallboard-api.php');
 						$con = Barrel_Wallboard_Api::get_db_con();
 
                         // save image name to database 
-						    include('../con.php');
-						    $query = "INSERT INTO photos (image_url) VALUES ('$this_filename')";
-                            mysqli_query($con, $query);
-                            $new_id = mysqli_insert_id($con);
-                            mysqli_close($con);
+					    $query = "INSERT INTO photos (image_url) VALUES ('$this_filename')";
+                        mysqli_query($con, $query);
+                        $new_id = mysqli_insert_id($con);
+                        mysqli_close($con);
             		}
 				}
         	}
