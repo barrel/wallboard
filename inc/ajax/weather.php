@@ -35,27 +35,29 @@ function weather(){
 		'unknown'=>')'
 	);
 	$weather_replace = array( ' ' => '_' );
-	$weather = array();
+	$weather = $query = array();
 	$weather_api = array(
 		'url' => 'http://api.openweathermap.org/data/2.5/%s?',
-		'query' => array(
+		'base' => array(
 			'mode' => 'xml',
 			'units' => 'imperial',
 			'APPID' => '4039c138d3a75fe829894408af96b78b'
 		), // base query data
-		'query1' => array(
-			'id' => '5128581',
-		), // query data
-		'query2' => array(
-			'q' => 'manhattan,ny',
-			'cnt' => '3'
+		'q' => array(
+			array(
+				'id' => '5128581',
+			),
+			array(
+				'q' => 'manhattan,ny',
+				'cnt' => '3'
+			)
 		), // query data
 	);
-	$query_str1 = http_build_query( $weather_api['query'] + $weather_api['query1'] );
-	$query_str2 = http_build_query( $weather_api['query'] + $weather_api['query2'] );
+	foreach($weather_api['q'] as $idx => $q )
+		$query[] = http_build_query( $weather_api['base'] + $q );
 
 	/** get the weather info */
-	$weatherxml = @file_get_contents(sprintf($weather_api['url'], 'weather').$query_str1);
+	$weatherxml = @file_get_contents(sprintf($weather_api['url'], 'weather').$query[0]);
 	if ( $weatherxml && $weatherDataLater = new SimpleXMLElement($weatherxml)) {
 		$forecast = $weatherDataLater->temperature->attributes();
 		$status = $weatherDataLater->weather->attributes();
@@ -73,7 +75,7 @@ function weather(){
 	}
 
 	/** get the forecast info */
-	$weatherxml = @file_get_contents(sprintf($weather_api['url'], 'forecast').$query_str1);
+	$weatherxml = @file_get_contents(sprintf($weather_api['url'], 'forecast').$query[0]);
 	if ( $weatherxml && $weatherDataLater = new SimpleXMLElement($weatherxml)) {
 		$forecast = $weatherDataLater->forecast;
 
@@ -94,7 +96,7 @@ function weather(){
 	}
 
 	/** get the daily forecast info */
-	$weatherxml = @file_get_contents(sprintf($weather_api['url'], 'forecast/daily').$query_str2);
+	$weatherxml = @file_get_contents(sprintf($weather_api['url'], 'forecast/daily').$query[1]);
 	if ( $weatherxml && $weatherDataLater = new SimpleXMLElement($weatherxml) ) {
 		$forecast = $weatherDataLater->forecast;
 
