@@ -4,7 +4,7 @@
 <!--[if IE 8]><html class="no-js lt-ie9"><![endif]-->
 <!--[if gt IE 8]><!--><html class="no-js"><!--<![endif]-->
 	<head>
-		<base href="<?php if (Barrel_Wallboard_Api::is_production()){ echo '/'; } else { echo '/wallboard/'; } ?>">
+		<base href="<?= (Barrel_Wallboard_Api::is_production()) ? '/' : '/wallboard/'; ?>">
 		<meta charset="utf-8">
 		<meta http-equiv="refresh" content="1500">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">

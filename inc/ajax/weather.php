@@ -7,6 +7,8 @@
  * @return array
  */
 function weather(){
+	date_default_timezone_set('America/New_York');
+
 	$icons = array(
 		'sky_is_clear'=> 'B',
 		'few_clouds'=> 'H',
@@ -68,10 +70,12 @@ function weather(){
 			$icon_index = 'unknown';
 		}
 
-		$weather['now_high']=(int)$forecast->max;
-		$weather['now_low']=(int)$forecast->min;
-		$weather['now_temperature']=(int)$forecast->value;
-		$weather['now_icon']='<span class="weather-icon">' . $icons[$icon_index]."</span>";
+		$weather['now_high']        = (int)$forecast->max;
+		$weather['now_low']         = (int)$forecast->min;
+		$weather['now_temperature'] = (int)$forecast->value;
+		$weather['now_icon']        = sprintf(
+			'<span class="weather-icon">%s</span>', $icons[$icon_index]
+		);
 	}
 
 	/** get the forecast info */
@@ -88,7 +92,9 @@ function weather(){
 				$icon_index = 'unknown';
 			}
 			$temperature = $time->temperature->attributes();
-			$weather['next_hour_icon'] = '<span class="weather-icon">' . $icons[$icon_index]."</span>";
+			$weather['next_hour_icon'] = sprintf(
+				'<span class="weather-icon">%s</span>', $icons[$icon_index]
+			);
 			$weather['next_hour_temperature'] = (int)$temperature->value;
 			$first = false;
 			if(!$first) break;
@@ -111,15 +117,19 @@ function weather(){
 				$icon_index = 'unknown';
 			}
 			if ($i==1){
-				$weather['tomorrow_icon'] = '<span class="weather-icon">' . $icons[$icon_index]."</span>";
+				$weather['tomorrow_icon'] = sprintf(
+					'<span class="weather-icon">%s</span>', $icons[$icon_index]
+				);
 				$weather['tomorrow_temperature'] = (int)$temperature->day;
 			} elseif ($i==2){
-				$weather['next_icon'] = '<span class="weather-icon">' . $icons[$icon_index]."</span>";
+				$weather['next_icon'] = sprintf(
+					'<span class="weather-icon">%s</span>', $icons[$icon_index]
+				);
 				$weather['next_temperature'] = (int)$temperature->day;
 			}
 			$i++;
 		}
-		$weather['date']=date("M. j @ g:ia");
+		$weather['date'] = date("M. j @ g:ia");
 	}
 
 	return $weather;

@@ -1,5 +1,6 @@
 <?php
-include('../con.php');
+	$con = Barrel_Wallboard_Api::get_db_con();
+
     if ($_REQUEST['type']=='update'){
 	    $user_id = intval($_REQUEST['user_id']);
 	    $cleaning_day_id = intval($_REQUEST['cleaning_day_id']);

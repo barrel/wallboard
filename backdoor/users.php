@@ -1,6 +1,8 @@
 <?php 
 
-function get_users($con){
+function get_users(){
+	$con = Barrel_Wallboard_Api::get_db_con();
+
 	$options_query = "SELECT * FROM users ORDER BY name ASC";
 	$response = mysqli_query($con, $options_query);
 	$options_array = array();
@@ -17,7 +19,7 @@ function get_users($con){
 	return $options_array;
 }
 
-$users = get_users($con);
+$users = get_users();
 echo '<section class="users preferences">
 		<h3>Users
             <a id="new_user" class="btn pull-right">New User</a>

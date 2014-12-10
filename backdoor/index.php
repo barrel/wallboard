@@ -1,5 +1,9 @@
-<?php $page='backdoor';
+<?php 
+$page='backdoor';
 $pagename="Settings";
+
+include('../inc/barrel-wallboard-api.php');
+
 include('../header.php'); ?>
 
 <div class="container">

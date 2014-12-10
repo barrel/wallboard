@@ -43,20 +43,35 @@ class Barrel_Wallboard_Api {
 		);
 	}
 
-	public static function is_production(){
-		return self::getInstance()->is_production;
-	}
-
-	public static function get_db_con(){
-		return self::getInstance()->con;
-	}
-
+	/**
+	 * Load google services for calendar api; set session service token
+	 * @param void
+	 * @return object instance of Barrel_Wallboard_Api
+	 */
     public static function getInstance() {
 		if ( !(self::$_instance instanceof self) ) {
 			self::$_instance = new self();
 		}
 		return self::$_instance;
     }
+
+	/**
+	 * Load google services for calendar api; set session service token
+	 * @param void
+	 * @return object database php connection handle
+	 */
+	public static function get_db_con(){
+		return self::getInstance()->con;
+	}
+
+	/**
+	 * Get status of production environment
+	 * @param void
+	 * @return bool
+	 */
+	public static function is_production(){
+		return self::getInstance()->is_production;
+	}
 
 	/**
 	 * Load google services for calendar api; set session service token

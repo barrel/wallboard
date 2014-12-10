@@ -1,6 +1,8 @@
 <?php 
 
-function get_cleaning_days_array($con){
+function get_cleaning_days_array(){
+	$con = Barrel_Wallboard_Api::get_db_con();
+
 	$cleaning_days_query = "SELECT * FROM cleaning_days";
 	$response = mysqli_query($con, $cleaning_days_query);
 	$cleaning_days_array = array();
@@ -28,7 +30,9 @@ function get_cleaning_days_array($con){
 	return $cleaning_days_array;
 }
 
-function get_users_array($con){
+function get_users_array(){
+	$con = Barrel_Wallboard_Api::get_db_con();
+
 	$users_array = array();
 	$users_query = "SELECT * FROM users";
 	$response = mysqli_query($con, $users_query);
@@ -41,8 +45,9 @@ function get_users_array($con){
 }
 
 
-$users = get_users_array($con);
-$cleaning_days = get_cleaning_days_array($con);
+$users = get_users_array();
+$cleaning_days = get_cleaning_days_array();
+
 echo '<section class="cleaning_days preferences">
 	<h3>Cleaning Crew</h3>';
 

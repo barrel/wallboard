@@ -1,6 +1,8 @@
 <?php 
 
-function get_options_array($con){
+function get_options_array(){
+	$con = Barrel_Wallboard_Api::get_db_con();
+
 	$options_query = "SELECT * FROM options";
 	$response = mysqli_query($con, $options_query);
 	$options_array = array();

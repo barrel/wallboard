@@ -1,6 +1,8 @@
 <?php 
 
-function get_photos_array($con){
+function get_photos_array(){
+	$con = Barrel_Wallboard_Api::get_db_con();
+
 	$options_query = "SELECT * FROM photos";
 	$response = mysqli_query($con, $options_query);
 	$options_array = array();
@@ -17,7 +19,7 @@ function get_photos_array($con){
 	return $options_array;
 }
 
-$photos = get_photos_array($con);
+$photos = get_photos_array();
 echo '<section class="photos preferences">
 		<h3>Photos</h3>
 		<a id="upload_photo" class="btn pull-right">Upload Photo</a>

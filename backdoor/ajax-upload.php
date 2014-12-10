@@ -90,6 +90,8 @@
 						$error .= 'Copy unsuccessfull!';
 						$errors=1;
             		} else {
+						$con = Barrel_Wallboard_Api::get_db_con();
+
                         // save image name to database 
 						    include('../con.php');
 						    $query = "INSERT INTO photos (image_url) VALUES ('$this_filename')";

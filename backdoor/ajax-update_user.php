@@ -7,7 +7,8 @@ function getExtension($str) {
     return $ext;
 }
 
-include('../con.php');
+$con = Barrel_Wallboard_Api::get_db_con();
+
 if ($_REQUEST['type']=='insert'){
     $name = $_REQUEST['name'];
     $department = $_REQUEST['department'];
