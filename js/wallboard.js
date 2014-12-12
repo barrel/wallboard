@@ -3,9 +3,6 @@ wallboard - v - 2014-12-12
 An app to make a dashboard for the wallboard.
 Lovingly coded by BarrelNY Developers  - http://barrelny.com 
 */
-google.load("feeds", "1");
-
-// wallboard functions
 var wallboard = {
     init: function(){
         this.update_weather();

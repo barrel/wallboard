@@ -1,5 +1,3 @@
-google.load("feeds", "1");
-
 // wallboard functions
 var wallboard = {
     init: function(){
