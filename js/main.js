@@ -25,12 +25,8 @@ var wallboard = {
                         meridiem = 'pm';
                     }
                     var minutes = ("0" + news_date.getMinutes()).slice(-2);
-                    $('.news-slider').append('<li><p>'+entry.title +'<span class="news-time">'+hours+':'+minutes+' '+meridiem+'</span></p></li>');
+                    $('.news-slider').append('<li>'+entry.title +'<span class="news-time">'+hours+':'+minutes+' '+meridiem+'</span></li>');
                 }
-                $('.news-slider').marquee({
-                    ticker: true,
-                    speed: 100000
-                });
             }
         });
     },

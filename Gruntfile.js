@@ -48,7 +48,7 @@ module.exports = function(grunt) {
                 banner: '<%= banner %>'
             },
             front: {
-                src: ['js/lib/marquee.js', 'js/main.js'],
+                src: ['js/main.js'],
                 dest: 'js/<%= pkg.name %>.js'
             },
             back: {
