@@ -400,7 +400,7 @@ a:focus {
   -ms-transition-duration: 1s, 6s;
   -o-transition-property: opacity, -o-transform;
   -o-transition-duration: 1s, 6s;
-  transition-property: opacity, transform;
+  transition-property: opacity;
   transition-duration: 1s, 6s;
   -webkit-transform-origin: bottom left;
   -moz-transform-origin: bottom left;
