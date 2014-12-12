@@ -27,7 +27,8 @@ class Time_Weather {
 				}
 			}
 		}
-		return $options_array;
+		shuffle($options_array);
+		return array_slice($options_array, 0, 10);
 	}
 
 }
