@@ -1203,8 +1203,6 @@ Copyright (c) 2011 by Harvest
 		}
 	};
 })(jQuery);
-google.load("feeds", "1");
-
 function sortSelect(selElem) {
     if (selElem.children('optgroup').length){
         selElem.children('optgroup').each(function(){
