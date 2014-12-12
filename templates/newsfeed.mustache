@@ -1,5 +1,10 @@
 {{! Template: Newsfeed }}
 <section class="wallboard-ticker">
-	<marquee><ul class="news-slider"></ul></marquee>
+	<marquee>
+		<ul class="news-slider">
+			{{#feed_items}}
+			<li>{{title}}<span class="news-time">{{date}}</span></li>
+			{{/feed_items}}
+		</ul>
+	</marquee>
 </section>
-<script>var newsfeed = "{{newsfeed_url}}";</script>

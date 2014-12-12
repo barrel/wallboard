@@ -4,7 +4,21 @@
  */
 class Newsfeed {
 	public function __construct(){
-		
+		$this->feed_items = $this->get_feeds();
+	}
+
+	function get_feeds(){
+		$feed_xml = @file_get_contents( $this->newsfeed_url() );
+		$items = array();
+		if ( $feed_xml && $feed = new SimpleXMLElement($feed_xml)) {
+			foreach ($feed->channel->item as $item) {
+				$items[] = array(
+					'title' => $item->title,
+					'date' => date('g:i a', strtotime($item->pubDate)),
+				);
+			}
+		}
+		return $items;
 	}
 
 	function newsfeed_url(){

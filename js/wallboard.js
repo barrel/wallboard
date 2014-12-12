@@ -9,31 +9,9 @@ google.load("feeds", "1");
 var wallboard = {
     init: function(){
         this.update_weather();
-        this.update_ticker(newsfeed);
         this.photo_slider();
         this.weather = window.setInterval(wallboard.update_weather, 60000); // update every 60 sec
         this.time = window.setInterval(wallboard.update_time, 30000); // update every 30 sec
-    },
-    update_ticker: function(newsfeed){
-        $('.news-slider').empty();
-        var feed = new google.feeds.Feed(newsfeed);
-        feed.load(function(result) {
-            if (!result.error) {
-                for (var i = 0; i < result.feed.entries.length; i++) {
-                    var entry = result.feed.entries[i];
-                    var news_date = new Date(entry.publishedDate);
-                    var hours = news_date.getHours();
-                    var meridiem = 'am';
-                    if (entry.title.length < 1) continue;
-					if (hours>12){
-                        hours = hours - 12;
-                        meridiem = 'pm';
-                    }
-                    var minutes = ("0" + news_date.getMinutes()).slice(-2);
-                    $('.news-slider').append('<li>'+entry.title +'<span class="news-time">'+hours+':'+minutes+' '+meridiem+'</span></li>');
-                }
-            }
-        });
     },
     update_time: function() {
         var now = new Date();
@@ -49,7 +27,7 @@ var wallboard = {
     update_weather: function(){
         $.ajax({
             url: siteUrl+"inc/ajax/weather.php",
-        type: "GET",
+            type: "GET",
         }).done(function(data) {
             weather = JSON.parse(data);
             $('.now-icon').html(weather.now_icon);
