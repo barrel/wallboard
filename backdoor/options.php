@@ -19,7 +19,7 @@ function get_options_array(){
 	return $options_array;
 }
 
-$options = get_options_array($con);
+$options = get_options_array();
 echo '<section class="options preferences">
 	<h3>Options</h3>';
 

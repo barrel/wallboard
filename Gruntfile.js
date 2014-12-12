@@ -47,18 +47,27 @@ module.exports = function(grunt) {
                 },
                 banner: '<%= banner %>'
             },
-            dist: {
-                src: ['js/lib/chosen.js', 'js/lib/marquee.js', 'js/lib/fileupload.js', 'js/main.js'],
+            front: {
+                src: ['js/lib/marquee.js', 'js/main.js'],
                 dest: 'js/<%= pkg.name %>.js'
+            },
+            back: {
+                src: ['js/lib/chosen.js', 'js/lib/fileupload.js', 'js/backdoor.js'],
+                dest: 'js/<%= pkg.name %>.backdoor.js'
             }
         },
         uglify: {
             options: {
                 banner: '<%= banner %>'
             },
-            dist: {
+            front: {
                 files: {
-                    'js/<%= pkg.name %>.min.js': ['<%= concat.dist.dest %>']
+                    'js/<%= pkg.name %>.min.js': ['<%= concat.front.dest %>']
+                }
+            },
+            back: {
+                files: {
+                    'js/<%= pkg.name %>.backdoor.min.js': ['<%= concat.back.dest %>']
                 }
             }
         },
@@ -76,11 +85,11 @@ module.exports = function(grunt) {
             },
             concat: {
                 files: ['js/main.js', 'js/lib/*.js'],
-                tasks: ['concat:dist']
+                tasks: ['concat']
             },
             uglify: {
                 files: ['js/<%= pkg.name %>.js'],
-                tasks: ['uglify:dist']
+                tasks: ['uglify']
             },
             php: {
                 files: '**/*.php',
@@ -92,15 +101,15 @@ module.exports = function(grunt) {
 		'svgstore',
 		'less:dist',
         'cssmin',
-        'concat:dist',
-        'uglify:dist'
+        'concat',
+        'uglify'
     ]);
      
     grunt.registerTask('server', [
         'less:dist',
         'cssmin',
-        'concat:dist',
-        'uglify:dist',
+        'concat',
+        'uglify',
         'watch'
     ]);
  

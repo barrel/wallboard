@@ -2,7 +2,7 @@
   "name": "wallboard",
   "description": "An app to make a dashboard for the wallboard.",
   "author": {
-    "name": "Jess Frazelle - BarrelNY",
+    "name": "BarrelNY Developers",
     "url": "http://barrelny.com"
   },
   "devDependencies": {
