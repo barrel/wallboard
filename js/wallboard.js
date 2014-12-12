@@ -120,7 +120,7 @@ Lovingly coded by BarrelNY Developers  - http://barrelny.com
                     scrollamount : $marquee.attr('scrollamount') || this.scrollAmount || 2,
                     behavior : ($marquee.attr('behavior') || 'scroll').toLowerCase(),
                     width : /left|right/.test(direction) ? width : height
-                };console.log($marquee[0].tagName)
+                };
             
             // corrects a bug in Firefox - the default loops for slide is -1
             if ($marquee.attr('loop') == -1 && marqueeState.behavior == 'slide') {
