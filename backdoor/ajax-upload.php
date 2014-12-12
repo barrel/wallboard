@@ -70,7 +70,7 @@
  				// get the size of the image in bytes
  				// $_FILES[\'image\'][\'tmp_name\'] is the temporary filename of the file in which 
 				//the uploaded file was stored on the server
- 				$size=getimagesize($_FILES[$fileElementName]['tmp_name']);
+				list($image_width, $image_height, $image_type) = getimagesize($_FILES[$fileElementName]['tmp_name']);
  				$sizekb=filesize($_FILES[$fileElementName]['tmp_name']);
 
  				//compare the size with the maxim size we defined and print error if bigger
@@ -83,8 +83,18 @@
             		//the new name will be containing the full path where will be stored (images folder)
 					$this_filename=time().'_'.$image_name;
             		$newname="../uploads/".$this_filename;
-           		 	$copied = copy($_FILES[$fileElementName]['tmp_name'], $newname);
-					$moved = move_uploaded_file($_FILES[$fileElementName]['tmp_name'], $newname);
+           		 	//$copied = copy($_FILES[$fileElementName]['tmp_name'], $newname);
+					//$moved = move_uploaded_file($_FILES[$fileElementName]['tmp_name'], $newname);
+					switch($image_type) {
+				      	case 2:
+							$source = imagecreatefromjpeg($_FILES[$fileElementName]['tmp_name']);
+					  		$moved = imagejpeg($source,$newname,80); 
+							break;
+						case 3:
+							$source = imagecreatefrompng($_FILES[$fileElementName]['tmp_name']);
+							$moved = imagepng($source,$newname,8);  
+							break;
+				    }
             		//we verify if the image has been uploaded, and print error instead
             		if (!$moved){
 						$error .= 'Copy unsuccessfull!';
