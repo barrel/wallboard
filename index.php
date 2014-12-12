@@ -13,6 +13,10 @@ include('inc/barrel-wallboard-api.php');
 
 include('header.php'); 
 
+echo '<div class="hidden">';
+include('img/icons.svg');
+echo '</div>';
+
 Barrel_Wallboard_Api::load_components($components);
 
 include('footer.php'); 		
