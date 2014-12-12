@@ -7,32 +7,38 @@ var wallboard = {
         this.time = window.setInterval(wallboard.update_time, 30000); // update every 30 sec
     },
     update_time: function() {
-        var now = new Date();
-        var hours = now.getHours();
-        var meridiem = 'a';
+        var now = new Date(),
+            hours = now.getHours(),
+            meridiem = hours > 12 ? 'p' : 'a', 
+            minutes,
+            timeObj = document.querySelectorAll('.time');
         if (hours>12){
             hours = hours - 12;
             meridiem = 'p';
         }
-        var minutes = ("0" + now.getMinutes()).slice(-2);
-        $('.time').html(hours+':'+minutes+' <span class="meridiem">'+meridiem+'</span>');
+        minutes = ("0" + now.getMinutes()).slice(-2);
+        timeObj[0].innerHTML = (hours+':'+minutes+' <span class="meridiem">'+meridiem+'</span>');
     },
     update_weather: function(){
-        $.ajax({
-            url: siteUrl+"inc/ajax/weather.php",
-            type: "GET",
-        }).done(function(data) {
-            weather = JSON.parse(data);
-            $('.now-icon').html(weather.now_icon);
-            $('.now-temp').html(weather.now_temperature+'<sup>&deg;</sup>');
-            $('.now-low').html(weather.now_low+'<sup>&deg;</sup>');
-            $('.now-high').html(weather.now_high+'<sup>&deg;</sup>');
+        var d = document,
+            getRequest = siteUrl+"inc/ajax/weather.php",
+            xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState == 4) {
+                var weather = JSON.parse(xhr.responseText);
+                d.querySelectorAll('.now-icon')[0].innerHTML = (weather.now_icon);
+                d.querySelectorAll('.now-temp')[0].innerHTML = (weather.now_temperature+'<sup>&deg;</sup>');
+                d.querySelectorAll('.now-low')[0].innerHTML = (weather.now_low+'<sup>&deg;</sup>');
+                d.querySelectorAll('.now-high')[0].innerHTML = (weather.now_high+'<sup>&deg;</sup>');
 
-            $('.next-hour').html(weather.next_hour_icon+weather.next_hour_temperature+'<sup>&deg;</sup>');
-            $('.tomorrow').html(weather.tomorrow_icon+weather.tomorrow_temperature+'<sup>&deg;</sup>');
-            $('.two-days').html(weather.next_icon+weather.next_temperature+'<sup>&deg;</sup>');
-            $('.updated-datetime').html('Last updated:'+weather.date);
-        });	
+                d.querySelectorAll('.next-hour')[0].innerHTML = (weather.next_hour_icon+weather.next_hour_temperature+'<sup>&deg;</sup>');
+                d.querySelectorAll('.tomorrow')[0].innerHTML = (weather.tomorrow_icon+weather.tomorrow_temperature+'<sup>&deg;</sup>');
+                d.querySelectorAll('.two-days')[0].innerHTML = (weather.next_icon+weather.next_temperature+'<sup>&deg;</sup>');
+                d.querySelectorAll('.updated-datetime')[0].innerHTML = ('Last updated:'+weather.date);
+            }
+        };
+        xhr.open("GET",getRequest,true);
+        xhr.send();
     },
     photo_slider: function(){
         wallboard.images = document.getElementById('slideshow').getElementsByTagName('img');
@@ -58,7 +64,3 @@ var wallboard = {
         wallboard.i++;
     },
 };
-
-$(function(){
-	wallboard.init();
-});
