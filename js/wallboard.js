@@ -1,14 +1,14 @@
 /*
-wallboard - v - 2014-12-12
+wallboard - v - 2014-12-14
 An app to make a dashboard for the wallboard.
 Lovingly coded by BarrelNY Developers  - http://barrelny.com 
 */
 var wallboard = {
     init: function(){
-        this.update_weather();
-        this.photo_slider();
-        this.weather = window.setInterval(wallboard.update_weather, 60000); // update every 60 sec
-        this.time = window.setInterval(wallboard.update_time, 30000); // update every 30 sec
+		var self = this;
+        self.update_weather();
+        self.photo_slider();
+        self.time = window.setInterval(wallboard.update_time, 30000); // update every 30 sec
     },
     update_time: function() {
         var now = new Date(),
@@ -25,6 +25,7 @@ var wallboard = {
     },
     update_weather: function(){
         var d = document,
+			self = this,
             getRequest = siteUrl+"inc/ajax/weather.php",
             xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
@@ -38,7 +39,18 @@ var wallboard = {
                 d.querySelectorAll('.next-hour')[0].innerHTML = (weather.next_hour_icon+weather.next_hour_temperature+'<sup>&deg;</sup>');
                 d.querySelectorAll('.tomorrow')[0].innerHTML = (weather.tomorrow_icon+weather.tomorrow_temperature+'<sup>&deg;</sup>');
                 d.querySelectorAll('.two-days')[0].innerHTML = (weather.next_icon+weather.next_temperature+'<sup>&deg;</sup>');
-                d.querySelectorAll('.updated-datetime')[0].innerHTML = ('Last updated:'+weather.date);
+                d.querySelectorAll('.updated-datetime')[0].innerHTML = ('Last updated: '+weather.date);
+
+		        self.weather = window.setTimeout(function (){
+					delete(d);
+					delete(getRequest);
+					delete(xhr);
+					delete(weather);
+
+					clearTimeout(self.weather);
+
+		        	self.update_weather();
+		        }, 15*60*1000); // update every 15 min
             }
         };
         xhr.open("GET",getRequest,true);

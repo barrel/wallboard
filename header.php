@@ -6,7 +6,7 @@
 	<head>
 		<base href="<?= (Barrel_Wallboard_Api::is_production()) ? '/' : '/wallboard/'; ?>">
 		<meta charset="utf-8">
-		<meta http-equiv="refresh" content="300">
+		<meta http-equiv="refresh" content="3600">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 		<title>Wallboard: <?= $pagename; ?></title>
 		<meta name="viewport" content="width=device-width">
