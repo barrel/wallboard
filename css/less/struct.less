@@ -1,0 +1,42 @@
+// Scaffolding
+// -------------------------
+html {
+    height:100%;
+}
+body {
+  margin: 0;
+  font-family: @baseFontFamily;
+  font-size: @baseFontSize;
+  line-height: @baseLineHeight;
+  color: @textColor;
+  background-color: @bodyBackground;
+
+  &.wallboard {
+  	font-family: 'Benton', "Helvetica Neue", Helvetica, Arial, sans-serif;
+	background:black;
+	color: white;
+    overflow:auto;
+    height:100%;
+  }
+}
+.container {
+	position:relative;
+	max-width:1000px;
+	overflow:hidden;
+	margin:0 auto;
+	padding:0 10px;
+	text-align:left;
+}
+
+
+// Links
+// -------------------------
+a {
+  color: @linkColor;
+  text-decoration: none;
+}
+a:hover,
+a:focus {
+  color: @linkColorHover;
+  text-decoration: underline;
+}

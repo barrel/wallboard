@@ -19,22 +19,32 @@ module.exports = function(grunt) {
 			}
 		},
         less: {
-            dist: {
-                options: {
-                    paths: ['css/less']
-                },
+            options: {
+                paths: ['css/less']
+            },
+            front: {
                 files: {
                     'css/main.css': 'css/less/main.less'
+                }
+            },
+            back: {
+                files: {
+                    'css/back.css': 'css/less/back.less'
                 }
             }
         },
         cssmin: {
-            combine: {
-                options: {
-                    banner: '<%= banner %>'
-                },
+            options: {
+                banner: '<%= banner %>'
+            },
+            front: {
                 files: {
-                    'css/<%= pkg.name %>.min.css': ['css/normalize.css', 'css/fonts.css', 'css/main.css', 'css/chosen.css']
+                    'css/<%= pkg.name %>.min.css': ['css/normalize.css', 'css/fonts.css', 'css/main.css']
+                }
+            },
+            back: {
+                files: {
+                    'css/<%= pkg.name %>.back.min.css': ['css/normalize.css', 'css/fonts.css', 'css/back.css', 'css/chosen.css']
                 }
             }
         },
@@ -77,7 +87,7 @@ module.exports = function(grunt) {
             },
             less: {
                 files: ['css/less/*.less'],
-                tasks: ['less:dist']
+                tasks: ['less']
             },
             cssmin: {
                 files: ['css/*.css'],
@@ -99,14 +109,14 @@ module.exports = function(grunt) {
      
     grunt.registerTask('build', [
 		'svgstore',
-		'less:dist',
+		'less',
         'cssmin',
         'concat',
         'uglify'
     ]);
      
     grunt.registerTask('server', [
-        'less:dist',
+        'less',
         'cssmin',
         'concat',
         'uglify',

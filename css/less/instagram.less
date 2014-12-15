@@ -1,0 +1,70 @@
+#instagram {
+    height: @instagramHeight;
+
+    .top, .bottom {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: @instagramHeight;
+        width: 100%;
+    }
+    > div {
+        font-size: 0.1em;
+        overflow: hidden;
+        text-align: justify;
+
+        &:before, &:after {
+            content: "";
+            display: block;
+            width: 100%;
+        }
+        span {
+            display: inline-block;
+            margin: 0;
+            max-height: 100%;
+            padding-top: 20%;
+            position: relative;
+            vertical-align: top;
+            width: 20%;
+
+            img {
+                position: absolute;
+                left: 0;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                max-width: 100%;
+                transition: opacity 250ms linear;
+            }
+        }
+    }
+    .bottom {
+        span {
+            left: 0;
+            padding-top: 40%;
+            position: absolute;
+            top: 0;
+            width: 40%;
+            z-index: 1;
+
+            img {
+                opacity: 0;
+
+                &.active {
+                    opacity: 1;
+                }
+            }
+        }
+        span:first-child + span {
+            margin-left: 20%;
+
+            + span {
+                margin-left: 40%;
+
+                + span {
+                    margin-left: 60%;
+                }
+            }
+        }
+    }
+}

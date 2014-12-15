@@ -4,6 +4,7 @@ var wallboard = {
 		var self = this;
         self.update_weather();
         self.photo_slider();
+        self.instagram_module();
         self.time = window.setInterval(wallboard.update_time, 30000); // update every 30 sec
     },
     update_time: function() {
@@ -52,12 +53,52 @@ var wallboard = {
         xhr.open("GET",getRequest,true);
         xhr.send();
     },
+    instagram_module: function(){
+        wallboard.instagram = this.setPhotoInfo('instagram');
+        if ( ! wallboard.instagram ) return;
+        wallboard.layout();
+        window.setInterval(wallboard.layout, 10000);
+    },
     photo_slider: function(){
-        wallboard.images = document.getElementById('slideshow').getElementsByTagName('img');
+        var el = this.setPhotoInfo('slideshow');
+        if ( ! el ) return;
+        wallboard.images[0].className = "fx";
+        window.setInterval(wallboard.kenburns, 5000);
+    },
+    setPhotoInfo: function(el){
+        var sl = document.getElementById(el);
+        if ( sl === null ) return false;
+        wallboard.images = sl.getElementsByTagName('img');
         wallboard.numberOfImages = wallboard.images.length;
         wallboard.i = 1;
-        document.getElementById('slideshow').getElementsByTagName('img')[0].className = "fx";
-        window.setInterval(wallboard.kenburns, 5000);
+        return sl;
+    },
+    layout: function (){
+        // cycle regular images 0-15
+        /*
+        // ideally we take one from overflow and append to top 10, then crossfade
+        var spans = wallboard.instagram.getElementsByTagName('span');
+                var groupA = spans.splice(0,10);
+                var groupB = spans.splice(10,6);
+                var groupATarget = groupA[ Math.floor(Math.random()*10) ];
+                var groupBTarget = groupA[ 10+Math.floor(Math.random()*6) ];
+                
+                var groupATargetParent = groupATarget.parentNode;
+                var groupBTargetParent = groupBTarget.parentNode;
+        
+                var tmpCloneA = document.createElement('span');
+        
+                groupATargetParent.replaceChild(, image);
+                groupBTargetParent.replaceChild(input, image);
+        */
+        
+        
+        // cycle big images 16-19
+        var iB = Math.floor(Math.random()*4);
+        for(var i=0; i<4; i++){
+            wallboard.images[16+i].className = '';
+        }
+        wallboard.images[16+iB].className = 'active';
     },
     kenburns: function(){
         if (wallboard.i==wallboard.numberOfImages){ 

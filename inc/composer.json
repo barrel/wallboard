@@ -3,7 +3,8 @@
     "description": "Barrel Wallboard",
     "require": {
         "google/apiclient": "~1.1",
-        "bobthecow/mustache-bundle": "~1.2"
+        "bobthecow/mustache-bundle": "~1.2",
+        "php-instagram-api/php-instagram-api": "dev-master"
     },
     "authors": [
         {

@@ -13,7 +13,7 @@
 		
 		
 		<!-- styles -->
-		<link rel="stylesheet" href="./css/wallboard.min.css">
+		<link rel="stylesheet" href="./css/wallboard<?php if ($page === 'backdoor'): ?>.back<?php endif; ?>.min.css">
 		<script src="./js/lib/modernizr-2.6.2.min.js"></script>
 	</head>
 	<body class="<?= $page; ?>"<?php if ($page != 'backdoor'): ?> onload="wallboard.init();"<?php endif; ?>>

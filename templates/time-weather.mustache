@@ -1,10 +1,24 @@
 {{! Template: Time and Weather }}
 <section class="wallboard-top">
+	{{#photo_mode}}
 	<div id="slideshow" class="photos-slider">
 	{{#photos}}
 		<img src="uploads/{{image_url}}" alt="" />
 	{{/photos}}
 	</div>
+	{{/photo_mode}}
+	{{^photo_mode}}
+	<div id="instagram">
+	{{#instagram}}
+		<div class="top">
+		{{#top}}<span><img src="{{url}}" alt="" /></span>{{/top}}
+		</div>
+		<div class="bottom">
+		{{#bottom}}<span><img src="{{url}}" alt="" /></span>{{/bottom}}
+		</div>
+	{{/instagram}}
+	</div>
+	{{/photo_mode}}
 	<div class="time-weather">
 		<div class="col col-date">
 			<span class="weekday">{{weekday}}</span>

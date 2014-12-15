@@ -35,12 +35,19 @@ class Barrel_Wallboard_Api {
 		$this->_load_google_api();
 		$this->_load_mustache();
 		$this->_load_db_con();
+		//$this->_load_instagram();
 
 		$this->actual_link = "http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 		$this->is_production = (
 			(strpos($this->actual_link, 'dev') !== false || "localhost" === $_SERVER['HTTP_HOST']) 
 			? false : true 
 		);
+	}
+
+	function _load_instagram(){
+		$instagram = new Instagram\Instagram();
+		$instagram->setClientID('535021b4fda14063bd1e898e32438a5e');
+		$insta = $instagram->getUser( 207617934 );
 	}
 
 	/**
