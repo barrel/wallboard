@@ -1,5 +1,5 @@
 /*
-wallboard - v - 2014-12-15
+wallboard - v - 2014-12-16
 An app to make a dashboard for the wallboard.
 Lovingly coded by BarrelNY Developers  - http://barrelny.com 
 */
@@ -78,31 +78,38 @@ var wallboard = {
         return sl;
     },
     layout: function (){
-        // cycle regular images 0-15
-        /*
-        // ideally we take one from overflow and append to top 10, then crossfade
-        var spans = wallboard.instagram.getElementsByTagName('span');
-                var groupA = spans.splice(0,10);
-                var groupB = spans.splice(10,6);
-                var groupATarget = groupA[ Math.floor(Math.random()*10) ];
-                var groupBTarget = groupA[ 10+Math.floor(Math.random()*6) ];
-                
-                var groupATargetParent = groupATarget.parentNode;
-                var groupBTargetParent = groupBTarget.parentNode;
+        var insta = wallboard.instagram,
+            spans = insta.getElementsByTagName('span'),
+            randIdx = Math.floor(Math.random()*10),
+            randSpan = spans[ randIdx ], 
+            randImg = randSpan.getElementsByTagName('img'), 
+            url = manifest.data.splice(
+                Math.floor(Math.random()*manifest.data.length), 
+                1, randImg.src
+            ); 
+
+        // append new img with new src to existing span
+        var img = new Image();
+        img.src = url;
+        img.className = 'trans';
+        randSpan.appendChild(img);
+        randSpan.className = 'cross';
+        setTimeout( function(){
+            delete(randImg);
+            img.className = '';
+            randSpan.className = '';
+        }, 500);
         
-                var tmpCloneA = document.createElement('span');
+        // crossfade new image with old image
         
-                groupATargetParent.replaceChild(, image);
-                groupBTargetParent.replaceChild(input, image);
-        */
-        
+        // remove old image element
         
         // cycle big images 16-19
         var iB = Math.floor(Math.random()*4);
         for(var i=0; i<4; i++){
-            wallboard.images[16+i].className = '';
+            wallboard.images[10+i].className = '';
         }
-        wallboard.images[16+iB].className = 'active';
+        wallboard.images[10+iB].className = 'active';
     },
     kenburns: function(){
         if (wallboard.i==wallboard.numberOfImages){ 

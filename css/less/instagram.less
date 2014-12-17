@@ -34,7 +34,20 @@
                 right: 0;
                 bottom: 0;
                 max-width: 100%;
-                transition: opacity 250ms linear;
+                transition: opacity 500ms linear;
+
+                &.trans {
+                    opacity: 0;
+                }
+            }
+            &.cross {
+                img {
+                    opacity: 0;
+
+                    &.trans {
+                        opacity: 1;
+                    }
+                }
             }
         }
     }
@@ -50,8 +63,20 @@
             img {
                 opacity: 0;
 
+                &.trans {
+                    opacity: 0;
+                }
                 &.active {
                     opacity: 1;
+                }
+            }
+            &.cross {
+                img {
+                    opacity: 0;
+
+                    &.trans {
+                        opacity: 1;
+                    }
                 }
             }
         }

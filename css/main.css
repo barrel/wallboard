@@ -389,7 +389,16 @@ a:focus {
   right: 0;
   bottom: 0;
   max-width: 100%;
-  transition: opacity 250ms linear;
+  transition: opacity 500ms linear;
+}
+#instagram > div span img.trans {
+  opacity: 0;
+}
+#instagram > div span.cross img {
+  opacity: 0;
+}
+#instagram > div span.cross img.trans {
+  opacity: 1;
 }
 #instagram .bottom span {
   left: 0;
@@ -402,7 +411,16 @@ a:focus {
 #instagram .bottom span img {
   opacity: 0;
 }
+#instagram .bottom span img.trans {
+  opacity: 0;
+}
 #instagram .bottom span img.active {
+  opacity: 1;
+}
+#instagram .bottom span.cross img {
+  opacity: 0;
+}
+#instagram .bottom span.cross img.trans {
   opacity: 1;
 }
 #instagram .bottom span:first-child + span {

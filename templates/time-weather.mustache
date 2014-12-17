@@ -16,6 +16,14 @@
 		<div class="bottom">
 		{{#bottom}}<span><img src="{{url}}" alt="" /></span>{{/bottom}}
 		</div>
+		<script type="text/javascript">
+		var manifest={
+			data:[
+				{{#manifest}}'{{url}}',
+				{{/manifest}}
+			]
+		}
+		</script>
 	{{/instagram}}
 	</div>
 	{{/photo_mode}}
