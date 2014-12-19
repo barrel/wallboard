@@ -6,7 +6,7 @@ $components = array(
 	'cleaning-holiday-birthday' => 60*60*24, # 24 hrs
 	'upcoming-event'            => 60*60*12, # 12 hrs
 	'rooms-calendar'            => 60*15,    # 15 min
-	'newsfeed'                  => 60*60*24  # 24 hrs
+//	'newsfeed'                  => 60*60*24  # 24 hrs
 );
 
 include('inc/barrel-wallboard-api.php');
