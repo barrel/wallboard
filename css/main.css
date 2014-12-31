@@ -310,7 +310,7 @@ body {
 }
 body.wallboard {
   font-family: 'Benton', "Helvetica Neue", Helvetica, Arial, sans-serif;
-  background: black;
+  background: rgba(0, 0, 0, 0.9) url(../img/swatch.png);
   color: white;
   overflow: auto;
   height: 100%;
@@ -441,7 +441,9 @@ a:focus {
   *zoom: 1;
   overflow: hidden;
   z-index: 1;
-  background: rgba(0, 0, 0, 0.8);
+  height: 320px;
+  font-size: 0.1px;
+  text-align: justify;
 }
 .time-weather:before,
 .time-weather:after {
@@ -452,18 +454,27 @@ a:focus {
 .time-weather:after {
   clear: both;
 }
+.time-weather > * {
+  text-align: left;
+  vertical-align: top;
+  display: inline-block;
+}
+.time-weather:after {
+  content: '';
+  width: 100%;
+  display: inline-block;
+}
 .time-weather .col {
   z-index: 1;
-  float: left;
   margin: 0;
   padding: 0;
-  width: 50%;
+  width: 49.5%;
   padding: 40px 0;
 }
 .time-weather .col.col-date span {
   position: relative;
   display: block;
-  padding: 0px 20px;
+  padding: 0px 30px;
   font-size: 16px;
   line-height: 20px;
   text-transform: uppercase;
@@ -482,21 +493,29 @@ a:focus {
 }
 .time-weather .col.col-date span.time .meridiem {
   font-size: 90px;
+  font-weight: 100;
   color: #999999;
   display: inline;
   text-transform: lowercase;
   padding: 0;
   margin-left: -20px;
 }
+.time-weather .col.col-weather {
+  padding: 30px 0;
+}
 .time-weather .col.col-weather .weather-icon {
   font-family: 'weatherfont';
+}
+.time-weather .col.col-weather sup {
+  font-weight: 400;
+  top: -0.3em;
 }
 .time-weather .col.col-weather h4 {
   font-size: 16px;
   line-height: 100%;
   color: #B3B3B3;
   text-transform: uppercase;
-  font-weight: 700;
+  font-weight: 500;
   margin: 0;
 }
 .time-weather .col.col-weather h4.locationname {
@@ -508,19 +527,22 @@ a:focus {
   color: white;
   font-weight: 700;
   line-height: 100%;
-  font-size: 45px;
+  font-size: 32px;
   margin: 10px 0 0 0;
 }
 .time-weather .col.col-weather h3 .weather-icon {
   color: #B3B3B3;
-  margin-right: 20px;
+  margin-right: 10px;
+  font-size: 50px;
+  line-height: 50px;
+  vertical-align: baseline;
   display: inline;
 }
 .time-weather .col.col-weather .current-weather {
   position: relative;
   display: block;
-  border-bottom: 1px solid #B3B3B3;
-  padding: 20px 0px 40px 20px;
+  border-bottom: 1px solid #4D4D4D;
+  padding: 0 0 10px;
   margin-right: 20px;
 }
 .time-weather .col.col-weather .current-weather .location {
@@ -530,24 +552,32 @@ a:focus {
 .time-weather .col.col-weather .current-weather .now-icon .weather-icon {
   font-size: 97px;
   color: white;
+  display: inline-block;
+  line-height: 97px;
   margin-bottom: 10px;
 }
 .time-weather .col.col-weather .current-weather .now-temp {
-  font-size: 120px;
+  font-size: 110px;
   font-weight: 100;
   padding: 30px 20px 0px;
   margin: 0;
 }
+.time-weather .col.col-weather .current-weather .now-temp sup {
+  font-size: 75%;
+}
 .time-weather .col.col-weather .current-weather .wet-sec {
   display: inline-block;
-  vertical-align: top;
+  vertical-align: middle;
 }
 .time-weather .col.col-weather .current-weather .wet-sec.high,
 .time-weather .col.col-weather .current-weather .wet-sec.low {
-  margin-top: -20px;
+  margin-top: -30px;
+}
+.time-weather .col.col-weather .current-weather .wet-sec.high {
+  margin-left: 70px;
 }
 .time-weather .col.col-weather .current-weather .wet-sec.low {
-  margin-left: 20px;
+  margin-left: 30px;
 }
 .time-weather .col.col-weather .current-weather .updated-datetime {
   position: absolute;
@@ -556,10 +586,13 @@ a:focus {
   font-size: 14px;
   line-height: 100%;
   color: #B3B3B3;
-  font-weight: 500;
+  font-weight: 40;
 }
 .time-weather .col.col-weather .upcoming-weather {
-  padding: 20px 20px 0px 20px;
+  padding: 30px 0 0px;
+}
+.time-weather .col.col-weather .upcoming-weather h4 {
+  font-size: 12px;
 }
 .time-weather .col.col-weather .upcoming-weather .col-3 {
   display: block;
@@ -783,11 +816,12 @@ a:focus {
 }
 .wallboard-calendar table th {
   font-weight: 700;
-  font-size: 15px;
-  color: #6B6B6B;
+  font-size: 12px;
+  color: white;
   text-transform: uppercase;
-  line-height: 20px;
-  padding: 30px 0px;
+  line-height: 62px;
+  height: 62px;
+  padding: 0;
 }
 .wallboard-calendar table td {
   font-weight: 700;
@@ -795,24 +829,25 @@ a:focus {
   line-height: 20px;
   min-height: 20px;
   padding: 10px;
-  border: 1px solid black;
 }
 .wallboard-calendar table td:first-child {
-  border-left: 0px;
+  border-right: 1px solid black;
   color: white;
   font-size: 15px;
+  background: none !important;
 }
 .wallboard-calendar table td:first-child .meridiem {
   color: #808080;
 }
+.wallboard-calendar table thead tr {
+  background-color: #1A1A1A;
+}
 .wallboard-calendar table tbody tr {
-  background: #141214;
   position: relative;
 }
 .wallboard-calendar table tbody tr td {
   vertical-align: top;
   position: relative;
-  background: #141214;
   overflow: hidden;
 }
 .wallboard-calendar table tbody tr td.extra {
@@ -837,11 +872,8 @@ a:focus {
   left: 0px;
   background: #75186F;
 }
-.wallboard-calendar table tbody tr:nth-child(odd) {
-  background: #1A171A;
-}
 .wallboard-calendar table tbody tr:nth-child(odd) td {
-  background: #1A171A;
+  background: #232323;
 }
 .wallboard-calendar table tbody tr.active-1 {
   background: #922D8D;

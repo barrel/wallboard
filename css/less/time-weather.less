@@ -7,21 +7,36 @@
 	.clearfix;
 	overflow:hidden;
 	z-index:1;
-	background:rgba(0,0,0,0.8);
+    height:320px;
+
+
+	font-size: 0.1px;
+	text-align: justify;
+
+	& > * {
+		text-align: left;
+		vertical-align: top;
+		display: inline-block;
+	}
+
+	&:after{
+		content: '';
+		width: 100%;
+		display: inline-block;
+	}
 
 	.col {
 		z-index:1;
-		float:left;
 		margin:0;
 		padding:0;
-		width:50%;
+		width:49.5%;
 		padding:40px 0;
 
 		&.col-date {
 			span {
 				position:relative;
 				display:block;
-				padding:0px 20px;
+				padding:0px 30px;
 				font-size:16px;
 				line-height:20px;
 				text-transform:uppercase;
@@ -39,6 +54,7 @@
 					margin-top:30px;
 					.meridiem {
 						font-size:90px;
+                        font-weight:100;
 						color:#999999;
 						display:inline;
 						text-transform:lowercase;
@@ -49,15 +65,20 @@
 			}
 		}
 		&.col-weather {
+            padding: 30px 0;
 			.weather-icon {
 				font-family:'weatherfont';
 			}
+            sup {
+                font-weight: 400;
+                top: -0.3em;
+            }
 			h4 {
 				font-size:16px;
 				line-height:100%;
 				color:#B3B3B3;
 				text-transform:uppercase;
-				font-weight:700;
+				font-weight:500;
 				margin:0;
 				&.locationname {
 					position:absolute;
@@ -69,20 +90,25 @@
 				color:white;
 				font-weight:700;
 				line-height:100%;
-				font-size:45px;
+				font-size:32px;
 				margin:10px 0 0 0;
+
 				.weather-icon {
 					color:#B3B3B3;
-					margin-right:20px;
+					margin-right:10px;
+                    font-size: 50px;
+                    line-height: 50px;
+                    vertical-align: baseline;
 					display:inline;
 				}
 			}
 			.current-weather {
 				position:relative;
 				display:block;
-				border-bottom:1px solid #B3B3B3;
-				padding:20px 0px 40px 20px;
+				border-bottom:1px solid #4D4D4D;
+				padding:0 0 10px;
 				margin-right:20px;
+
 				.location {
 					padding-top:10px;
 					text-align:left;
@@ -91,23 +117,31 @@
 					.weather-icon {
 						font-size:97px;
 						color:white;
+                        display: inline-block;
+                        line-height: 97px;
 						margin-bottom:10px;
 					}
 				}
 				.now-temp {
-					font-size:120px;
+					font-size:110px;
 					font-weight:100;
 					padding:30px 20px 0px;
 					margin:0;
+                    sup {
+                        font-size: 75%;
+                    }
 				}
 				.wet-sec {
 					display:inline-block;
-					vertical-align:top;
+					vertical-align:middle;
 					&.high, &.low {
-						margin-top:-20px;
+						margin-top:-30px;
 					}
+                    &.high {
+                        margin-left:70px;
+                    }
 					&.low {
-						margin-left:20px;
+						margin-left:30px;
 					}
 				}
 				.updated-datetime {
@@ -117,11 +151,14 @@
 					font-size:14px;
 					line-height:100%;
 					color:#B3B3B3;
-					font-weight:500;
+					font-weight:40;
 				}
 			}
 			.upcoming-weather {
-				padding:20px 20px 0px 20px;
+				padding:30px 0 0px;
+                h4 {
+                    font-size: 12px;
+                }
 				.col-3 {
 					display:block;
 					vertical-align:top;

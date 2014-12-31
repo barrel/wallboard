@@ -1,0 +1,141 @@
+.wallboard-calendar {
+	table {
+		width:100%;
+		overflow:hidden;
+		td, th {
+			padding:10px;
+			&:first-child {
+				width:50px;
+				text-align:center;
+			}
+		}
+		th {
+			font-weight:700;
+			font-size:12px;
+			color:white;
+			text-transform:uppercase;
+            line-height: 62px;
+            height: 62px;
+            padding:0;
+		}
+		td {
+			font-weight:700;
+			font-size:14px;
+			line-height:20px;
+			min-height:20px;
+			padding:10px;
+			&:first-child {
+				border-right:1px solid black;
+				color:white;
+				font-size:15px;
+                background: none !important;
+				.meridiem {
+					color:#808080;
+				}
+			}
+		}
+        thead {
+            tr {
+                background-color: #1A1A1A;
+            }
+        }
+		tbody {
+			tr {
+				position:relative;
+				td {
+					vertical-align:top;
+					position:relative;
+					overflow:hidden;
+					&.extra{
+						padding:0 !important;
+					}
+					&.event {
+						background:#975E92 !important;
+						color:white;
+						
+					}
+					&.thirty {
+					}
+					.e-time {
+						float:right;
+						color:rgba(255,255,255, 0.7);
+					}
+					.event-border {
+						width:5px;
+						height:100%;
+						display:block;
+						margin:0;
+						padding:0;
+						position:absolute;
+						top:0px;
+						left:0px;
+						background:#75186F;
+					}
+				}
+				&:nth-child(odd){
+					td {
+						background:#232323;
+					}
+				}
+				&.active-1 {
+					background:#922D8D;
+					td {
+						background:#922D8D;
+						padding-bottom:30px;
+					}
+				}
+				&.active-2 {
+					background:#752E71;
+					td {
+						background:#752E71;
+						padding-bottom:30px;
+					}
+				}
+				&.active-3 {
+					background:#521F50;
+					td {
+						background:#521F50;
+						padding-bottom:20px;
+					}
+				}
+				&.active-4 {
+					background:#3E183B;
+					td {
+						background:#3E183B;
+						padding-bottom:20px;
+					}
+				}
+				&.active-5 {
+					background:#261B26;
+					td {
+						background:#261B26;
+					}
+				}
+				&.past {
+					td {
+						&.event {
+							color:#6C6B6C;
+							background:#282728 !important;
+						}
+						.e-time {
+							color:#4A494A;
+						}
+						&.thirty {
+							color:#6C6B6C;
+						}
+						.event-border {
+							background:#475459;
+						}
+						&:first-child {
+							color:#F4F3EC;
+							.meridiem {
+								color:#808080;
+							}
+						}
+					}
+				}
+			}
+		}
+		
+	}
+}
