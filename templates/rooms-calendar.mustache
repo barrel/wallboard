@@ -1,17 +1,21 @@
 {{! Template: Rooms Calendar }}
 <section class="wallboard-calendar">
+    <div class="header">
+    	<table>
+    		<thead>
+    			<tr>
+    				<th></th>
+    				<th>The Atrium</th>
+    				<th>The Garage</th>
+    				<th>The Cellar</th>
+    			</tr>
+    		</thead>
+        </table>
+    </div>
 	<table>
-		<thead>
-			<tr>
-				<th></th>
-				<th>The Atrium</th>
-				<th>The Garage</th>
-				<th>The Cellar</th>
-			</tr>
-		</thead>
 		<tbody>
 			{{#hours}}
-			<tr{{class}}>
+			<tr{{{class}}}>
 				<td>{{hourprint}} <span class="meridiem">{{meridiem}}</span></td>
 				
 				{{#meetings_html}}{{{.}}}{{/meetings_html}}
