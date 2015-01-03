@@ -374,6 +374,7 @@ a:focus {
   width: 100%;
 }
 #instagram > div span {
+  background-size: contain;
   display: inline-block;
   margin: 0;
   max-height: 100%;
@@ -389,19 +390,18 @@ a:focus {
   right: 0;
   bottom: 0;
   max-width: 100%;
-  transition: opacity 500ms linear;
-}
-#instagram > div span img.trans {
-  opacity: 0;
+  transition: opacity 3000ms linear;
+  opacity: 1;
 }
 #instagram > div span.cross img {
   opacity: 0;
 }
-#instagram > div span.cross img.trans {
-  opacity: 1;
+#instagram > div span:nth-child(3n+1) {
+  margin-right: 40%;
 }
 #instagram .bottom span {
   left: 0;
+  margin-left: 20%;
   padding-top: 40%;
   position: absolute;
   top: 0;
@@ -409,28 +409,10 @@ a:focus {
   z-index: 1;
 }
 #instagram .bottom span img {
-  opacity: 0;
-}
-#instagram .bottom span img.trans {
-  opacity: 0;
-}
-#instagram .bottom span img.active {
   opacity: 1;
 }
 #instagram .bottom span.cross img {
   opacity: 0;
-}
-#instagram .bottom span.cross img.trans {
-  opacity: 1;
-}
-#instagram .bottom span:first-child + span {
-  margin-left: 20%;
-}
-#instagram .bottom span:first-child + span + span {
-  margin-left: 40%;
-}
-#instagram .bottom span:first-child + span + span + span {
-  margin-left: 60%;
 }
 .time-weather {
   position: absolute;

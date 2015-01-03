@@ -19,6 +19,7 @@
             width: 100%;
         }
         span {
+            background-size: contain;
             display: inline-block;
             margin: 0;
             max-height: 100%;
@@ -34,26 +35,23 @@
                 right: 0;
                 bottom: 0;
                 max-width: 100%;
-                transition: opacity 500ms linear;
-
-                &.trans {
-                    opacity: 0;
-                }
+                transition: opacity 3000ms linear;
+                opacity: 1;
             }
             &.cross {
                 img {
                     opacity: 0;
-
-                    &.trans {
-                        opacity: 1;
-                    }
                 }
+            }
+            &:nth-child(3n+1) {
+                margin-right: 40%;
             }
         }
     }
     .bottom {
         span {
             left: 0;
+            margin-left: 20%;
             padding-top: 40%;
             position: absolute;
             top: 0;
@@ -61,33 +59,11 @@
             z-index: 1;
 
             img {
-                opacity: 0;
-
-                &.trans {
-                    opacity: 0;
-                }
-                &.active {
-                    opacity: 1;
-                }
+                opacity: 1;
             }
             &.cross {
                 img {
                     opacity: 0;
-
-                    &.trans {
-                        opacity: 1;
-                    }
-                }
-            }
-        }
-        span:first-child + span {
-            margin-left: 20%;
-
-            + span {
-                margin-left: 40%;
-
-                + span {
-                    margin-left: 60%;
                 }
             }
         }

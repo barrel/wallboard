@@ -56,8 +56,8 @@ class Time_Weather {
 		}
 		shuffle($img);
 		return array(
-			'top' => array_splice($img, 0, 10), 
-			'bottom' => array_splice($img, 0, 4),
+			'top' => array_splice($img, 0, 6), 
+			'bottom' => array_splice($img, 0, 1),
 			'manifest' => $img
 		);
 	}

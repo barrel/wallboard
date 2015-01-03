@@ -76,36 +76,31 @@ var wallboard = {
     layout: function (){
         var insta = wallboard.instagram,
             spans = insta.getElementsByTagName('span'),
-            randIdx = Math.floor(Math.random()*10),
+            randIdx = Math.floor(Math.random()*6),
             randSpan = spans[ randIdx ], 
-            randImg = randSpan.getElementsByTagName('img'), 
+            randImg = randSpan.getElementsByTagName('img')[0], 
             url = manifest.data.splice(
                 Math.floor(Math.random()*manifest.data.length), 
                 1, randImg.src
-            ); 
+            ), 
+            url = url[0];
 
         // append new img with new src to existing span
         var img = new Image();
         img.src = url;
-        img.className = 'trans';
-        randSpan.appendChild(img);
-        randSpan.className = 'cross';
-        setTimeout( function(){
-            delete(randImg);
-            img.className = '';
-            randSpan.className = '';
-        }, 500);
+        randSpan.style.backgroundImage = 'url("'+url+'")';
         
         // crossfade new image with old image
+        randSpan.className = 'cross';
+
+        setTimeout( function(){
+            // remove old image element
+            randImg.remove();
+            randSpan.appendChild(img);
+            randSpan.style.backgroundImage = '';
+            randSpan.className = '';
+        }, 5000);
         
-        // remove old image element
-        
-        // cycle big images 16-19
-        var iB = Math.floor(Math.random()*4);
-        for(var i=0; i<4; i++){
-            wallboard.images[10+i].className = '';
-        }
-        wallboard.images[10+iB].className = 'active';
     },
     kenburns: function(){
         if (wallboard.i==wallboard.numberOfImages){ 
