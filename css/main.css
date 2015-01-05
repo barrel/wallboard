@@ -821,6 +821,9 @@ a:focus {
   height: 62px;
   padding: 0;
 }
+.wallboard-calendar table th:first-child {
+  padding: 10px;
+}
 .wallboard-calendar table td {
   font-weight: 700;
   font-size: 14px;
