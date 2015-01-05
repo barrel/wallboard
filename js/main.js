@@ -2,6 +2,7 @@
 var wallboard = {
     init: function(){
 		var self = this;
+        self.update_time();
         self.update_weather();
         self.photo_slider();
         self.instagram_module();
@@ -11,13 +12,18 @@ var wallboard = {
         var now = new Date(),
             hours = now.getHours(),
             meridiem = hours > 12 ? 'p' : 'a', 
-            minutes,
+            minutes = ("0" + now.getMinutes()).slice(-2),
             timeObj = document.querySelectorAll('.time');
+        if (hours >= 10 && hours <= 18) {
+            current = (hours - 10)*2;
+            if (parseInt(minutes) > 30) current += 1;
+            calHead = document.querySelectorAll('.current-mark');
+            calHead[0].style.height = (current*37)+'px';
+        }
         if (hours>12){
             hours = hours - 12;
             meridiem = 'p';
         }
-        minutes = ("0" + now.getMinutes()).slice(-2);
         timeObj[0].innerHTML = (hours+':'+minutes+' <span class="meridiem">'+meridiem+'</span>');
     },
     update_weather: function(){

@@ -1,8 +1,19 @@
 .wallboard-calendar {
-    .header {
+    .calendar-header {
         box-shadow: 0 0 20px black;
         position: relative;
-        z-index:1;
+        z-index:2;
+        .current-mark {
+            border-bottom: 1px solid @barrelPurple;
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 100%;
+            background: rgba(0,0,0,.75);
+            height: 37px;
+            right: 0;
+            z-index: 1;
+        }
     }
 	table {
 		width:100%;
@@ -97,7 +108,7 @@
 				}
 				&.active-1 {
                     td.extra {
-                        border-bottom: 1px solid @barrelPurple;
+                        //border-bottom: 1px solid @barrelPurple;
                     }
 				}
 				&.past {

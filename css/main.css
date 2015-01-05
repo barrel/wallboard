@@ -783,9 +783,20 @@ a:focus {
   font-size: 39px;
   margin: 0 0 0 0;
 }
-.wallboard-calendar .header {
+.wallboard-calendar .calendar-header {
   box-shadow: 0 0 20px black;
   position: relative;
+  z-index: 2;
+}
+.wallboard-calendar .calendar-header .current-mark {
+  border-bottom: 1px solid #843684;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  height: 37px;
+  right: 0;
   z-index: 1;
 }
 .wallboard-calendar table {
@@ -874,9 +885,6 @@ a:focus {
 }
 .wallboard-calendar table tbody tr:nth-child(odd) td {
   background: #232323;
-}
-.wallboard-calendar table tbody tr.active-1 td.extra {
-  border-bottom: 1px solid #843684;
 }
 .wallboard-calendar table tbody tr.past td.extra hr {
   background: rgba(0, 0, 0, 0.5);
