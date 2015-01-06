@@ -595,6 +595,11 @@ a:focus {
   margin: 0;
   padding: 0;
   background: #1A1A1A;
+  box-shadow: 0 0 20px black;
+  height: 255px;
+  overflow: hidden;
+  position: relative;
+  z-index: 2;
 }
 .wallboard-middle:before,
 .wallboard-middle:after {
