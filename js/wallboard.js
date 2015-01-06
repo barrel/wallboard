@@ -18,7 +18,7 @@ var wallboard = {
             meridiem = hours > 12 ? 'p' : 'a', 
             minutes = ("0" + now.getMinutes()).slice(-2),
             timeObj = document.querySelectorAll('.time');
-        if ((hours >= 10 && hours <= 18)&&parseInt(minutes)===15) {
+        if ((hours >= 10 && hours <= 18) && (parseInt(minutes)%15===0)) {
             current = (hours - 10)*2;
             if (parseInt(minutes) > 30) current += 1;
             calHead = document.querySelectorAll('.current-mark');
