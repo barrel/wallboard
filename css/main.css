@@ -795,7 +795,7 @@ a:focus {
   left: 0;
   top: 100%;
   background: rgba(0, 0, 0, 0.75);
-  height: 37px;
+  height: 0px;
   right: 0;
   z-index: 1;
 }
@@ -803,16 +803,16 @@ a:focus {
   width: 100%;
   overflow: hidden;
 }
-.wallboard-calendar table td,
-.wallboard-calendar table th {
+.wallboard-calendar td,
+.wallboard-calendar th {
   padding: 10px;
 }
-.wallboard-calendar table td:first-child,
-.wallboard-calendar table th:first-child {
+.wallboard-calendar td:first-child,
+.wallboard-calendar th:first-child {
   width: 50px;
   text-align: center;
 }
-.wallboard-calendar table th {
+.wallboard-calendar th {
   font-weight: 700;
   font-size: 12px;
   color: white;
@@ -821,47 +821,60 @@ a:focus {
   height: 62px;
   padding: 0;
 }
-.wallboard-calendar table th:first-child {
+.wallboard-calendar th:first-child {
   padding: 10px;
 }
-.wallboard-calendar table td {
+.wallboard-calendar td {
   font-weight: 700;
   font-size: 14px;
   line-height: 20px;
   min-height: 20px;
   padding: 10px;
 }
-.wallboard-calendar table td:first-child {
+.wallboard-calendar td:first-child {
   border-right: 1px solid black;
   color: white;
   font-size: 15px;
   background: none !important;
 }
-.wallboard-calendar table td:first-child .meridiem {
+.wallboard-calendar td:first-child .meridiem {
   color: #808080;
 }
-.wallboard-calendar table thead tr {
+.wallboard-calendar thead tr {
   background-color: #1A1A1A;
 }
-.wallboard-calendar table tbody tr {
+.wallboard-calendar tbody tr {
   position: relative;
 }
-.wallboard-calendar table tbody tr td {
+.wallboard-calendar tbody tr:nth-child(odd) td {
+  background: #232323;
+}
+.wallboard-calendar tbody tr.past td.extra hr {
+  background: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  display: block;
+  border: none;
+}
+.wallboard-calendar tbody td {
   vertical-align: top;
   position: relative;
   overflow: hidden;
 }
-.wallboard-calendar table tbody tr td.extra {
+.wallboard-calendar tbody td.extra {
   padding: 0 !important;
 }
-.wallboard-calendar table tbody tr td.extra hr {
+.wallboard-calendar tbody td.extra hr {
   display: none;
 }
-.wallboard-calendar table tbody tr td.event {
+.wallboard-calendar tbody td.event {
   background: #975E92 !important;
   color: white;
 }
-.wallboard-calendar table tbody tr td .e-time {
+.wallboard-calendar tbody td .e-time {
   color: rgba(242, 242, 242, 0.5);
   font-size: 11px;
   position: absolute;
@@ -869,7 +882,7 @@ a:focus {
   top: 10px;
   z-index: 1;
 }
-.wallboard-calendar table tbody tr td .event-border {
+.wallboard-calendar tbody td .event-border {
   background: #993399;
   border-right: 1px solid rgba(0, 0, 0, 0.75);
   border-bottom: 1px solid rgba(0, 0, 0, 0.75);
@@ -886,18 +899,9 @@ a:focus {
   bottom: 0px;
   z-index: 1;
 }
-.wallboard-calendar table tbody tr:nth-child(odd) td {
-  background: #232323;
-}
-.wallboard-calendar table tbody tr.past td.extra hr {
-  background: rgba(0, 0, 0, 0.5);
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  display: block;
-  border: none;
+.wallboard-calendar tbody td.top .e-time,
+.wallboard-calendar tbody td.top .event-border {
+  z-index: 2;
 }
 .wallboard-ticker {
   *zoom: 1;

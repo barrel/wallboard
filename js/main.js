@@ -14,11 +14,23 @@ var wallboard = {
             meridiem = hours > 12 ? 'p' : 'a', 
             minutes = ("0" + now.getMinutes()).slice(-2),
             timeObj = document.querySelectorAll('.time');
-        if (hours >= 10 && hours <= 18) {
+        if ((hours >= 10 && hours <= 18)&&parseInt(minutes)===15) {
             current = (hours - 10)*2;
             if (parseInt(minutes) > 30) current += 1;
             calHead = document.querySelectorAll('.current-mark');
-            calHead[0].style.height = (current*37)+'px';
+            calHead[0].style.height = (current*40)-1+'px';
+            var etime = document.querySelectorAll('.e-time'); 
+            for(var i=0;i<etime.length;i++){
+                var time = etime[i].innerHTML.split('-').pop().split(':'),
+                    hrs = parseInt(time[0]),
+                    min = parseInt(time[1]),
+                    className = etime[i].parentNode.className,
+                    isTop = (className.indexOf('top') > -1),
+                    newClass = ( hrs > hours ) ? (
+                        className +(isTop ? '' : ' top')
+                    ) : className.replace('top', '');
+                etime[i].parentNode.className = newClass;
+            };
         }
         if (hours>12){
             hours = hours - 12;
