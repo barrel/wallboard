@@ -1,8 +1,8 @@
 <?php
 /**
- * Context: Cleaning/Holiday/Birthday
+ * Context: Next/Holiday/Birthday
  */
-class Cleaning_Holiday_Birthday {
+class Upcoming_Dates {
 	
 	function __construct(){
 		date_default_timezone_set('America/New_York');

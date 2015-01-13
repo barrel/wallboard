@@ -2,6 +2,7 @@
 var wallboard = {
     init: function(){
 		var self = this;
+        self.firstUpdate = true;
         self.update_time();
         self.update_weather();
         self.photo_slider();
@@ -14,15 +15,18 @@ var wallboard = {
             meridiem = hours > 12 ? 'p' : 'a', 
             minutes = ("0" + now.getMinutes()).slice(-2),
             timeObj = document.querySelectorAll('.time');
-        if ((hours >= 10 && hours <= 18) && (parseInt(minutes)%15===0)) {
+
+        // place the current mark overlay
+        if (hours >= 10 && hours <= 18 && ( (parseInt(minutes)%15===0) || wallboard.firstUpdate) ) {
+            wallboard.firstUpdate = false;
             current = (hours - 10)*2;
             if (parseInt(minutes) > 30) current += 1;
-            calHead = document.querySelectorAll('.current-mark');
+            var calHead = document.querySelectorAll('.current-mark');
             calHead[0].style.height = (current*40)-1+'px';
             var etime = document.querySelectorAll('.e-time'); 
             for(var i=0;i<etime.length;i++){
                 var time = etime[i].innerHTML.split('-').pop().split(':'),
-                    hrs = parseInt(time[0]),
+                    hrs = parseInt(time[0]) + (time[1].indexOf('pm')>-1 ? 12 : 0),
                     min = parseInt(time[1]),
                     className = etime[i].parentNode.className,
                     isTop = (className.indexOf('top') > -1),
@@ -92,6 +96,7 @@ var wallboard = {
         return sl;
     },
     layout: function (){
+        var oldManifest = manifest.data;
         var insta = wallboard.instagram,
             spans = insta.getElementsByTagName('span'),
             randIdx = Math.floor(Math.random()*6),
