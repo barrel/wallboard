@@ -69,6 +69,47 @@ class Upcoming_Dates {
 		return $holiday_array;
 	}
 
+	function next_barrelversary(){
+		$con = Barrel_Wallboard_Api::get_db_con();
+
+		$replace_array = array('&#39; Anniversary'=>'', '&#39;s Anniversary'=>'', '\'s Anniversary'=>'');
+
+		$query = "SELECT content FROM options WHERE name = 'holidays_feed_url'";
+		$response = mysqli_query($con, $query);
+		$barrelversary_array = array();
+		if (!is_bool($response)){
+			if (mysqli_num_rows($response) > 0) {
+				while ($feed = mysqli_fetch_array($response)) {
+					$calendarId = $feed['content'];
+				}
+			}
+		}
+		
+		$list = get_events_list($calendarId, array(
+			'orderBy'      =>'startTime',
+			'timeMin'      => date("Y-m-d\TH:i:sP", time()),
+			'maxResults'   =>3,
+			'q'            =>'anniversary',
+			'singleEvents' =>true
+		));
+		foreach($list as $entry){
+			$barrelversary_array['name'] = strtr($entry->summary, $replace_array);
+			$barrelversary_array['date'] = date('F jS, Y', strtotime($entry->start->date));
+			$barrelversary_array['name_sanitized'] = strtolower(strtr($barrelversary_array['name'], $replace_array));
+
+			$path = "uploads/people/team_".$barrelversary_array['name_sanitized'].'.jpg';
+			if ( !file_exists(__DIR__."/../$path")) {
+				$path = "img/default_person.png";
+			}
+			$barrelversary_array['path'] = $path;
+			
+			$first = false;
+			if(!$first) break;
+		}
+		
+		return $barrelversary_array;
+	}
+
 	function birthdays(){
 		$con = Barrel_Wallboard_Api::get_db_con();
 
@@ -98,7 +139,7 @@ class Upcoming_Dates {
 				$birthday_array[] = array(
 					'name' => $name,
 					'time' => $time,
-					'date' => date('F jS', $time),
+					'date' => date('F jS, Y', $time),
 				);
 			}
 		}

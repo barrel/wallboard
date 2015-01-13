@@ -1,0 +1,77 @@
+.wallboard-upcoming {
+	.clearfix;
+	width:100%;
+	display:block;
+	position:relative;
+	margin:0;
+	padding:30px 0;
+	text-align:center;
+	border-top:2px solid black;
+
+	.upcoming {
+		text-align: justify;
+
+		&:before, &:after {
+			content: "";
+			display: block;
+			width: 100%;
+		}
+		.date {
+			background-color: #232323;
+			border-radius: 12px;
+			color: white;
+			display: inline-block;
+			float: left;
+			font-size: 32px;
+			font-weight: bold;
+			height: 85px;
+			margin-right: 50px;
+			text-align: center;
+			width: 85px;
+
+			span {
+				color: #B3B3B3;
+				display: block;
+				font-size: 16px;
+				padding: 13px 0;
+				text-transform: uppercase;
+			}
+		}
+		.upcoming-event {
+			border-right: 1px solid #4D4D4D;
+		}
+		.half {
+			box-sizing: border-box;
+			display: inline-block;
+			padding: 0 90px;
+			vertical-align: top;
+			width: 49.5%
+		}
+		.food-icon {
+			background: url(../img/svg/food.svg) 50% 50% no-repeat;
+			display: inline-block;
+			float: left;
+			height: 50px;
+			margin-right: 50px;
+			margin-top: 15px;
+			width: 46px;
+		}
+		h2 {
+			color: white;
+			display: inline-block;
+			font-size: 12px;
+			font-weight: bold;
+			line-height: 1;
+			margin: 0 0 10px;
+			padding-top: 20px;
+			text-transform: uppercase;
+		}
+		h3 {
+			color: white;
+			font-size: 20px;
+			font-weight: normal;
+			line-height: 1;
+			margin: 0
+		}
+	}
+}

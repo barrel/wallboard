@@ -596,7 +596,7 @@ a:focus {
   padding: 0;
   background: #1A1A1A;
   box-shadow: 0 0 20px black;
-  height: 255px;
+  height: auto;
   overflow: hidden;
   position: relative;
   z-index: 2;
@@ -612,24 +612,23 @@ a:focus {
 }
 .wallboard-middle .col {
   width: 33%;
-  border-right: 2px solid black;
   margin: 0;
   display: inline-block;
-  padding: 40px 0px;
+  padding: 35px 0px;
   text-align: center;
   vertical-align: top;
-  height: 210px;
+  height: auto;
   overflow: hidden;
 }
 .wallboard-middle .col:last-child {
   border: none;
 }
 .wallboard-middle .col h5 {
-  color: #6B6B6B;
+  color: white;
   font-weight: 700;
   text-align: center;
   text-transform: uppercase;
-  font-size: 14px;
+  font-size: 12px;
   margin: 0 0 25px 0;
   padding: 0;
 }
@@ -646,60 +645,58 @@ a:focus {
   color: #999999;
   font-size: 16px;
 }
-.wallboard-middle .col.cleaning-crew ul {
-  margin: 0 auto;
-  padding: 0;
-  list-style: none;
-  display: inline-block;
-}
-.wallboard-middle .col.cleaning-crew ul li {
-  color: white;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 30px;
-  margin: 0px 0 15px;
-  padding: 0;
-  text-align: left;
-}
-.wallboard-middle .col.cleaning-crew ul li:last-child {
-  margin: 0;
-}
-.wallboard-middle .col.cleaning-crew ul li img {
-  float: left;
-  -webkit-border-radius: 100%;
-  -moz-border-radius: 100%;
-  border-radius: 100%;
-  -webkit-background-clip: padding-box;
-  -moz-background-clip: padding;
-  background-clip: padding-box;
-  height: 30px;
-  display: block;
-  margin: 0 10px 0px 0px;
-}
 .wallboard-middle .col.next-holiday svg.icon {
   height: 80px;
   width: 80px;
   margin: 0 auto 10px auto;
   display: block;
 }
-.wallboard-middle .col.next-birthdays ul {
+.wallboard-middle .col.next-birthdays ul,
+.wallboard-middle .col.next-barrelversary ul {
   list-style: none;
   padding: 0 50px;
   margin: 0;
   text-align: center;
   font-size: 0px;
 }
-.wallboard-middle .col.next-birthdays ul li {
+.wallboard-middle .col.next-birthdays ul li,
+.wallboard-middle .col.next-barrelversary ul li {
   position: relative;
   display: inline-block;
   margin: 0;
   vertical-align: top;
   padding: 0;
 }
-.wallboard-middle .col.next-birthdays ul li.small-birthday {
+.wallboard-middle .col.next-birthdays ul li.large-birthday,
+.wallboard-middle .col.next-barrelversary ul li.large-birthday,
+.wallboard-middle .col.next-birthdays ul li.person,
+.wallboard-middle .col.next-barrelversary ul li.person {
+  margin: 0 4%;
+}
+.wallboard-middle .col.next-birthdays ul li.large-birthday img.person-image,
+.wallboard-middle .col.next-barrelversary ul li.large-birthday img.person-image,
+.wallboard-middle .col.next-birthdays ul li.person img.person-image,
+.wallboard-middle .col.next-barrelversary ul li.person img.person-image {
+  width: 100px;
+  display: block;
+  margin: 0px auto 10px auto;
+  -webkit-border-radius: 100%;
+  -moz-border-radius: 100%;
+  border-radius: 100%;
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+}
+.wallboard-middle .col.next-birthdays ul li.large-birthday img.person-image.today,
+.wallboard-middle .col.next-barrelversary ul li.large-birthday img.person-image.today,
+.wallboard-middle .col.next-birthdays ul li.person img.person-image.today,
+.wallboard-middle .col.next-barrelversary ul li.person img.person-image.today {
+  border: 4px solid #922D8D;
+}
+.wallboard-middle .col.next-birthdays li.small-birthday {
   width: 25%;
 }
-.wallboard-middle .col.next-birthdays ul li.small-birthday img {
+.wallboard-middle .col.next-birthdays li.small-birthday img {
   width: 60px;
   -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=30)";
   filter: alpha(opacity=30);
@@ -713,25 +710,7 @@ a:focus {
   -moz-background-clip: padding;
   background-clip: padding-box;
 }
-.wallboard-middle .col.next-birthdays ul li.large-birthday {
-  width: 42%;
-  margin: 0 4%;
-}
-.wallboard-middle .col.next-birthdays ul li.large-birthday img.person-image {
-  width: 100px;
-  display: block;
-  margin: 0px auto 10px auto;
-  -webkit-border-radius: 100%;
-  -moz-border-radius: 100%;
-  border-radius: 100%;
-  -webkit-background-clip: padding-box;
-  -moz-background-clip: padding;
-  background-clip: padding-box;
-}
-.wallboard-middle .col.next-birthdays ul li.large-birthday img.person-image.today {
-  border: 4px solid #922D8D;
-}
-.wallboard-middle .col.next-birthdays ul li #birthday-icon {
+.wallboard-middle .col.next-birthdays #birthday-icon {
   position: absolute;
   top: -50%;
   z-index: 3;
@@ -752,8 +731,7 @@ a:focus {
   display: block;
   position: relative;
   margin: 0;
-  padding: 50px 0 30px 0;
-  background: #1A1A1A;
+  padding: 30px 0;
   text-align: center;
   border-top: 2px solid black;
 }
@@ -766,27 +744,70 @@ a:focus {
 .wallboard-upcoming:after {
   clear: both;
 }
-.wallboard-upcoming h3 {
-  display: block;
-  position: relative;
-  margin: 0px 0 0 -87px;
-  font-weight: 700;
-  font-size: 15px;
-  padding: 15px 30px 12px;
-  line-height: 100%;
-  text-transform: uppercase;
-  color: white;
-  text-align: center;
-  background: #922D8D;
-  position: absolute;
-  top: -21px;
-  width: 114px;
-  left: 50%;
+.wallboard-upcoming .upcoming {
+  text-align: justify;
 }
-.wallboard-upcoming h2 {
-  font-weight: 200;
-  font-size: 39px;
-  margin: 0 0 0 0;
+.wallboard-upcoming .upcoming:before,
+.wallboard-upcoming .upcoming:after {
+  content: "";
+  display: block;
+  width: 100%;
+}
+.wallboard-upcoming .upcoming .date {
+  background-color: #232323;
+  border-radius: 12px;
+  color: white;
+  display: inline-block;
+  float: left;
+  font-size: 32px;
+  font-weight: bold;
+  height: 85px;
+  margin-right: 50px;
+  text-align: center;
+  width: 85px;
+}
+.wallboard-upcoming .upcoming .date span {
+  color: #B3B3B3;
+  display: block;
+  font-size: 16px;
+  padding: 13px 0;
+  text-transform: uppercase;
+}
+.wallboard-upcoming .upcoming .upcoming-event {
+  border-right: 1px solid #4D4D4D;
+}
+.wallboard-upcoming .upcoming .half {
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 0 90px;
+  vertical-align: top;
+  width: 49.5%;
+}
+.wallboard-upcoming .upcoming .food-icon {
+  background: url(../img/svg/food.svg) 50% 50% no-repeat;
+  display: inline-block;
+  float: left;
+  height: 50px;
+  margin-right: 50px;
+  margin-top: 15px;
+  width: 46px;
+}
+.wallboard-upcoming .upcoming h2 {
+  color: white;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1;
+  margin: 0 0 10px;
+  padding-top: 20px;
+  text-transform: uppercase;
+}
+.wallboard-upcoming .upcoming h3 {
+  color: white;
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 1;
+  margin: 0;
 }
 .wallboard-calendar .calendar-header {
   box-shadow: 0 0 20px black;
@@ -907,51 +928,16 @@ a:focus {
 .wallboard-calendar tbody td.top .event-border {
   z-index: 2;
 }
-.wallboard-ticker {
-  *zoom: 1;
-  display: block;
-  position: relative;
-  margin: 0;
-  padding: 15px 30px;
-  background: #1C1C1C;
+.wallboard-footer {
+  background: #1A1A1A;
+  box-shadow: 0 0 20px black;
+  padding: 20px 0;
+}
+.wallboard-footer h5 {
+  color: #666666;
+  font-size: 12px;
+  font-weight: bold;
   text-align: center;
-  -webkit-font-smoothing: auto;
-}
-.wallboard-ticker:before,
-.wallboard-ticker:after {
-  display: table;
-  content: "";
-  line-height: 0;
-}
-.wallboard-ticker:after {
-  clear: both;
-}
-.wallboard-ticker ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  display: block;
-  white-space: nowrap;
-}
-.wallboard-ticker ul li {
-  display: inline-block;
-  padding: 0 30px;
-  list-style: none;
-  margin: 0;
-}
-.wallboard-ticker ul li p {
-  margin: 0;
-  padding: 0;
-  font-size: 18px;
-  font-weight: 400;
-  color: white;
-}
-.wallboard-ticker ul li p .news-time {
-  font-size: 15px;
-  color: #838383;
-  display: inline-block;
-  margin-left: 10px;
   text-transform: uppercase;
 }
 .hidden {

@@ -1,0 +1,54 @@
+.wallboard-middle {
+	.clearfix;
+	width:100%;
+	display:block;
+	margin:0;
+	padding:0;
+	background:#1A1A1A;
+	box-shadow:0 0 20px black;
+	height: auto;
+	overflow:hidden;
+	position:relative;
+	z-index:2;
+
+	.col {
+		width:33%;
+		margin:0;
+		display:inline-block;
+		padding:35px 0px;
+		text-align:center;
+		vertical-align:top;
+		height:auto;
+		overflow:hidden;
+
+		&:last-child {
+			border:none;
+		}
+		h5 {
+			color:white;
+			font-weight:700;
+			text-align:center;
+			text-transform:uppercase;
+			font-size:12px;
+			margin:0 0 25px 0;
+			padding:0;
+		}
+		p {
+			color:white;
+			font-weight:400;
+			font-size:24px;
+			line-height:150%;
+			margin:0;
+			padding:0;
+
+
+			&.subtitle {
+				margin-top:00px;
+				color:#999999;
+				font-size:16px;
+			}
+		}
+		//@import "cleaning.less";
+		@import "nexts.less";
+	}
+}

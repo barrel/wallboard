@@ -1,4 +1,9 @@
 
+		<?php if ($page!=='backdoor'): ?>
+		<section class="wallboard-footer">
+			<h5>Made By Barrel</h5>
+		</section>
+		<?php endif; ?>
 		<script>var siteUrl = "<?php echo (Barrel_Wallboard_Api::is_production()) ? '/' : '/wallboard/'; ?>";</script>
 		<?php if ($page==='backdoor'): ?>
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>

@@ -1,7 +1,14 @@
 {{! Template: Upcoming Holiday }}
 <section class="wallboard-upcoming">
-	<h4>Upcoming</h4>
-	{{#event}}
-	<h2>{{name}} – {{date}}</h2>
-	{{/event}}
+	<div class="upcoming">
+		<div class="upcoming-event half">
+			<div class="date"><span>{{month}}</span>{{day}}</div>
+			<h2>Next Event</h2>
+			<h3>{{name}}</h3>
+		</div>
+		<div class="upcoming-lunch half">
+			<div class="food-icon"></div>
+			<h2>Today's Lunch</h2>
+			<h3>{{lunch}} from {{vendor}}</h2>
+		</div>
 </section>

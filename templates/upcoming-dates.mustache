@@ -1,13 +1,5 @@
 {{! Template: Cleaning/Holiday/Birthday }}
 <section class="wallboard-middle">
-	<div class="col cleaning-crew">
-		<h5>Cleaning Crew</h5>
-		<ul>
-			{{#cleaning_crew}}
-			<li><img src="./{{path}}" alt=""/>{{name}}</li>
-			{{/cleaning_crew}}
-		</ul>
-	</div>
 	{{#next_holiday}}
 	<div class="col next-holiday">
 		<h5>Next Holiday</h5>
@@ -18,13 +10,24 @@
 		<p class="subtitle">{{date}}</p>
 	</div>
 	{{/next_holiday}}
+
+	{{#next_barrelversary}}
+	<div class="col next-barrelversary">
+		<h5>Next Barrelversary</h5>
+		<ul>
+			<li class="person">
+				<img class="person-image" src="./{{path}}" alt="{{name}}" />
+				<p>{{name}}</p>
+				<p class="subtitle">{{date}}</p>
+			</li>
+		</ul>
+	</div>
+	{{/next_barrelversary}}
+
 	<div class="col next-birthdays">
 		<h5>Next Birthday</h5>
 		<ul>
 		{{#birthdays}}
-			{{#past}}
-			<li class="past small-birthday"><img src="./{{path}}" alt="{{name}}" /></li>
-			{{/past}}
 			{{#current}}
 			<li class="large-birthday">
 				<img class="person-image{{#todayisbirthday}} today{{/todayisbirthday}}" src="./{{path}}" alt="{{name}}" />
@@ -35,9 +38,6 @@
 				</svg>{{/todayisbirthday}}
 			</li>
 			{{/current}}
-			{{#future}}
-			<li class="future small-birthday"><img src="./{{path}}" alt="{{name}}" /></li>
-			{{/future}}
 		{{/birthdays}}
 		</ul>
 	</div>
