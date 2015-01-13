@@ -312,7 +312,7 @@ body.wallboard {
   font-family: 'Benton', "Helvetica Neue", Helvetica, Arial, sans-serif;
   background: rgba(0, 0, 0, 0.9) url(../img/swatch.png);
   color: white;
-  overflow: auto;
+  overflow: hidden;
   height: 100%;
 }
 .container {
