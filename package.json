@@ -7,6 +7,7 @@
   },
   "devDependencies": {
     "grunt": "~0.4.1",
+    "grunt-autoprefixer": "^2.1.0",
     "grunt-contrib-concat": "~0.3.0",
     "grunt-contrib-cssmin": "~0.6.0",
     "grunt-contrib-less": "~0.5.1",

@@ -33,6 +33,19 @@ module.exports = function(grunt) {
                 }
             }
         },
+		autoprefixer: {
+			options: {
+				map: true
+			},
+			front: {
+				src: 'css/main.css',
+				dest: 'css/main.css'
+			},
+			back: {
+				src: 'css/back.css',
+				dest: 'css/back.css'
+			},
+		},
         cssmin: {
             options: {
                 banner: '<%= banner %>'
@@ -87,11 +100,7 @@ module.exports = function(grunt) {
             },
             less: {
                 files: ['css/less/*.less'],
-                tasks: ['less']
-            },
-            cssmin: {
-                files: ['css/*.css'],
-                tasks: ['cssmin']
+                tasks: ['less', 'autoprefixer', 'cssmin']
             },
             concat: {
                 files: ['js/main.js', 'js/lib/*.js'],
@@ -110,13 +119,16 @@ module.exports = function(grunt) {
     grunt.registerTask('build', [
 		'svgstore',
 		'less',
+		'autoprefixer',
         'cssmin',
         'concat',
         'uglify'
     ]);
      
-    grunt.registerTask('server', [
+    grunt.registerTask('dev', [
+		'svgstore',
         'less',
+		'autoprefixer',
         'cssmin',
         'concat',
         'uglify',
