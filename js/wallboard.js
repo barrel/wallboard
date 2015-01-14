@@ -1,5 +1,5 @@
 /*
-wallboard - v - 2015-01-13
+wallboard - v - 2015-01-14
 An app to make a dashboard for the wallboard.
 Lovingly coded by BarrelNY Developers  - http://barrelny.com 
 */
@@ -21,21 +21,24 @@ var wallboard = {
             timeObj = document.querySelectorAll('.time');
 
         // place the current mark overlay
-        if (hours >= 10 && hours <= 18 && ( (parseInt(minutes)%15===0) || wallboard.firstUpdate) ) {
+        if (hours >= 10 && hours <= 18 && ( (parseInt(minutes)%5===0) || wallboard.firstUpdate) ) {
+            var calHead = document.querySelectorAll('.current-mark'),
+                etime = document.querySelectorAll('.e-time'),
+                current = (hours - 10)*2; 
+
             wallboard.firstUpdate = false;
-            current = (hours - 10)*2;
-            if (parseInt(minutes) > 30) current += 1;
-            var calHead = document.querySelectorAll('.current-mark');
+            if (parseInt(minutes) >= 30) current += 1;
             calHead[0].style.height = (current*40)-1+'px';
-            var etime = document.querySelectorAll('.e-time'); 
             for(var i=0;i<etime.length;i++){
                 var time = etime[i].innerHTML.split('-').pop().split(':'),
                     hrs = parseInt(time[0]) + (time[1].indexOf('pm')>-1 ? 12 : 0),
                     min = parseInt(time[1]),
                     className = etime[i].parentNode.className,
                     isTop = (className.indexOf('top') > -1),
-                    newClass = ( hrs > hours ) ? (
-                        className +(isTop ? '' : ' top')
+                    newClass = ( hrs >= hours ) ? (
+                        (hrs>hours||hrs==hours&&parseInt(minutes)<min) ? 
+                        className +(isTop ? '' : ' top') : 
+                        className.replace('top', '')
                     ) : className.replace('top', '');
                 etime[i].parentNode.className = newClass;
             };
@@ -100,26 +103,22 @@ var wallboard = {
         return sl;
     },
     layout: function (){
-        var oldManifest = manifest.data;
-        var insta = wallboard.instagram,
+        var oldManifest = manifest.data,
+            insta = wallboard.instagram,
             spans = insta.getElementsByTagName('span'),
             randIdx = Math.floor(Math.random()*6),
             randSpan = spans[ randIdx ], 
             randImg = randSpan.getElementsByTagName('img')[0], 
-            url = manifest.data.splice(
-                Math.floor(Math.random()*manifest.data.length), 
-                1, randImg.src
-            ), 
-            url = url[0];
+            randMan = Math.floor(Math.random()*manifest.data.length),
+            url = manifest.data.splice(randMan, 1, randImg.src).pop(),
+            img = new Image();
 
         // append new img with new src to existing span
-        var img = new Image();
         img.src = url;
         randSpan.style.backgroundImage = 'url("'+url+'")';
         
         // crossfade new image with old image
         randSpan.className = 'cross';
-
         setTimeout( function(){
             // remove old image element
             randImg.remove();
