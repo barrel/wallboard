@@ -40,7 +40,7 @@ class Upcoming_Dates {
 		$replace_array = array(" (Holiday)"=> "","(Holiday)"=> "",);
 		$name_replace = array("'"=> "", " "=> "", "day"=> "", "break"=> "");
 
-		$query = "SELECT content FROM options WHERE name = 'holidays_feed_url'";
+		$query = "SELECT content FROM options WHERE name = 'calendar_feed_url'";
 		$response = mysqli_query($con, $query);
 		$holiday_array = array();
 		if (!is_bool($response)){
@@ -74,7 +74,7 @@ class Upcoming_Dates {
 
 		$replace_array = array('&#39; Anniversary'=>'', '&#39;s Anniversary'=>'', '\'s Anniversary'=>'');
 
-		$query = "SELECT content FROM options WHERE name = 'holidays_feed_url'";
+		$query = "SELECT content FROM options WHERE name = 'calendar_feed_url'";
 		$response = mysqli_query($con, $query);
 		$barrelversary_array = array();
 		if (!is_bool($response)){
