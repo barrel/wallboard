@@ -55,13 +55,13 @@ class Upcoming_Event{
 		}
 		$food = get_events_list($calendarId, array(
 			'orderBy'      =>'startTime',
-			'timeMin'      =>date("Y-m-d\TH:i:sP", strtotime('today')),
+			'timeMin'      =>date("Y-m-d\TH:i:sP", strtotime('yesterday')),
 			'maxResults'   =>5,
 			'singleEvents' =>true
 		));
 
 		foreach($food as $entry){
-			if ( strtotime($entry->start->date) < time()) continue;
+			if ( strtotime($entry->start->date) < strtotime('12am')) continue;
 			$time = strtotime($entry->start->date);
 			list($this->lunch, $this->vendor) = array_map('trim', explode('from', $entry->summary));
 			
