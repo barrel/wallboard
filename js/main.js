@@ -110,26 +110,26 @@ var wallboard = {
             randMan = Math.floor(Math.random()*manifest.data.length),
             url = manifest.data.splice(randMan, 1, randImg.src).pop(),
             img = new Image(),
-            fade = function(){
+            fade = function(timing, callback){
                 var opacity = randImgStyle.opacity.length < 1 ? 1 : randImgStyle.opacity;
-                (randImgStyle.opacity = opacity-0.01) < 0 ? randImgStyle.display="none": setTimeout(fade,40);
+                (randImgStyle.opacity = opacity-0.01) < 0 ? randImgStyle.display="none"&&callback(): setTimeout(function(){
+                    fade(timing, callback)
+                }, timing/100);
             };
 
         // append new img with new src to existing span
         img.onload = function () {
             randSpan.className = 'cross';
             randSpan.style.backgroundImage = 'url("'+url+'")';
-        
-            // crossfade new image with old image
-            fade();
 
-            setTimeout( function(){
+            // crossfade new image with old image
+            fade(5000, function(){
                 // remove old image element
                 randImg.remove();
                 randSpan.appendChild(img);
                 randSpan.style.backgroundImage = '';
                 randSpan.className = '';
-            }, 5000);
+            });
         }
         img.src = url;
     },
