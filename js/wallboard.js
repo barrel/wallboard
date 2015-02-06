@@ -1,5 +1,5 @@
 /*
-wallboard - v - 2015-01-15
+wallboard - v - 2015-02-06
 An app to make a dashboard for the wallboard.
 Lovingly coded by BarrelNY Developers  - http://barrelny.com 
 */
@@ -110,24 +110,32 @@ var wallboard = {
             randIdx = Math.floor(Math.random()*6),
             randSpan = spans[ randIdx ], 
             randImg = randSpan.getElementsByTagName('img')[0], 
+            randImgStyle = randImg.style,
             randMan = Math.floor(Math.random()*manifest.data.length),
             url = manifest.data.splice(randMan, 1, randImg.src).pop(),
-            img = new Image();
+            img = new Image(),
+            fade = function(){
+                var opacity = randImgStyle.opacity.length < 1 ? 1 : randImgStyle.opacity;
+                (randImgStyle.opacity = opacity-0.01) < 0 ? randImgStyle.display="none": setTimeout(fade,40);
+            };
 
         // append new img with new src to existing span
+        img.onload = function () {
+            randSpan.className = 'cross';
+            randSpan.style.backgroundImage = 'url("'+url+'")';
+        
+            // crossfade new image with old image
+            fade();
+
+            setTimeout( function(){
+                // remove old image element
+                randImg.remove();
+                randSpan.appendChild(img);
+                randSpan.style.backgroundImage = '';
+                randSpan.className = '';
+            }, 5000);
+        }
         img.src = url;
-        randSpan.style.backgroundImage = 'url("'+url+'")';
-        
-        // crossfade new image with old image
-        randSpan.className = 'cross';
-        setTimeout( function(){
-            // remove old image element
-            randImg.remove();
-            randSpan.appendChild(img);
-            randSpan.style.backgroundImage = '';
-            randSpan.className = '';
-        }, 5000);
-        
     },
     kenburns: function(){
         if (wallboard.i==wallboard.numberOfImages){ 
